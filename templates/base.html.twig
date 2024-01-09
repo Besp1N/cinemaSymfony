@@ -9,6 +9,9 @@
 
         {% block javascripts %}
 {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {% if app.request.get('_route') == '/dupa' %}
+                <script defer src="{{ asset('scripts/dupa.js') }}"></script>
+            {% endif %}
         {% endblock %}
     </head>
     <body>
