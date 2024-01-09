@@ -12,6 +12,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        return new Response("dupa");
+        return new Response("test");
     }
 }
