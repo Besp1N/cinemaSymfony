@@ -13,6 +13,7 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-    {{ asset('images/Test.svg') }}
+    <img src="{{ asset('images/test.png') }}"/>
+    <a href="{{ path('app_dupa') }}">Test</a>
     </body>
 </html>
