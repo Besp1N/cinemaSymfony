@@ -7,4 +7,5 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
-console.log('test');
+import './scripts/dupa.js';
+console.log('Main JS files imports correctly!');

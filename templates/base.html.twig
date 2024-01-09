@@ -9,10 +9,14 @@
 
         {% block javascripts %}
 {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {% if app.request.get('_route') == '/dupa' %}
+                <script defer src="{{ asset('scripts/dupa.js') }}"></script>
+            {% endif %}
         {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
-    {{ asset('images/Test.svg') }}
+    <img src="{{ asset('images/test.png') }}"/>
+    <a href="{{ path('app_dupa') }}">Test</a>
     </body>
 </html>
