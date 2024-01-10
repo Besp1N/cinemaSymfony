@@ -15,7 +15,9 @@
         {% endblock %}
     </head>
     <body>
+        {% include 'components/_navbar.html.twig' %}
+        <main class="container">
         {% block body %}{% endblock %}
-    <img src="{{ asset('images/test.png') }}"/>
+        </main>
     </body>
 </html>
