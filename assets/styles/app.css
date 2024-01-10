@@ -8,6 +8,7 @@
 }
 .dark-mode {
     --background-color: linear-gradient(-45deg, navy, rgb(167, 2, 167), navy);
+    --background-color-opaque: linear-gradient(-45deg,rgba(0,0,128,0.5), rgba(167,2,167,0.5),rgba(0,0,128,0.5));
     --text-color: whitesmoke;
     --container-primary: #222222;
 
@@ -109,6 +110,7 @@ body {
 .navbar-toggle {
     font-size: 1.5rem;
     margin: 0 5px;
+    background: var(--container-primary);
 }
 .navbar-search {
     font-size: 1rem;
@@ -141,5 +143,24 @@ body {
     }
 
 }
+/* POSTERS */
+.slide-poster-image {
+    height: 40rem; /* Example fixed height */
+    width: auto;
+    object-fit: cover; /* This will ensure the aspect ratio is maintained */
+}
+@media screen and (max-width: 700px) {
+    .slide-poster-image {
+        height: 15rem;
+    }
+}
+.slides-poster {
+    height: fit-content;
+    overflow: hidden;
+    position: relative;
+}
 
-/* END NAVBAR */
+.slide-poster {
+    width: 50%;
+    position:absolute;
+}

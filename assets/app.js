@@ -7,7 +7,7 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
-import './scripts/dupa.js';
+import Slider from './scripts/slider.js';
 
 console.log('Main JS files imports correctly!');
 //temporary location for main page files
@@ -25,3 +25,6 @@ document.querySelector('.navbar-toggle').addEventListener('click', function() {
     })
 
 });
+
+const slider = new Slider(document.querySelector('.slides-poster'), 75);
+slider.moveSlides(1)
