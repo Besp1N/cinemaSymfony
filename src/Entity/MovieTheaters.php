@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MovieTheatersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MovieTheatersRepository::class)]
@@ -19,6 +21,14 @@ class MovieTheaters
     #[ORM\ManyToOne(inversedBy: 'movieTheaters')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Cinema $cinema_id = null;
+
+    #[ORM\OneToMany(mappedBy: 'move_theater_id', targetEntity: Seat::class, cascade: ["persist", "remove"])]
+    private Collection $seats;
+
+    public function __construct()
+    {
+        $this->seats = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,6 +55,36 @@ class MovieTheaters
     public function setCinemaId(?Cinema $cinema_id): static
     {
         $this->cinema_id = $cinema_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Seat>
+     */
+    public function getSeats(): Collection
+    {
+        return $this->seats;
+    }
+
+    public function addSeat(Seat $seat): static
+    {
+        if (!$this->seats->contains($seat)) {
+            $this->seats->add($seat);
+            $seat->setMoveTheaterId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeat(Seat $seat): static
+    {
+        if ($this->seats->removeElement($seat)) {
+            // set the owning side to null (unless already changed)
+            if ($seat->getMoveTheaterId() === $this) {
+                $seat->setMoveTheaterId(null);
+            }
+        }
 
         return $this;
     }
