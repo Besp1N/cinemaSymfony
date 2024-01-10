@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,8 +26,8 @@ class Movie
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
 
-    #[ORM\Column]
-    private ?int $relase_year = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $relase_year = null;
 
     #[ORM\Column(length: 255)]
     private ?string $director = null;
@@ -37,16 +35,8 @@ class Movie
     #[ORM\Column]
     private ?float $rating = null;
 
-    #[ORM\Column(length: 600, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $image = null;
-
-    #[ORM\OneToMany(mappedBy: 'movie', targetEntity: Screaning::class, cascade: ["persist", "remove"])]
-    private Collection $screanings;
-
-    public function __construct()
-    {
-        $this->screanings = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -101,12 +91,12 @@ class Movie
         return $this;
     }
 
-    public function getRelaseYear(): ?int
+    public function getRelaseYear(): ?\DateTimeInterface
     {
         return $this->relase_year;
     }
 
-    public function setRelaseYear(int $relase_year): static
+    public function setRelaseYear(\DateTimeInterface $relase_year): static
     {
         $this->relase_year = $relase_year;
 
@@ -142,39 +132,9 @@ class Movie
         return $this->image;
     }
 
-    public function setImage(?string $image): static
+    public function setImage(string $image): static
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Screaning>
-     */
-    public function getScreanings(): Collection
-    {
-        return $this->screanings;
-    }
-
-    public function addScreaning(Screaning $screaning): static
-    {
-        if (!$this->screanings->contains($screaning)) {
-            $this->screanings->add($screaning);
-            $screaning->setMovie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeScreaning(Screaning $screaning): static
-    {
-        if ($this->screanings->removeElement($screaning)) {
-            // set the owning side to null (unless already changed)
-            if ($screaning->getMovie() === $this) {
-                $screaning->setMovie(null);
-            }
-        }
 
         return $this;
     }

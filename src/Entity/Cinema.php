@@ -24,7 +24,7 @@ class Cinema
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
-    #[ORM\OneToMany(mappedBy: 'cinema_id', targetEntity: MovieTheaters::class, cascade: ["persist", "remove"], orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'cinema', targetEntity: MovieTheater::class, cascade: ["persist"])]
     private Collection $movieTheaters;
 
     public function __construct()
@@ -74,29 +74,29 @@ class Cinema
     }
 
     /**
-     * @return Collection<int, MovieTheaters>
+     * @return Collection<int, MovieTheater>
      */
     public function getMovieTheaters(): Collection
     {
         return $this->movieTheaters;
     }
 
-    public function addMovieTheater(MovieTheaters $movieTheater): static
+    public function addMovieTheater(MovieTheater $movieTheater): static
     {
         if (!$this->movieTheaters->contains($movieTheater)) {
             $this->movieTheaters->add($movieTheater);
-            $movieTheater->setCinemaId($this);
+            $movieTheater->setCinema($this);
         }
 
         return $this;
     }
 
-    public function removeMovieTheater(MovieTheaters $movieTheater): static
+    public function removeMovieTheater(MovieTheater $movieTheater): static
     {
         if ($this->movieTheaters->removeElement($movieTheater)) {
             // set the owning side to null (unless already changed)
-            if ($movieTheater->getCinemaId() === $this) {
-                $movieTheater->setCinemaId(null);
+            if ($movieTheater->getCinema() === $this) {
+                $movieTheater->setCinema(null);
             }
         }
 

@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Screaning;
+use App\Entity\Screening;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Screaning>
+ * @extends ServiceEntityRepository<Screening>
  *
- * @method Screaning|null find($id, $lockMode = null, $lockVersion = null)
- * @method Screaning|null findOneBy(array $criteria, array $orderBy = null)
- * @method Screaning[]    findAll()
- * @method Screaning[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Screening|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Screening|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Screening[]    findAll()
+ * @method Screening[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ScreaningRepository extends ServiceEntityRepository
+class ScreeningRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Screaning::class);
+        parent::__construct($registry, Screening::class);
     }
 
 //    /**
-//     * @return Screaning[] Returns an array of Screaning objects
+//     * @return Screening[] Returns an array of Screening objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class ScreaningRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Screaning
+//    public function findOneBySomeField($value): ?Screening
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')

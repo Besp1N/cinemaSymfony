@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -31,14 +33,19 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $role = null;
 
-    #[ORM\Column(length: 600, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $profile_picture = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255)]
     private ?string $phone_number = null;
 
-    #[ORM\ManyToOne(inversedBy: 'user')]
-    private ?Reservation $reservation = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservation::class, cascade: ["persist"])]
+    private Collection $reservations;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -122,7 +129,7 @@ class User
         return $this->profile_picture;
     }
 
-    public function setProfilePicture(?string $profile_picture): static
+    public function setProfilePicture(string $profile_picture): static
     {
         $this->profile_picture = $profile_picture;
 
@@ -141,14 +148,32 @@ class User
         return $this;
     }
 
-    public function getReservation(): ?Reservation
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
     {
-        return $this->reservation;
+        return $this->reservations;
     }
 
-    public function setReservation(?Reservation $reservation): static
+    public function addReservation(Reservation $reservation): static
     {
-        $this->reservation = $reservation;
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getUser() === $this) {
+                $reservation->setUser(null);
+            }
+        }
 
         return $this;
     }

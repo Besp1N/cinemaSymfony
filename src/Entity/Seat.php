@@ -15,6 +15,10 @@ class Seat
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne(inversedBy: 'seats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?MovieTheater $movie_theater = null;
+
     #[ORM\Column(length: 255)]
     private ?string $seat_row = null;
 
@@ -24,10 +28,7 @@ class Seat
     #[ORM\Column(length: 255)]
     private ?string $seat_type = null;
 
-    #[ORM\ManyToOne(inversedBy: 'seats')]
-    private ?MovieTheaters $move_theater_id = null;
-
-    #[ORM\OneToMany(mappedBy: 'seat', targetEntity: Reservation::class, cascade: ["persist", "remove"])]
+    #[ORM\OneToMany(mappedBy: 'seat', targetEntity: Reservation::class)]
     private Collection $reservations;
 
     public function __construct()
@@ -38,6 +39,18 @@ class Seat
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getMovieTheater(): ?MovieTheater
+    {
+        return $this->movie_theater;
+    }
+
+    public function setMovieTheater(?MovieTheater $movie_theater): static
+    {
+        $this->movie_theater = $movie_theater;
+
+        return $this;
     }
 
     public function getSeatRow(): ?string
@@ -72,18 +85,6 @@ class Seat
     public function setSeatType(string $seat_type): static
     {
         $this->seat_type = $seat_type;
-
-        return $this;
-    }
-
-    public function getMoveTheaterId(): ?MovieTheaters
-    {
-        return $this->move_theater_id;
-    }
-
-    public function setMoveTheaterId(?MovieTheaters $move_theater_id): static
-    {
-        $this->move_theater_id = $move_theater_id;
 
         return $this;
     }

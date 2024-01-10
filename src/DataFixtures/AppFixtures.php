@@ -4,11 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Cinema;
 use App\Entity\Movie;
-use App\Entity\MovieTheaters;
+use App\Entity\MovieTheater;
 use App\Entity\Reservation;
-use App\Entity\Screaning;
+use App\Entity\Screening;
 use App\Entity\Seat;
-use App\Entity\Test;
 use App\Entity\User;
 use DateTime;
 use DateTimeImmutable;
@@ -19,62 +18,66 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $user = new User();
+        $user->setName('Luke');
+        $user->setLastname('Skywalker');
+        $user->setEmail('elo@wp.pl');
+        $user->setPassword('ok');
+        $user->setCreatedAt(new DateTimeImmutable());
+        $user->setRole('User');
+        $user->setProfilePicture("test//test");
+        $user->setPhoneNumber("+48 123 456 789");
+
+        // Tworzenie filmu
+        $movie = new Movie();
+        $movie->setTitle('Indiana Jones');
+        $movie->setDescription('cool movie');
+        $movie->setDirector('Steven Spielberg');
+        $movie->setGenre('Adventure');
+        $movie->setDuration(new DateTimeImmutable());
+        $movie->setRating(9.0);
+        $movie->setRelaseYear(new DateTime());
+        $movie->setImage("test//test");
+
+        // Tworzenie kina
         $cinema = new Cinema();
-        $cinema->setName("multikino");
-        $cinema->setCity("slupsk");
-        $cinema->setAddress("zielona4");
+        $cinema->setName("Multikino");
+        $cinema->setCity("Warszawa");
+        $cinema->setAddress("zielona 1");
 
-        $movieTheater1 = new MovieTheaters();
-        $movieTheater1->setName("sala1");
-        $movieTheater2 = new MovieTheaters();
-        $movieTheater2->setName("sala2");
+        // Tworzenie sali kinowej
+        $movieTheater = new MovieTheater();
+        $movieTheater->setName("Sala 1");
 
-        $seat1 = new Seat();
-        $seat1->setSeatType("vip");
-        $seat1->setSeatRow("A");
-        $seat1->setSeatNumber("7");
-        $seat2 = new Seat();
-        $seat2->setSeatType("vip");
-        $seat2->setSeatRow("B");
-        $seat2->setSeatNumber("8");
+        // Tworzenie miejsca (siedzenia) w sali kinowej
+        $seat = new Seat();
+        $seat->setSeatRow("A");
+        $seat->setSeatNumber("1");
+        $seat->setSeatType("Vip");
 
-        $movieTheater1->addSeat($seat1);
-        $movieTheater2->addSeat($seat2);
+        // Dodawanie filmu do seansu
+        $screening = new Screening();
+        $screening->setMovie($movie);
+        $screening->setStartTime(new DateTimeImmutable());
 
-        $movie1 = new Movie();
-        $movie1->setTitle("Indiana Jones");
-        $movie1->setDescription("hit nad hity");
-        $movie1->setDirector("Steven Spielberg");
-        $movie1->setGenre("advanture");
-        $movie1->setDuration(new DateTime());
-        $movie1->setRating(5.0);
-        $movie1->setRelaseYear(1980);
+        // Tworzenie rezerwacji dla użytkownika, miejsca i seansu
+        $reservation = new Reservation();
+        $reservation->setUser($user);
+        $reservation->setSeat($seat);
+        $reservation->setScreening($screening);
 
-        $user1 = new User();
-        $user1->setName("Luke");
-        $user1->setLastname("Skywalker");
-        $user1->setEmail("elo@wp.pl");
-        $user1->setPassword("ok");
-        $user1->setCreatedAt(new DateTimeImmutable());
-        $user1->setPhoneNumber("+48 123 456 789");
-        $user1->setRole("User");
+        // Dodawanie elementów do relacji
+        $user->addReservation($reservation);
+        $movieTheater->addSeat($seat);
+        $movieTheater->addScreening($screening);
+        $cinema->addMovieTheater($movieTheater);
 
-        $reservation1 = new Reservation();
-        $reservation1->setSeat($seat1);
-        $reservation1->addUser($user1);
-
-
-        $screaning1 = new Screaning();
-        $screaning1->setMovie($movie1);
-        $screaning1->setMovieTheater($movieTheater1);
-        $screaning1->setStartTime(new DateTime());
-
-        $screaning1->setReservation($reservation1);
-
-        $movieTheater1->addScreaning($screaning1);
-
-        $cinema->addMovieTheater($movieTheater1);
+        // Persystencja obiektów do bazy danych
+        $manager->persist($user);
+        $manager->persist($movie);
         $manager->persist($cinema);
+
+        // Flush do zapisania zmian w bazie danych
         $manager->flush();
 
 

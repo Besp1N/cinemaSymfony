@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\MovieTheaters;
+use App\Entity\MovieTheater;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<MovieTheaters>
+ * @extends ServiceEntityRepository<MovieTheater>
  *
- * @method MovieTheaters|null find($id, $lockMode = null, $lockVersion = null)
- * @method MovieTheaters|null findOneBy(array $criteria, array $orderBy = null)
- * @method MovieTheaters[]    findAll()
- * @method MovieTheaters[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method MovieTheater|null find($id, $lockMode = null, $lockVersion = null)
+ * @method MovieTheater|null findOneBy(array $criteria, array $orderBy = null)
+ * @method MovieTheater[]    findAll()
+ * @method MovieTheater[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MovieTheatersRepository extends ServiceEntityRepository
+class MovieTheaterRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, MovieTheaters::class);
+        parent::__construct($registry, MovieTheater::class);
     }
 
 //    /**
-//     * @return MovieTheaters[] Returns an array of MovieTheaters objects
+//     * @return MovieTheater[] Returns an array of MovieTheater objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class MovieTheatersRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?MovieTheaters
+//    public function findOneBySomeField($value): ?MovieTheater
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')
