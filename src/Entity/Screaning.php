@@ -25,6 +25,9 @@ class Screaning
     #[ORM\JoinColumn(nullable: false)]
     private ?Movie $movie = null;
 
+    #[ORM\ManyToOne(cascade: ["persist", "remove"], inversedBy: 'screaning')]
+    private ?Reservation $reservation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +65,18 @@ class Screaning
     public function setMovie(?Movie $movie): static
     {
         $this->movie = $movie;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(?Reservation $reservation): static
+    {
+        $this->reservation = $reservation;
 
         return $this;
     }
