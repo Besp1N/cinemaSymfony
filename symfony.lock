@@ -13,6 +13,7 @@
             "src/Repository/.gitignore"
         ]
     },
+<<<<<<< HEAD
     "doctrine/doctrine-fixtures-bundle": {
         "version": "3.5",
         "recipe": {
@@ -25,6 +26,8 @@
             "src/DataFixtures/AppFixtures.php"
         ]
     },
+=======
+>>>>>>> assets
     "doctrine/doctrine-migrations-bundle": {
         "version": "3.3",
         "recipe": {
