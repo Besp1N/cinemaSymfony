@@ -21,7 +21,7 @@ class Screaning
     #[ORM\JoinColumn(nullable: false)]
     private ?MovieTheaters $movie_theater = null;
 
-    #[ORM\ManyToOne(inversedBy: 'screanings')]
+    #[ORM\ManyToOne(cascade: ["persist", "remove"], inversedBy: 'screanings')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Movie $movie = null;
 
