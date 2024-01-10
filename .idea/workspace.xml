@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="1601ebc4-c2ce-4619-851f-41e454546a67" name="Changes" comment="" />
 =======
     <list default="true" id="1601ebc4-c2ce-4619-851f-41e454546a67" name="Changes" comment="">
@@ -19,6 +20,19 @@
 >>>>>>> c95edcb8679bd5c2c20fbdf29f85e43234b44177
 =======
     <list default="true" id="1601ebc4-c2ce-4619-851f-41e454546a67" name="Changes" comment="" />
+>>>>>>> database
+=======
+    <list default="true" id="1601ebc4-c2ce-4619-851f-41e454546a67" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20240110154814.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20240110160357.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Cinema.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/MovieTheaters.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/CinemaRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/MovieTheatersRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+    </list>
 >>>>>>> database
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,16 +167,26 @@
     <option name="showLibraryContents" value="true" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;database&quot;,
+>>>>>>> database
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+<<<<<<< HEAD
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
 =======
@@ -179,8 +203,11 @@
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
 >>>>>>> database
+=======
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+>>>>>>> database
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
