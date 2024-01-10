@@ -25,9 +25,13 @@ class MovieTheaters
     #[ORM\OneToMany(mappedBy: 'move_theater_id', targetEntity: Seat::class, cascade: ["persist", "remove"])]
     private Collection $seats;
 
+    #[ORM\OneToMany(mappedBy: 'movie_theater', targetEntity: Screaning::class, cascade: ["persist", "remove"])]
+    private Collection $screanings;
+
     public function __construct()
     {
         $this->seats = new ArrayCollection();
+        $this->screanings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,6 +87,36 @@ class MovieTheaters
             // set the owning side to null (unless already changed)
             if ($seat->getMoveTheaterId() === $this) {
                 $seat->setMoveTheaterId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Screaning>
+     */
+    public function getScreanings(): Collection
+    {
+        return $this->screanings;
+    }
+
+    public function addScreaning(Screaning $screaning): static
+    {
+        if (!$this->screanings->contains($screaning)) {
+            $this->screanings->add($screaning);
+            $screaning->setMovieTheater($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScreaning(Screaning $screaning): static
+    {
+        if ($this->screanings->removeElement($screaning)) {
+            // set the owning side to null (unless already changed)
+            if ($screaning->getMovieTheater() === $this) {
+                $screaning->setMovieTheater(null);
             }
         }
 
