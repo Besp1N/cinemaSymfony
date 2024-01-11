@@ -6,6 +6,7 @@ use App\Entity\Movie;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -21,13 +22,12 @@ class MovieCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             TextField::new('title'),
-            TextEditorField::new('description'),
-//            DateTimeField::new('duration')->renderAsText(),
+            TimeField::new('duration'),
             TextField::new('description'),
             TextField::new('genre'),
-//            DateTimeField::new('relase_year'),
+            DateTimeField::new('relase_year'),
             TextField::new('director'),
             NumberField::new('rating'),
             TextField::new('image')
