@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\MovieTheater;
+use App\Entity\Reservation;
 use App\Entity\Seat;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -32,7 +33,6 @@ class SeatCrudController extends AbstractCrudController
                         return sprintf('%s - %s', $movieTheater->getCinema()->getName(), $movieTheater->getName());
                     },
                 ]),
-            AssociationField::new('reservations'),
             TextField::new('seat_row'),
             TextField::new('seat_number'),
             TextField::new('seat_type'),

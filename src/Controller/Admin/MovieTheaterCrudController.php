@@ -25,16 +25,6 @@ class MovieTheaterCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
-            AssociationField::new('seats')
-                ->setCustomOption('multiple', true)
-                ->setFormTypeOptions([
-                    'by_reference' => false,
-                    'required' => true,
-                    'class' => Seat::class,
-                    'choice_label' => function (Seat $seat) {
-                        return sprintf('%s | seat - %s - %s', $seat->getMovieTheater()->getName(), $seat->getSeatRow(), $seat->getSeatNumber());
-                    },
-                ]),
             AssociationField::new('cinema', 'Cinema')
                 ->setCustomOption('multiple', false)
                 ->setFormTypeOptions([
@@ -52,7 +42,12 @@ class MovieTheaterCrudController extends AbstractCrudController
                     'required' => true,
                     'class' => Screening::class,
                     'choice_label' => function (Screening $screening) {
-                        return sprintf('%s - %s - %s', $screening->getMovieTheater()->getName(), $screening->getMovie()->getTitle(), $screening->getStartTime()->format('H:i'));
+                        $movieTheater = $screening->getMovieTheater();
+                        $movie = $screening->getMovie();
+                        $movieTheaterName = $movieTheater ? $movieTheater->getName() : 'Unknown Movie Theater';
+                        $movieTitle = $movie ? $movie->getTitle() : 'Unknown Movie';
+
+                        return sprintf('%s - %s - %s', $movieTheaterName, $movieTitle, $screening->getStartTime()->format('H:i'));
                     },
                 ]),
 
