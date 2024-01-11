@@ -2,8 +2,14 @@
 
 {% block body %}
     <h1>Symfony Cinema</h1>
+    <hr class="section-divider">
     <div class="section" data-section="1">
-        <h2> TITLE</h2>
+        <div class="container container-posters">
+            <div>
+                <h2>Hot premieres</h2>
+                Dodac tutaj style i link do "zobacz wiecej"
+            </div>
+
         <ul class="slides-poster">
             <!-- 2:3 ratio!!! -->
             <li class="slide-poster">
@@ -16,6 +22,7 @@
                 <img src="{{ asset('images/poster3.png') }}" alt="poster3" class="slide-poster-image" />
             </li>
         </ul>
+        </div>
         <hr class="section-divider">
     </div>
     <div class="section" data-section="2">

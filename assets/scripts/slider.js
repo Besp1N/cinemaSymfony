@@ -3,6 +3,7 @@ export default class Slider {
     #slides;
     #offset;
     #current = 0;
+    #interval;
 
     /**
      * Creates a simple slider given a parent container.
@@ -15,6 +16,7 @@ export default class Slider {
         this.#slides = Array.from(parent.children);
         this.#offset = offset;
         this.#initializeSlider();
+        this.moveSlides(0);
     }
 
     /**
@@ -25,16 +27,17 @@ export default class Slider {
         this.#setSlidesPosition();
         this.#offsetSlides();
         this.#addKeyboardHandler();
+        this.#addHandlersClick();
+        this.#addInterval();
     }
 
     /**
-     * Sets the position of each slide to absolute and adjusts margin.
+     * Sets the necessary styling for slides
      */
     #setSlidesPosition() {
         this.#slides.forEach(slide => {
             slide.style.position = 'absolute';
-            slide.style.margin = '0 0 0 25%';
-            slide.style.zIndex = 1;
+            slide.style.transition = 'all 1s ease';
         });
     }
 
@@ -50,18 +53,15 @@ export default class Slider {
             }
         });
         this.#parent.style.height = `${maxHeight}px`;
-        console.log(maxHeight);
     }
 
-
-
     /**
-     * Sets the initial offset of the slides.
+     * Sets the initial offset of the slides and data attributes.
      */
     #offsetSlides() {
         this.#slides.forEach((slide, i) => {
             slide.dataset.slide = i;
-            slide.style.transform = `translateX(${(i - this.#current) * this.#offset + 25}%)`;
+            slide.style.transform = `translateX(${(i - this.#current) * this.#offset}%)`;
         });
     }
 
@@ -70,9 +70,19 @@ export default class Slider {
      */
     #addKeyboardHandler() {
         document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowRight') this.moveSlides(this.#current + 1);
-            if (e.key === 'ArrowLeft') this.moveSlides(this.#current - 1);
+
+            if (e.key === 'ArrowRight') {
+                clearInterval(this.#interval);
+                this.moveNext();
+            }
+            if (e.key === 'ArrowLeft') {
+                clearInterval(this.#interval);
+                this.movePrevious();
+            }
         })
+    }
+    #addInterval() {
+        this.#interval = setInterval(this.moveNext.bind(this), 4000)
     }
 
     /**
@@ -80,13 +90,65 @@ export default class Slider {
      * @param {number} position - The position to move the slides to.
      */
     moveSlides(position) {
-        this.#current = Math.max(0, Math.min(position, this.#slides.length - 1));
+
+        this.#current = position;
         this.#slides.forEach((slide, i) => {
-            slide.style.transform = `translateX(${(i - this.#current) * this.#offset + 25}%)`;
-            if (+slide.dataset.slide === this.#current) slide.style.zIndex = 2;
-            else slide.style.zIndex = 1;
+            slide.style.transform = `translateX(${(i - this.#current) * this.#offset}%)`;
+            if (+slide.dataset.slide === this.#current) {
+                slide.style.zIndex = 100;
+                slide.style.opacity = 1;
+            }
+            else {
+                slide.style.zIndex = 100 - slide.dataset.slide;
+                slide.style.opacity = 0.5;
+            }
         });
-        console.log(this.#current)
+    }
+    moveNext() {
+        if (this.#current === this.#slides.length - 1) this.moveSlides(0);
+        else this.moveSlides(this.#current + 1)
+    }
+    movePrevious() {
+        if (this.#current === 0) this.moveSlides(this.#slides.length - 1);
+        else this.moveSlides(this.#current - 1 )
+    }
+
+    #addHandlersClick() {
+        this.#parent.addEventListener('click', (e) => {
+            clearInterval(this.#interval);
+            const slide = e.target.closest('.slide-poster');
+            if (!slide) return;
+            this.moveSlides(+slide.dataset.slide)
+        })
+        let touchstartX = 0;
+        let touchendX = 0;
+        let touchstartTime = 0;
+
+        const SWIPE_THRESHOLD = 30; // Minimum distance for a swipe
+        const TAP_THRESHOLD = 500; // Maximum time for a tap
+
+        const handleTouchStart = (e) => {
+            touchstartX = e.touches[0].clientX;
+            touchstartTime = new Date().getTime();
+        };
+
+        const handleTouchEnd = (e) => {
+            touchendX = e.changedTouches[0].clientX;
+            const touchDuration = new Date().getTime() - touchstartTime;
+
+            if (Math.abs(touchendX - touchstartX) > SWIPE_THRESHOLD && touchDuration < TAP_THRESHOLD) {
+                if (touchendX < touchstartX) {
+                    this.moveNext();
+                } else {
+                    this.movePrevious();
+                }
+                clearInterval(this.#interval)
+            }
+        };
+
+        this.#parent.addEventListener('touchstart', handleTouchStart, { passive: true });
+        this.#parent.addEventListener('touchend', handleTouchEnd, { passive: true });
+
     }
 
     /**
@@ -94,7 +156,7 @@ export default class Slider {
      * @param {Element} element - The element that triggers the move to the left.
      */
     addHandlerMoveLeft(element) {
-        element.addEventListener('click', () => this.moveSlides(--this.#current));
+        element.addEventListener('click', () => this.movePrevious());
     }
 
     /**
@@ -102,6 +164,18 @@ export default class Slider {
      * @param {Element} element - The element that triggers the move to the right.
      */
     addHandlerMoveRight(element) {
-        element.addEventListener('click', () => this.moveSlides(++this.#current));
+        element.addEventListener('click', () => this.moveNext());
+    }
+
+    /**
+     *
+     * @param {Number} slideNumber Selects a slide to add an anchor to.
+     * @param {Text} url
+     */
+    addLink(slideNumber, url) {
+       const slide =  this.#slides.find( (slide) => +slide.dataset.slide === slideNumber);
+       slide.addEventListener('click', () => {
+           if (+slide.dataset.slide === this.#current) window.location.href = url;
+       })
     }
 }

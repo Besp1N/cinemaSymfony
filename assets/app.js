@@ -9,15 +9,17 @@
 import './styles/app.css';
 import Slider from './scripts/slider.js';
 
-console.log('Main JS files imports correctly!');
+
 //temporary location for main page files
 const themeBtn = document.querySelector('.theme-toggle');
-
+const isDarkMode = () =>
+    window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (isDarkMode()) document.body.classList.add('dark-mode');
 themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 })
-
-
+const query = window.matchMedia('prefers-color-scheme: dark');
+console.log(query);
 document.querySelector('.navbar-toggle').addEventListener('click', function() {
     const links = document.querySelector('.navbar-links');
     [...links.children].forEach(child => {
@@ -27,4 +29,4 @@ document.querySelector('.navbar-toggle').addEventListener('click', function() {
 });
 
 const slider = new Slider(document.querySelector('.slides-poster'), 75);
-slider.moveSlides(1)
+// slider.addLink(1, 'test');
