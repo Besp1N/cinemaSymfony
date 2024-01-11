@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Movie;
 use App\Repository\MovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,5 +18,11 @@ class HomeController extends AbstractController
         return $this->render('home.html.twig', [
             "movies" => $movies
         ]);
+    }
+
+    #[Route('/{movie}', name: 'app_home_movie')]
+    public function showMovie(Movie $movie): Response
+    {
+        dd($movie);
     }
 }
