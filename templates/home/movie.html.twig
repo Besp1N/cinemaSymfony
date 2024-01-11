@@ -3,20 +3,20 @@
 {% block body %}
 
     <div class="movie-page">
-        <header class="movie-title">
-            Star Wars
-        </header>
         <div class="movie-image">
-            <img src="{{ movie.image }}" alt="Poster">
+            <img src="{{ asset("images/poster1.png") }}" alt="Poster">
         </div>
         <div class="movie-details">
+            <h2 class="movie-title">
+                {{ movie.title }}
+            </h2>
             <p><strong>Genre:</strong> {{ movie.genre }}</p>
-            <p><strong>Release Year: </strong>{{ movie.relaseyear | date("d,m,Y") }}</p>
-            <p><strong>Duration:</strong>{{ movie.duration | date}}</p>
-            <p><strong>Director:</strong>{{ movie.director }}</p>
-            <p><strong>Rating:</strong> {{ movie.rating }} / 5</p>
+            <p><strong>Release: </strong>{{ movie.relaseyear | date("d.m.Y") }}</p>
+            <p><strong>Duration: </strong>{{ movie.duration | date('H:m')}}</p>
+            <p><strong>Director: </strong>{{ movie.director }}</p>
+            <p><strong>Rating: </strong> {{ movie.rating }} / 5</p>
         </div>
-        <div class="movie-description">
+        <div class="movie-description glass">
             <p>{{ movie.description }}</p>
         </div>
     </div>
