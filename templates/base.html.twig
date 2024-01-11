@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
@@ -9,14 +10,12 @@
 
         {% block javascripts %}
 {% block importmap %}{{ importmap('app') }}{% endblock %}
-            {% if app.request.get('_route') == '/dupa' %}
-                <script defer src="{{ asset('scripts/dupa.js') }}"></script>
-            {% endif %}
+
         {% endblock %}
     </head>
     <body>
         {% include 'components/_navbar.html.twig' %}
-        <main class="container">
+        <main class="container" style="margin-top: 2rem">
         {% block body %}{% endblock %}
         </main>
     <img src="{{ asset('images/test.png') }}"/>
