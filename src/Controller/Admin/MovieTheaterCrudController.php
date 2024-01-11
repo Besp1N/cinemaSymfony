@@ -25,7 +25,7 @@ class MovieTheaterCrudController extends AbstractCrudController
             TextField::new('name'),
             TextField::new('seats'),
             AssociationField::new('cinema', 'Cinema')
-                ->setCustomOption('multiple', false) // Uniemożliwiając wybór wielu kin
+                ->setCustomOption('multiple', false)
                 ->setFormTypeOptions([
                     'by_reference' => false,
                     'required' => true,
