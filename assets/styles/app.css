@@ -35,22 +35,35 @@ input, button, textarea, select {
     font: inherit;
 }
 
-h1, h2 {
+h1 {
     font-size: clamp(1.5rem, 5vw, 3rem);
     display: grid;
     place-content: center;
-    text-align: center;
     margin: 0.3em auto;
 }
 h2 {
     font-size: clamp(1rem, 3vw, 2rem);
+    text-align: left;
+    margin: 1em;
 }
 
 body {
     background: var(--background-color);
     color: var(--text-color);
     min-height: 100vh;
-
+}
+a, a:hover, a:checked {
+  color: var(--text-color);
+    text-decoration: none;
+}
+.glass{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 2px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 1rem;
 }
 
 
@@ -62,11 +75,16 @@ body {
 
 .container {
     background: var(--container-primary);
-    width: clamp(100px, 90%, 1500px);
+    width: clamp(100px, 95%, 1500px);
     border-radius: 3px;
     margin: 0 auto;
     overflow: auto;
     box-shadow: 0.5rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+@media screen and (max-width: 700px) {
+    .container {
+        width: 100%;
+    }
 }
 .section-divider {
     background: var(--background-color);
@@ -170,11 +188,42 @@ body {
 .slide-poster {
     margin-left: 20%;
 }
-
-
-
 .container-posters {
-    background: var(--container-secondary);
     display: grid;
     grid-template-columns: 1fr 3fr;
+}
+
+
+.container-simple-movie {
+    display: flex;
+    align-items: center;
+    background: var(--container-secondary);
+    padding: 0 5%;
+    margin-bottom: 100px;
+    overflow: visible;
+    transition: opacity 0.5s ease;
+}
+
+.title-simple-movie {
+    font-size: 1.5rem;
+    flex: 2; /* Adjust for better spacing */
+}
+
+.release-date-simple-movie, .rating-simple-movie {
+    margin: 0 1%;
+    flex: 1; /* Adjust as needed */
+}
+.description-simple-movie {
+    display: none;
+    transform: translateY(-75%);
+    position: absolute;
+    padding: 10px;
+}
+
+.genre-simple-movie {
+    flex: 2; /* Adjust as needed */
+}
+
+.container-simple-movie:hover .description-simple-movie {
+    display: block;
 }

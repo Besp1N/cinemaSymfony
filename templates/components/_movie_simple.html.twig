@@ -1,0 +1,20 @@
+
+<a href="{{ path('app_home_movie', {movie: movie.id}) }}">
+<div class="container container-simple-movie">
+    <div class="title-simple-movie">
+        {{ movie.title }}
+    </div>
+    <div class="release-date-simple-movie">
+        {{ movie.relaseYear | date("m/Y")}}
+    </div>
+    <div class="rating-simple-movie">
+        {{ movie.rating }} / 5.0
+    </div>
+    <div class="description-simple-movie glass">
+        {{ movie.description }}
+    </div>
+    <div class="genre-simple-movie">
+        {{ movie.genre }}
+    </div>
+</div>
+</a>

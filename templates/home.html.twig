@@ -5,6 +5,7 @@
     <hr class="section-divider">
     <div class="section" data-section="1">
         <div class="container container-posters">
+
             <div>
                 <h2>Hot premieres</h2>
                 Dodac tutaj style i link do "zobacz wiecej"
@@ -22,16 +23,23 @@
                 <img src="{{ asset('images/poster3.png') }}" alt="poster3" class="slide-poster-image" />
             </li>
         </ul>
+
         </div>
         <hr class="section-divider">
     </div>
     <div class="section" data-section="2">
+<ul>
+    <h2>Now playing...</h2>
+    {% for movie in movies %}
+        <li>
+            {{ include('components/_movie_simple.html.twig', {'movie': movie}) }}
+        </li>
+    {% endfor %}
 
-        {% for movie in movies %}
-            <div>
-                <a href="{{ path('app_home_movie', {movie: movie.id}) }}">{{ movie.title }}</a>
-            </div>
-        {% endfor %}
+</ul>
 
+    <div class="section-divider">
     </div>
+
+
 {% endblock %}

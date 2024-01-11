@@ -70,7 +70,7 @@ export default class Slider {
      */
     #addKeyboardHandler() {
         document.addEventListener('keydown', e => {
-
+            if (!e.target.isEqualNode(document.body)) return;
             if (e.key === 'ArrowRight') {
                 clearInterval(this.#interval);
                 this.moveNext();
