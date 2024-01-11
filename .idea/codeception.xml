@@ -9,18 +9,6 @@
         <Configuration>
           <option name="path" value="$PROJECT_DIR$/tests" />
         </Configuration>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        <Configuration>
-          <option name="path" value="$PROJECT_DIR$/tests" />
-        </Configuration>
->>>>>>> c95edcb8679bd5c2c20fbdf29f85e43234b44177
-=======
-        <Configuration>
-          <option name="path" value="$PROJECT_DIR$/tests" />
-        </Configuration>
->>>>>>> database
       </list>
     </option>
   </component>
