@@ -26,22 +26,12 @@
         <hr class="section-divider">
     </div>
     <div class="section" data-section="2">
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
-    <h1>dd</h1>
+
+        {% for movie in movies %}
+            <div>
+                {{ movie.title }}
+            </div>
+        {% endfor %}
+
     </div>
 {% endblock %}
