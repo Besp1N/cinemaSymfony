@@ -172,6 +172,11 @@ a, a:hover, a:checked {
     width: auto;
     object-fit: cover; /* This will ensure the aspect ratio is maintained */
     cursor: pointer;
+    transition: transform 0.2s ease;
+
+}
+.slide-poster-image:hover {
+    transform: scale(110%);
 
 }
 @media screen and (max-width: 700px) {
@@ -188,12 +193,13 @@ a, a:hover, a:checked {
 .slide-poster {
     margin-left: 20%;
 }
+
 .container-posters {
     display: grid;
     grid-template-columns: 1fr 3fr;
 }
 
-
+/* simple movies list */
 .container-simple-movie {
     display: flex;
     align-items: center;
@@ -201,9 +207,14 @@ a, a:hover, a:checked {
     padding: 0 5%;
     margin-bottom: 100px;
     overflow: visible;
-    transition: opacity 0.5s ease;
-}
+    transition: all 0.5s ease;
 
+}
+.container-simple-movie:hover {
+    background: var(--background-color);
+    color: whitesmoke;
+    transform: translateY(-5px);
+}
 .title-simple-movie {
     font-size: 1.5rem;
     flex: 2; /* Adjust for better spacing */
@@ -227,3 +238,34 @@ a, a:hover, a:checked {
 .container-simple-movie:hover .description-simple-movie {
     display: block;
 }
+
+/* MOVIE VIEW */
+.movie-page {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.movie-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.movie-image img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.movie-details {
+    font-size: 1rem;
+    margin: 20px 0;
+}
+
+.movie-description {
+    padding: 15px;
+    border-radius: 5px;
+}
+

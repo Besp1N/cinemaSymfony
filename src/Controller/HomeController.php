@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     public function index(MovieRepository $movieRepository): Response
     {
         $movies = $movieRepository->findAll();
-        return $this->render('home.html.twig', [
+        return $this->render('home/home.html.twig', [
             "movies" => $movies
         ]);
     }
@@ -23,6 +23,8 @@ class HomeController extends AbstractController
     #[Route('/{movie}', name: 'app_home_movie')]
     public function showMovie(Movie $movie): Response
     {
-        dd($movie);
+       return $this->render('home/movie.html.twig', [
+           "movie" => $movie,
+       ]);
     }
 }
