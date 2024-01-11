@@ -8,7 +8,6 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import './scripts/dupa.js';
-<<<<<<< HEAD
 
 console.log('Main JS files imports correctly!');
 //temporary location for main page files
@@ -26,6 +25,6 @@ document.querySelector('.navbar-toggle').addEventListener('click', function() {
     })
 
 });
-=======
+
 console.log('Main JS files imports correctly!');
->>>>>>> assets
+
