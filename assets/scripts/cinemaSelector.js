@@ -6,8 +6,6 @@ dropdown.value = dropdown.firstElementChild.value
 dropdown.addEventListener('change', async () => {
     const data = {movie: 1, cinema: 1};
 
-   const response = await fetch('/api/api_screenings',
-       {method: "GET",
-           headers: {"Content-Type": "application/json"},
-           body: JSON.stringify(data)});
+   const response = await fetch(`/api_screenings?movie=${1}&cinema=${1}`);
+    console.log(await response.json())
 })
