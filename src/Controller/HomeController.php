@@ -50,7 +50,6 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-
         return $this->render('home/add.html.twig', [
             "form" => $form
         ]);

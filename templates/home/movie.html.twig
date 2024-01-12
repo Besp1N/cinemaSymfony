@@ -25,7 +25,9 @@
         <div class="section" data-section="1"></div>
             <h2>Next screenings</h2>
             <div class="container-simple-movie container">
-                {{ dump(screenings) }}
+                {% for screening in screenings %}
+                    {{ screening.starttime | date }}
+                {% endfor %}
             </div>
         <div class="section-divider"></div>
     </div>
