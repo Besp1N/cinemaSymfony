@@ -1,34 +1,40 @@
 .own-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 1.8rem;
 }
 
 .own-cinema {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-    background-color: transparent;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 20px;
+    margin-bottom: 20px;
+    max-height: 40%;
+    overflow: scroll;
 }
 
 .own-cinema h2 {
-    margin-bottom: 5px;
-    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
 
 .own-cinema h3 {
-    margin-top: 5px;
+    font-size: 1.2em;
     margin-bottom: 10px;
-    color: #fff;
 }
 
-.own-cinema ul {
+ul {
     list-style: none;
     padding: 0;
 }
 
-.own-cinema li {
-    margin-bottom: 5px;
+li {
+    margin-bottom: 10px;
 }
+
 
