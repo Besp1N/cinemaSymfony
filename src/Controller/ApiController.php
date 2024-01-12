@@ -13,6 +13,6 @@ class ApiController extends AbstractController
     #[Route('/api_screenings', name: 'app_api')]
     public function index(Request $request): JsonResponse
     {
-        dd($request);
+
     }
 }
