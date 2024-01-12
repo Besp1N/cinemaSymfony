@@ -21,6 +21,20 @@ class ScreeningRepository extends ServiceEntityRepository
         parent::__construct($registry, Screening::class);
     }
 
+    public function findScreeningsByMovieAndCinema($movieId, $cinemaId)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.movieTheater', 'mt')
+            ->join('mt.cinema', 'c')
+            ->join('s.movie', 'm')
+            ->andWhere('c.id = :cinemaId')
+            ->andWhere('m.id = :movieId')
+            ->setParameter('cinemaId', $cinemaId)
+            ->setParameter('movieId', $movieId)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Screening[] Returns an array of Screening objects
 //     */

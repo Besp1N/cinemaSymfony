@@ -24,11 +24,13 @@ class MovieRepository extends ServiceEntityRepository
 //    /**
 //     * @return Movie[] Returns an array of Movie objects
 //     */
-//    public function findByExampleField($value): array
+//    public function findByExampleField($movieId, $cinemaId): array
 //    {
 //        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
+//            ->andWhere('m.cinema = :val')
+//            ->setParameter('val', $cinemaId)
+//            ->andWhere('m.movie = :val')
+//            ->setParameter('val', $movieId)
 //            ->orderBy('m.id', 'ASC')
 //            ->setMaxResults(10)
 //            ->getQuery()

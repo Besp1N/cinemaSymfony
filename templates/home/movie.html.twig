@@ -30,10 +30,10 @@
             <h2 style="display: inline">Next screenings</h2>
             <form id="selectCinema" style="display: inline">
                 <label for="cinema">Select your cinema:</label>
-                <select name="cinema" class="dropdown" de>
+                <select name="cinema" class="dropdown" >
                     {% for cinema in cinemas %}
                         <option selected>---</option>
-                    <option value="{{ cinema.id }}">{{ cinema.name }}</option>
+                    <option value="{{ cinema.id }}">{{ cinema.city }} - {{ cinema.name }} - {{ cinema.address }}</option>
                     {% endfor %}
                 </select>
             </form>

@@ -7,10 +7,10 @@ dropdown.value = dropdown.firstElementChild.value
 
 dropdown.addEventListener('change', async () => {
 
-    const movieId = document.getElementById('movieId').innerText;
     const cinemaId = dropdown.value
 
-
-   const response = await fetch(`/api_screenings?movie=${movieId}&cinema=${cinemaId}`);
+    // wywalilem to movie z linka bo zrobilem se inaczej ( obczaj kontroler )
+    const response = await fetch(`/api_screenings?cinema=${cinemaId}`);
     const data = await response.json();
+    console.log(data);
 })
