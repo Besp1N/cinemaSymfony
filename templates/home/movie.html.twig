@@ -5,7 +5,7 @@
     <script defer src="{{ asset('scripts/cinemaSelector.js')}}"></script>
 {% endblock %}
 {% block body %}
-
+    <p style="display: none;" id="movieId">{{ movie.id }}</p>
     <div class="movie-page">
         <div class="movie-image">
             <img src="{{ asset("images/poster1.png") }}" alt="Poster">
@@ -33,7 +33,7 @@
                 <select name="cinema" class="dropdown" de>
                     {% for cinema in cinemas %}
                         <option selected>---</option>
-                    <option value="{{ cinema.name }}">{{ cinema.name }}</option>
+                    <option value="{{ cinema.id }}">{{ cinema.name }}</option>
                     {% endfor %}
                 </select>
             </form>
