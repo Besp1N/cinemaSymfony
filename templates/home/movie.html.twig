@@ -15,10 +15,19 @@
             <p><strong>Duration: </strong>{{ movie.duration | date('H:m')}}</p>
             <p><strong>Director: </strong>{{ movie.director }}</p>
             <p><strong>Rating: </strong> {{ movie.rating }} / 5</p>
+            <div class="movie-goto-book"></div>
         </div>
         <div class="movie-description glass">
             <p>{{ movie.description }}</p>
         </div>
+    </div>
+    <div class="section-divider">
+        <div class="section" data-section="1"></div>
+            <h2>Next screenings</h2>
+            <div class="container-simple-movie container">
+                AAAAAAAAAAAAAAAAAAAAAAAAAAA
+            </div>
+        <div class="section-divider"></div>
     </div>
 
 {% endblock %}

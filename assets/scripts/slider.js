@@ -1,9 +1,12 @@
+// import {mark} from "regenerator-runtime";
+
 export default class Slider {
     #parent;
     #slides;
     #offset;
     #current = 0;
     #interval;
+    #lastSlide;
 
     /**
      * Creates a simple slider given a parent container.
@@ -23,12 +26,15 @@ export default class Slider {
      * Initializes the slider by setting up necessary styles and event listeners.
      */
     #initializeSlider() {
+        this.#createLastSlide();
+
         this.#resizeParent();
         this.#setSlidesPosition();
         this.#offsetSlides();
         this.#addKeyboardHandler();
         this.#addHandlersClick();
         this.#addInterval();
+
     }
 
     /**
@@ -39,6 +45,15 @@ export default class Slider {
             slide.style.position = 'absolute';
             slide.style.transition = 'all 1s ease';
         });
+    }
+    #createLastSlide() {
+        const lastSlide = document.createElement('div');
+        lastSlide.style.position = 'absolute';
+        lastSlide.style.right = 0;
+        lastSlide.innerHTML = 'dupa'
+        this.#parent.appendChild(lastSlide);
+        this.#slides.push(lastSlide)
+        this.#lastSlide = lastSlide;
     }
 
     /**
@@ -61,6 +76,11 @@ export default class Slider {
     #offsetSlides() {
         this.#slides.forEach((slide, i) => {
             slide.dataset.slide = i;
+            if (+slide.dataset.slide === this.#slides.length - 1) {
+                slide.style.zIndex =  100 - this.#slides.length
+                return
+            }
+
             slide.style.transform = `translateX(${(i - this.#current) * this.#offset}%)`;
         });
     }
@@ -90,9 +110,13 @@ export default class Slider {
      * @param {number} position - The position to move the slides to.
      */
     moveSlides(position) {
-
         this.#current = position;
+        this.#lastSlide.style.opacity = this.#current === this.#slides.length - 2 ? 1 : 0
+
         this.#slides.forEach((slide, i) => {
+            if(+slide.dataset.slide === this.#slides.length - 1 ) {
+                return
+            }
             slide.style.transform = `translateX(${(i - this.#current) * this.#offset}%)`;
             if (+slide.dataset.slide === this.#current) {
                 slide.style.zIndex = 100;
@@ -105,11 +129,11 @@ export default class Slider {
         });
     }
     moveNext() {
-        if (this.#current === this.#slides.length - 1) this.moveSlides(0);
+        if (this.#current === this.#slides.length - 2) this.moveSlides(0);
         else this.moveSlides(this.#current + 1)
     }
     movePrevious() {
-        if (this.#current === 0) this.moveSlides(this.#slides.length - 1);
+        if (this.#current === 0) this.moveSlides(this.#slides.length - 2);
         else this.moveSlides(this.#current - 1 )
     }
 
