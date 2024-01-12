@@ -30,7 +30,7 @@ class SeatCrudController extends AbstractCrudController
                     'required' => true,
                     'class' => MovieTheater::class,
                     'choice_label' => function (MovieTheater $movieTheater) {
-                        return sprintf('%s - %s', $movieTheater->getCinema()->getName(), $movieTheater->getName());
+                        return sprintf('%s - %s - %s | %s',$movieTheater->getCinema()->getCity(), $movieTheater->getCinema()->getName(), $movieTheater->getCinema()->getAddress() ,$movieTheater->getName());
                     },
                 ]),
             TextField::new('seat_row'),
