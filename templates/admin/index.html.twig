@@ -1,8 +1,8 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block head_stylesheets %}
-     <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
-     <link rel="stylesheet" href="{{ asset('app.css', ea.assets.defaultAssetPackageName) }}">
+    <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('app.css', ea.assets.defaultAssetPackageName) }}">
 {% endblock %}
 
 {% block content_top_header %}
@@ -11,10 +11,25 @@
 
 {% block content %}
     <div class="own-container">
-        <div class="own-container-movie">
-            {% for cinema in cinemas %}
-                <div class="own-cinema">{{ cinema.city }} - {{ cinema.name }} - {{ cinema.address }}</div>
-            {% endfor %}
-        </div>
+        {% for cinemaInfoItem in cinemaInfo %}
+            <div class="own-cinema">
+                <h2>{{ cinemaInfoItem.cinema.city }} - {{ cinemaInfoItem.cinema.name }} - {{ cinemaInfoItem.cinema.address }}</h2>
+                <h3>Movie Theater: {{ cinemaInfoItem.movieTheater.name }}</h3>
+                <ul>
+                    {% for screening in cinemaInfoItem.movieTheater.screenings %}
+                        <li>
+                            Movie: {{ cinemaInfoItem.movie.title }}<br>
+                            Screening Time: {{ screening.startTime|date('Y-m-d H:i:s') }}<br>
+                            Seats:
+                            <ul>
+                                {% for seat in cinemaInfoItem.seats %}
+                                    <li>{{ seat.seatRow }} - {{ seat.seatNumber }} (Type: {{ seat.seatType }})</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

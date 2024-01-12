@@ -1,13 +1,34 @@
-.nav-message {
-
-}
 .own-container {
-    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
 }
-.own-container-movie {
 
-}
 .own-cinema {
-    font-size: 1.3rem;
-    padding-bottom: 0.4rem; ;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: transparent;
 }
+
+.own-cinema h2 {
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.own-cinema h3 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.own-cinema ul {
+    list-style: none;
+    padding: 0;
+}
+
+.own-cinema li {
+    margin-bottom: 5px;
+}
+
