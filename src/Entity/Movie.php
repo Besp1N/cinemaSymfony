@@ -27,7 +27,7 @@ class Movie
     private ?string $genre = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $relase_year = null;
+    private ?\DateTimeInterface $release_year = null;
 
     #[ORM\Column(length: 255)]
     private ?string $director = null;
@@ -91,14 +91,14 @@ class Movie
         return $this;
     }
 
-    public function getRelaseYear(): ?\DateTimeInterface
+    public function getReleaseYear(): ?\DateTimeInterface
     {
-        return $this->relase_year;
+        return $this->release_year;
     }
 
-    public function setRelaseYear(\DateTimeInterface $relase_year): static
+    public function setReleaseYear(\DateTimeInterface $relase_year): static
     {
-        $this->relase_year = $relase_year;
+        $this->release_year = $relase_year;
 
         return $this;
     }

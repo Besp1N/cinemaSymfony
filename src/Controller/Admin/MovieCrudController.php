@@ -27,7 +27,7 @@ class MovieCrudController extends AbstractCrudController
             TimeField::new('duration'),
             TextField::new('description'),
             TextField::new('genre'),
-            DateTimeField::new('relase_year'),
+            DateTimeField::new('release_year'),
             TextField::new('director'),
             NumberField::new('rating'),
             TextField::new('image')
