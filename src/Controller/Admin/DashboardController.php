@@ -33,10 +33,35 @@ class DashboardController extends AbstractDashboardController
         $cinemaRepository = $this->entityManager->getRepository(Cinema::class);
         $cinemas = $cinemaRepository->findAll();
 
-        return $this->render("admin/index.html.twig", [
-            "cinemas" => $cinemas
+        $cinemaInfo = [];
+
+        foreach ($cinemas as $cinema) {
+            $movieTheaters = $cinema->getMovieTheaters();
+
+            foreach ($movieTheaters as $movieTheater) {
+                $screenings = $movieTheater->getScreenings();
+
+                foreach ($screenings as $screening) {
+                    $movie = $screening->getMovie();
+                    $seats = $movieTheater->getSeats();
+
+                    $cinemaInfo[] = [
+                        'cinema' => $cinema,
+                        'movieTheater' => $movieTheater,
+                        'screening' => $screening,
+                        'movie' => $movie,
+                        'seats' => $seats,
+                    ];
+                }
+            }
+        }
+
+        return $this->render('admin/index.html.twig', [
+            'cinemaInfo' => $cinemaInfo,
         ]);
     }
+
+
 
     public function configureDashboard(): Dashboard
     {

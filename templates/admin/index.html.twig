@@ -1,13 +1,20 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
+{% block head_stylesheets %}
+     <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+     <link rel="stylesheet" href="{{ asset('app.css', ea.assets.defaultAssetPackageName) }}">
+{% endblock %}
+
 {% block content_top_header %}
-    <h1>Welcome to admin panel</h1>
+    <h1 class="nav-message">Welcome to admin panel</h1>
 {% endblock %}
 
 {% block content %}
-    <div>
-        {% for cinema in cinemas %}
-            <div>{{ cinema.city }}</div>
-        {% endfor %}
+    <div class="own-container">
+        <div class="own-container-movie">
+            {% for cinema in cinemas %}
+                <div class="own-cinema">{{ cinema.city }} - {{ cinema.name }} - {{ cinema.address }}</div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
