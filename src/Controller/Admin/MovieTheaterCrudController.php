@@ -35,22 +35,6 @@ class MovieTheaterCrudController extends AbstractCrudController
                         return sprintf('%s - %s, %s', $cinema->getCity(), $cinema->getName(), $cinema->getAddress());
                     },
                 ]),
-            AssociationField::new('screenings')
-                ->setCustomOption('multiple', false)
-                ->setFormTypeOptions([
-                    'by_reference' => false,
-                    'required' => true,
-                    'class' => Screening::class,
-                    'choice_label' => function (Screening $screening) {
-                        $movieTheater = $screening->getMovieTheater();
-                        $movie = $screening->getMovie();
-                        $movieTheaterName = $movieTheater ? $movieTheater->getName() : 'Unknown Movie Theater';
-                        $movieTitle = $movie ? $movie->getTitle() : 'Unknown Movie';
-
-                        return sprintf('%s - %s - %s', $movieTheaterName, $movieTitle, $screening->getStartTime()->format('H:i'));
-                    },
-                ]),
-
         ];
     }
 
