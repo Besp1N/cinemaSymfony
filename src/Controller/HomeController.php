@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Movie;
 use App\Form\MovieType;
 use App\Repository\MovieRepository;
+use App\Repository\ScreeningRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,10 +26,14 @@ class HomeController extends AbstractController
     }
 
     #[Route('/{movie}', name: 'app_home_movie')]
-    public function showMovie(Movie $movie): Response
+    public function showMovie(Movie $movie, ScreeningRepository $screeningRepository): Response
     {
         return $this->render('home/movie.html.twig', [
-            "movie" => $movie
+            "movie" => $movie,
+            "screenings" => $screeningRepository->findBy(
+                ["movie" => $movie],
+                ["start_time" => "ASC"]
+            )
         ]);
     }
 
