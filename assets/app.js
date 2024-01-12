@@ -19,7 +19,6 @@ themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 })
 const query = window.matchMedia('prefers-color-scheme: dark');
-console.log(query);
 document.querySelector('.navbar-toggle').addEventListener('click', function() {
     const links = document.querySelector('.navbar-links');
     [...links.children].forEach(child => {

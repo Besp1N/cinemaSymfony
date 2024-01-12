@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ movie.title }}{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+    <script defer src="{{ asset('scripts/cinemaSelector.js')}}"></script>
+{% endblock %}
 {% block body %}
 
     <div class="movie-page">
@@ -22,13 +26,24 @@
         </div>
     </div>
     <div class="section-divider"></div>
-        <div class="section" data-section="1"></div>
-            <h2>Next screenings</h2>
-            <div class="container-simple-movie container">
-                {% for screening in screenings %}
-                    {{ screening.starttime | date }}
-                {% endfor %}
+            <div class="select-cinema-container">
+            <h2 style="display: inline">Next screenings</h2>
+            <form id="selectCinema" style="display: inline">
+                <label for="cinema">Select your cinema:</label>
+                <select name="cinema" class="dropdown" de>
+                    {% for cinema in cinemas %}
+                        <option selected>---</option>
+                    <option value="{{ cinema.name }}">{{ cinema.name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
             </div>
+            <hr style="margin-bottom: 2%">
+                {% for screening in screenings %}
+                <div class="container-simple-movie container">
+                    {{ screening.starttime | date }} - {{ screening.movietheater}} - Reserve now!
+                </div>
+                {% endfor %}
         <div class="section-divider"></div>
 
 {% endblock %}
