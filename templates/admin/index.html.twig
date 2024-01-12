@@ -11,22 +11,18 @@
 
 {% block content %}
     <div class="own-container">
-        {% for cinemaInfoItem in cinemaInfo %}
+        {% for cinema in cinemas %}
             <div class="own-cinema">
-                <h2>{{ cinemaInfoItem.cinema.city }} - {{ cinemaInfoItem.cinema.name }} - {{ cinemaInfoItem.cinema.address }}</h2>
-                <h3>Movie Theater: {{ cinemaInfoItem.movieTheater.name }}</h3>
+                <h2>{{ cinema.getCity() }} - {{ cinema.getName() }} - {{ cinema.getAddress() }}</h2>
+                <h3>Movie Theaters:</h3>
                 <ul>
-                    {% for screening in cinemaInfoItem.movieTheater.screenings %}
-                        <li>
-                            Movie: {{ cinemaInfoItem.movie.title }}<br>
-                            Screening Time: {{ screening.startTime|date('Y-m-d H:i:s') }}<br>
-                            Seats:
-                            <ul>
-                                {% for seat in cinemaInfoItem.seats %}
-                                    <li>{{ seat.seatRow }} - {{ seat.seatNumber }} (Type: {{ seat.seatType }})</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
+                    {% for movieTheater in cinema.getMovieTheaters() %}
+                        <li>{{ movieTheater.getName() }}</li>
+                        <ul>
+                            {% for screening in movieTheater.getScreenings() %}
+                                <li>{{ screening.getStartTime()|date('Y-m-d H:i:s') }} - {{ screening.getMovie().title }}</li>
+                            {% endfor %}
+                        </ul>
                     {% endfor %}
                 </ul>
             </div>
