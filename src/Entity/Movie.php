@@ -27,7 +27,7 @@ class Movie
     private ?string $genre = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $relase_year = null;
+    private ?\DateTimeInterface $release_year = null;
 
     #[ORM\Column(length: 255)]
     private ?string $director = null;
