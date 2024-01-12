@@ -96,9 +96,9 @@ class Movie
         return $this->release_year;
     }
 
-    public function setReleaseYear(\DateTimeInterface $relase_year): static
+    public function setReleaseYear(\DateTimeInterface $release_year): static
     {
-        $this->release_year = $relase_year;
+        $this->release_year = $release_year;
 
         return $this;
     }

@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Movie;
 use App\Form\MovieType;
+use App\Repository\CinemaRepository;
 use App\Repository\MovieRepository;
 use App\Repository\ScreeningRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,14 +27,15 @@ class HomeController extends AbstractController
     }
 
     #[Route('/{movie}', name: 'app_home_movie')]
-    public function showMovie(Movie $movie, ScreeningRepository $screeningRepository): Response
+    public function showMovie(Movie $movie, ScreeningRepository $screeningRepository, CinemaRepository $cinemaRepository): Response
     {
         return $this->render('home/movie.html.twig', [
             "movie" => $movie,
             "screenings" => $screeningRepository->findBy(
                 ["movie" => $movie],
                 ["start_time" => "ASC"]
-            )
+            ),
+            "cinemas" => $cinemaRepository->findAll(),
         ]);
     }
 
@@ -49,7 +51,6 @@ class HomeController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_home');
         }
-
 
         return $this->render('home/add.html.twig', [
             "form" => $form
