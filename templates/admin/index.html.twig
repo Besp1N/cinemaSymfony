@@ -1,9 +1,13 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block content_top_header %}
-    <h1>ELOOOOOOOO</h1>
+    <h1>Welcome to admin panel</h1>
 {% endblock %}
 
 {% block content %}
-   <h2>elo</h2>
+    <div>
+        {% for cinema in cinemas %}
+            <div>{{ cinema.city }}</div>
+        {% endfor %}
+    </div>
 {% endblock %}
