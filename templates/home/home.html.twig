@@ -15,16 +15,13 @@
             </div>
 
         <ul class="slides-poster">
-            <!-- 2:3 ratio!!! -->
+            {% for movie in movies %}
             <li class="slide-poster">
-                <img src="{{ asset('images/poster1.png') }}" alt="poster1" class="slide-poster-image" />
+                <a href="{{ path('app_home_movie', {movie: movie.id}) }}">
+                <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
+                </a>
             </li>
-            <li class="slide-poster">
-                <img src="{{ asset('images/poster2.png') }}" alt="poster2" class="slide-poster-image" />
-            </li>
-            <li class="slide-poster">
-                <img src="{{ asset('images/poster3.png') }}" alt="poster3" class="slide-poster-image" />
-            </li>
+            {% endfor %}
         </ul>
 
         </div>
