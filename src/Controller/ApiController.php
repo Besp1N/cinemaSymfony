@@ -17,16 +17,20 @@ class ApiController extends AbstractController
     #[Route('/api_screenings', name: 'app_api')]
     public function index(Request $request, ScreeningRepository $screeningRepository): JsonResponse
     {
+        // hardcore totalny
         $cinemaId = $request->query->get('cinema');
         $movieId = $request->query->get('movie');
 
         $screenings = $screeningRepository->findScreeningsByMovieAndCinema($movieId, $cinemaId);
 
         $data = [];
+        // jak juz mam screening po movie i po cinema to getuje co potrzeba i zwracam
+        // mysle nad dodaniem jakiego if ze jak dane sa puste to zwroc cos tam, ale moze lepiej to w js zrobic nwm
         foreach ($screenings as $screening) {
             $data[] = [
-                'movie' => $screening->getMovie()->getTitle(),
-                'startTime' => $screening->getStartTime()->format('Y-m-d H:i:s'),
+                'movieTitle' => $screening->getMovie()->getTitle(),
+                'screeningStartTime' => $screening->getStartTime()->format('Y-m-d H:i:s'),
+                'movieTheaterName' => $screening->getMovieTheater()->getName()
             ];
         }
 
