@@ -26,6 +26,7 @@ class ApiController extends AbstractController
         $data = [];
         // jak juz mam screening po movie i po cinema to getuje co potrzeba i zwracam
         // mysle nad dodaniem jakiego if ze jak dane sa puste to zwroc cos tam, ale moze lepiej to w js zrobic nwm
+
         foreach ($screenings as $screening) {
             $data[] = [
                 'movieTitle' => $screening->getMovie()->getTitle(),

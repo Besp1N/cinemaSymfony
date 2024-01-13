@@ -15,7 +15,7 @@ export default class View {
         this.#parentElement.innerHTML = '';
         this.#parentElement.insertAdjacentHTML("afterbegin", markup);
     }
-    renderError() {
+    renderError(message = this.errorMessage) {
         this.#parentElement.innerHTML = '';
         this.#parentElement.insertAdjacentHTML("afterbegin", this.errorMessage);
     }
