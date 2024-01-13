@@ -24,10 +24,10 @@ class ScreeningRepository extends ServiceEntityRepository
     public function findScreeningsByMovieAndCinema($movieId, $cinemaId)
     {
         return $this->createQueryBuilder('s')
-            ->join('s.movieTheater', 'mt')
+            ->join('s.movie_theater', 'mt')
             ->join('mt.cinema', 'c')
             ->join('s.movie', 'm')
-            ->andWhere('c.id = :cinemaId')
+            ->where('c.id = :cinemaId')
             ->andWhere('m.id = :movieId')
             ->setParameter('cinemaId', $cinemaId)
             ->setParameter('movieId', $movieId)

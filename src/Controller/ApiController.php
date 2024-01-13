@@ -15,28 +15,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
     #[Route('/api_screenings', name: 'app_api')]
-    public function index(Request $request, CinemaRepository $cinemaRepository): JsonResponse
+    public function index(Request $request, ScreeningRepository $screeningRepository): JsonResponse
     {
         $cinemaId = $request->query->get('cinema');
-        $cinema = $cinemaRepository->find($cinemaId);
+        $movieId = $request->query->get('movie');
 
-        // jak nie znajdzie kina ( ktos wybierze te kreski ) to zwraca not found
-        if (!$cinema) {
-            return new JsonResponse(['error' => 'Cinema not found.'], Response::HTTP_NOT_FOUND);
+        $screenings = $screeningRepository->findScreeningsByMovieAndCinema($movieId, $cinemaId);
+
+        $data = [];
+        foreach ($screenings as $screening) {
+            $data[] = [
+                'movie' => $screening->getMovie()->getTitle(),
+                'startTime' => $screening->getStartTime()->format('Y-m-d H:i:s'),
+            ];
         }
 
-        $movies = [];
-
-        foreach ($cinema->getMovieTheaters() as $movieTheater) {
-            foreach ($movieTheater->getScreenings() as $screening) {
-                $movies[] = [
-                    'id' => $screening->getMovie()->getId(),
-                    'title' => $screening->getMovie()->getTitle(),
-                ];
-            }
-        }
-
-        $jsonMovies = json_encode($movies);
-        return new JsonResponse($jsonMovies);
+        return new JsonResponse($data);
     }
 }

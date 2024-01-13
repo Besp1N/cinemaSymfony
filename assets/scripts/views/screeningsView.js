@@ -10,9 +10,17 @@ export default class ScreeningsView extends View {
         return this.data.map(this.#generateLi).join('');
     }
     #generateLi(screening) {
+        if (!screening.movie) {
+
+            return `<li class="container-simple-movie container">
+                   <p>Movie information not available</p>
+                </li>`;
+        }
+
         return `<li class="container-simple-movie container">
-                   W tym miejscu dane beda jak ktos skonczy kontroler api
-                </li>`
+               <p>${screening.movie} - </p>
+            </li>`;
     }
+
 }
 

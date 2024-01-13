@@ -15,7 +15,7 @@ const controlCinemaSelector = async function () {
 
         screeningView.renderSpinner();
         const json = await Promise.race([
-            getJSON(`${URL_SCREENINGS}?cinema=${cinemaId}`),
+            getJSON(`${URL_SCREENINGS}?cinema=${cinemaId}&movie=${movieId}`),
             timeout(TIMEOUT_SEC)]);
         screeningView.render(json)
     }
