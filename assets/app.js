@@ -1,15 +1,14 @@
 import './styles/app.css';
 
 
-
 importModules();
 app();
 
 /**
  *
  * Imports different  modules depending on the site visited.
- * IMPORTANT: It only enables the imports in the module files.
- * This only allows for the specific module to import others.
+ * IMPORTANT: It only enables the imports in controllers directory.
+ * This only allows then for importing from the controller level.
  */
 async function importModules() {
     const path = window.location.pathname;
@@ -18,8 +17,10 @@ async function importModules() {
         await import('./scripts/modules/slider.js');
     }
     if (new RegExp('/\\d').test(path)) {
-        await import('./scripts/modules/helpers.js');
-        await import('./scripts/modules/config.js');
+        await Promise.all([
+            import('./scripts/modules/helpers.js'),
+            import('./scripts/modules/config.js'),
+            import('./scripts/views/screeningsView.js')]);
     }
 }
 
@@ -34,7 +35,6 @@ function  app() {
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
     })
-    const query = window.matchMedia('prefers-color-scheme: dark');
     document.querySelector('.navbar-toggle').addEventListener('click', function () {
         const links = document.querySelector('.navbar-links');
         [...links.children].forEach(child => {
@@ -42,5 +42,4 @@ function  app() {
         })
 
     });
-
 }

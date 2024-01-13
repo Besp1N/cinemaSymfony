@@ -58,7 +58,7 @@ a, a:hover, a:checked {
 }
 .glass{
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
-
+    color: var(--text-color);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 2px;
@@ -66,8 +66,20 @@ a, a:hover, a:checked {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     padding: 1rem;
 }
-
-
+.spinner {
+    animation: spin 2s infinite linear;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 .theme-toggle {
     border: #353535;
     border-radius: 2px;
@@ -238,6 +250,7 @@ a, a:hover, a:checked {
 .description-simple-movie {
     display: none;
     max-width: 50%;
+    color: var(--text-color);
     transform: translate(50%, -75%);
     position: absolute;
     padding: 10px;

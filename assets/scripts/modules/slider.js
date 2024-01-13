@@ -51,7 +51,7 @@ export default class Slider {
         const lastSlide = document.createElement('div');
         lastSlide.style.position = 'absolute';
         lastSlide.style.right = 0;
-        lastSlide.innerHTML = 'dupa'
+        // lastSlide.innerHTML = '<h2 style="@media screen and (max-width: 1000px) {display: none;}">Thats not all</h2>'
         this.#parent.appendChild(lastSlide);
         this.#slides.push(lastSlide)
         this.#lastSlide = lastSlide;

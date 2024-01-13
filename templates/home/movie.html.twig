@@ -39,12 +39,8 @@
             </form>
             </div>
             <hr style="margin-bottom: 2%">
-                {% for screening in screenings %}
-                <div class="container-simple-movie container">
-                    {{ screening.starttime | date }} - {{ screening.movietheater}} - Reserve now!
-                </div>
-                {% endfor %}
-        <div class="section-divider"></div>
-
+            <ul id="screenings">
+                <h2>Pick your location and book a ticket right now!</h2>
+            </ul>
 {% endblock %}
 
