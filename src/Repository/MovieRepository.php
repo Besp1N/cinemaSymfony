@@ -21,6 +21,17 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
+    // MovieRepository.php
+
+    public function findUniqueGenres(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->select('DISTINCT m.genre')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 //    /**
 //     * @return Movie[] Returns an array of Movie objects
 //     */

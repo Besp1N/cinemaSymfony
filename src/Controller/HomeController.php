@@ -21,13 +21,20 @@ class HomeController extends AbstractController
     public function index(MovieRepository $movieRepository): Response
     {
         $movies = $movieRepository->findAll();
+
+        // testowe zwracanie gatunkow - sa w home.html.twig na samym dole
+        // nspisalem query ktore zwraca unikalne gatunki ( bez powtorzen )
+        $genres = $movieRepository->findUniqueGenres();
+        $flatGenres = array_column($genres, 'genre');
+
         return $this->render('home/home.html.twig', [
-            "movies" => $movies
+            "movies" => $movies,
+            "genres" => $flatGenres
         ]);
     }
 
     #[Route('/{movie}', name: 'app_home_movie')]
-    public function showMovie(Movie $movie, ScreeningRepository $screeningRepository, CinemaRepository $cinemaRepository): Response
+    public function showMovie(Movie $movie, ScreeningRepository $screeningRepository, CinemaRepository $cinemaRepository, MovieRepository $movieRepository): Response
     {
         return $this->render('home/movie.html.twig', [
             "movie" => $movie,
@@ -56,5 +63,4 @@ class HomeController extends AbstractController
             "form" => $form
         ]);
     }
-
 }
