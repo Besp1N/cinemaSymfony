@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Welcome to Symfony Cinema{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="module" src="{{ asset('scripts/controllers/app_home_Controller.js')}}"></script>
+{% endblock %}
 {% block body %}
     <h1>Symfony Cinema</h1>
     <hr class="section-divider">

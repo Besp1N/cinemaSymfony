@@ -2,7 +2,7 @@
 {% block title %}{{ movie.title }}{% endblock %}
 {% block javascripts %}
 {{ parent() }}
-    <script defer src="{{ asset('scripts/cinemaSelector.js')}}"></script>
+    <script type="module" src="{{ asset('scripts/controllers/app_home_movie_Controller.js')}}"></script>
 {% endblock %}
 {% block body %}
     <p style="display: none;" id="movieId">{{ movie.id }}</p>
@@ -32,7 +32,7 @@
                 <label for="cinema">Select your cinema:</label>
                 <select name="cinema" class="dropdown" >
                     {% for cinema in cinemas %}
-                        <option selected>---</option>
+                        <option value="" selected>---</option>
                     <option value="{{ cinema.id }}">{{ cinema.city }} - {{ cinema.name }} - {{ cinema.address }}</option>
                     {% endfor %}
                 </select>

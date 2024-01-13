@@ -309,9 +309,8 @@ a, a:hover, a:checked {
     align-items: center;
 }
 .dropdown {
-    margin-left: 1%;
+    margin-right: 1%;
     border: 1px solid var(--container-secondary);
-    width: clamp(30px, 30%, 300px);
     background-color: var(--container-secondary);
     color: var(--text-color)
 }

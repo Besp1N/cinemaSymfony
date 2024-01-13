@@ -16,6 +16,7 @@ export default class Slider {
      */
     constructor(parent, offset = 100) {
         this.#parent = parent;
+        if (!this.#parent) throw new Error (`Couldn't construct a slider.`)
         this.#slides = Array.from(parent.children);
         this.#offset = offset;
         this.#initializeSlider();
