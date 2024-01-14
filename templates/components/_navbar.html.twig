@@ -4,12 +4,12 @@
     </a>
     <div class="navbar-links">
         <div class="container-always-visible">
-            <input class="navbar-search always-visible" placeholder="Quick-search for a movie"></input>
+            <input class="navbar-search always-visible" placeholder="Search for a movie">
             <button class="navbar-toggle always-visible">☰</button>
         </div>
         <a href="{{ path('app_home') }}">Home</a>
         <a href="{{ path('app_admin') }}">Panel admina</a>
-            <select class="navbar-genres">
+            <select class="navbar-genres" onfocus="this.selectedIndex = 0;">
                 <option value="" disabled selected hidden>Genres</option>
                 {% for genre in genres %}
                     <option value="{{ genre }}">{{ genre }}</option>

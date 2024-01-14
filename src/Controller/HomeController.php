@@ -63,8 +63,12 @@ class HomeController extends AbstractController
     #[Route('/genre/{genre}', name: 'app_home_show')]
     public function showResults(String $genre, MovieRepository $movieRepository): Response {
         $movies = $movieRepository->findBy(["genre" => $genre]);
+        $genres = $movieRepository->findUniqueGenres();
+        $flatGenres = array_column($genres, 'genre');
+
         return $this->render('home/results.html.twig', [
-            'movies' => $movies
+            'movies' => $movies,
+            "genres" => $flatGenres
         ]);
     }
 }
