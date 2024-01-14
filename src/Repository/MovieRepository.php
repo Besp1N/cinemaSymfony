@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -30,6 +31,16 @@ class MovieRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findMovieByTitle(string $title): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
 //    /**
