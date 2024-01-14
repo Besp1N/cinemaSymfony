@@ -40,8 +40,10 @@ class ApiController extends AbstractController
     #[Route('/api/movies', name: 'api_movies')]
     public function Movies(Request $request ,MovieRepository $movieRepository): JsonResponse
     {
-//        $movieTitle = $request->query->get('title');
-        $movieTitle = "wars";
+        $movieTitle = $request->query->get('title');
+
+        // to ponizej to na testa tylko ( nawet po wars zwraca )
+        // $movieTitle = "wars";
         $movies = $movieRepository->findMovieByTitle($movieTitle);
 
         $data = [];
