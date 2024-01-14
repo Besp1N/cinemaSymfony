@@ -34,7 +34,23 @@ class ApiController extends AbstractController
                 'movieTheaterName' => $screening->getMovieTheater()->getName()
             ];
         }
+        return new JsonResponse($data);
+    }
 
+    #[Route('/api/movies', name: 'api_movies')]
+    public function Movies(Request $request ,MovieRepository $movieRepository): JsonResponse
+    {
+        $movieTitle = $request->query->get('title');
+        $movies = $movieRepository->findMovieByTitle($movieTitle);
+
+        $data = [];
+
+        foreach ($movies as $movie) {
+            $data = [
+                "id" => $movie->getId(),
+                "title" => $movie->getTitle()
+            ];
+        }
         return new JsonResponse($data);
     }
 }
