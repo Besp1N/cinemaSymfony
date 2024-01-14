@@ -1,5 +1,8 @@
 import './styles/app.css';
-import SearchView from "./scripts/views/searchView.js";
+import "./scripts/views/searchView.js";
+import searchHandler from './scripts/modules/searchHandler.js';
+import('./scripts/modules/helpers.js');
+import('./scripts/modules/config.js');
 importModules();
 app();
 
@@ -16,10 +19,7 @@ async function importModules() {
         await import('./scripts/modules/slider.js');
     }
     if (new RegExp('/\\d').test(path)) {
-        await Promise.all([
-            import('./scripts/modules/helpers.js'),
-            import('./scripts/modules/config.js'),
-            import('./scripts/views/screeningsView.js')]);
+            import('./scripts/views/screeningsView.js');
     }
 }
 
@@ -60,13 +60,15 @@ function app() {
         window.location.href = `/genre/${genre}`;
     })
     /////////////////// SEARCHBOX
+    searchBox.addEventListener('input', searchHandler);
+    searchBox.addEventListener('focus', searchHandler);
+    searchBox.addEventListener('focusout', () => {
+        setTimeout(() => searchResults.classList.add('hidden'), 100);
+    })
+    document.querySelector('#search-form').addEventListener('submit', e => {
+        e.preventDefault();
+        const query = document.querySelector('.navbar-search').value;
+        document.location.href = `/search/${query}`;
+    })
 
-    const controlSearchbox = async function (e) {
-    console.log(searchBox.value);
-    }
-    const searchView = new SearchView(searchResults);
-    searchBox.addEventListener('input', controlSearchbox)
-
-    searchView.renderError();
-    searchResults.classList.toggle('hidden')
 }

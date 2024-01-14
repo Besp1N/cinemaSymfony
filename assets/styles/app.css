@@ -26,6 +26,13 @@
 li {
     list-style: none;
 }
+button {
+    background: var(--container-primary);
+    border: none;
+    border-radius: 3px;
+    color: var(--text-color);
+    cursor: pointer;
+}
 
 img, picture, video, canvas, svg {
     display: block;
@@ -163,7 +170,8 @@ a, a:hover, a:checked {
 }
 .search-results {
     position: absolute;
-    transform: translateY(150%);
+    top: 3.5rem;
+    width: clamp(200px, 50%, 500px);
     background: var(--container-primary);
 }
 .navbar-search {
@@ -185,8 +193,14 @@ a, a:hover, a:checked {
         flex-direction: column;
         align-items: flex-end;
     }
-    .navbar-links a, .navbar-genres{
+    .navbar-links .hide {
         display: none;
+    }
+    .navbar-toggle {
+        display: flex;
+    }
+    .navbar-links .active {
+        display: flex;
     }
 
 }

@@ -1,5 +1,6 @@
 import View from './View.js';
 
+
 /**
  * Set errorMessage field and generateMarkup method before using.
  */
@@ -8,7 +9,6 @@ export default class ScreeningsView extends View {
                    <p>No screenings here:( CHECK ANOTHER CINEMA!</p>
                 </li>`;
     generateMarkup() {
-        console.log(this.data)
         return this.data.map(this.#generateLi).join('');
     }
     #generateLi(screening) {

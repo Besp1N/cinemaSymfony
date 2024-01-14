@@ -4,27 +4,28 @@
     </a>
     <div class="navbar-links">
         <div class="container-always-visible">
-            <div class="searchbox">
-
-                <input class="navbar-search always-visible" placeholder="Search for a movie">
-                <i class="fas fa-magnifying-glass always-visible" style="transform: translateX(-150%)"></i>
-
+            <div class="searchbox always-visible">
+                <form id="search-form">
+                <input class="navbar-search always-visible" name="query" placeholder="Search for a movie">
+                <button type="submit" style="margin-right: 1rem;">
+                    <i class="fas fa-magnifying-glass always-visible"></i>
+                </button>
+                </form>
                 <div class=" search-results hidden">
 
                 </div>
             </div>
             <button class="navbar-toggle always-visible">☰</button>
         </div>
-        <a href="{{ path('app_home') }}">Home</a>
-        <a href="{{ path('app_admin') }}">Panel admina</a>
-            <select class="navbar-genres" onfocus="this.selectedIndex = 0;">
+        <a href="{{ path('app_admin') }}" class="hide">Panel admina</a>
+            <select class="navbar-genres hide" onfocus="this.selectedIndex = 0;">
                 <option value="" disabled selected hidden>Genres</option>
                 {% for genre in genres %}
                     <option value="{{ genre }}">{{ genre }}</option>
                 {% endfor %}
 
             </select>
-        <a href="#to_section_search_below_changme">Book a ticket now</a>
-        <a class="theme-toggle"><i class="fas fa-moon"></i>  <i class="fas fa-sun"></i></a>
+        <a href="#to_section_search_below_changme" class="hide">Book a ticket now</a>
+        <a class="theme-toggle hide" ><i class="fas fa-moon"></i>  <i class="fas fa-sun"></i></a>
     </div>
 </nav>
