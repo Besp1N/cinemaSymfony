@@ -1,5 +1,5 @@
 import './styles/app.css';
-import './scripts/views/searchView.js';
+import SearchView from "./scripts/views/searchView.js";
 importModules();
 app();
 
@@ -33,6 +33,7 @@ function app() {
     const themeBtn = document.querySelector('.theme-toggle');
     const genreSelect = document.querySelector('.navbar-genres');
     const searchBox = document.querySelector('input.navbar-search');
+    const searchResults = document.querySelector('.search-results');
     genreSelect.value = genreSelect.firstElementChild.value
     //INIT THEME
     const prevTheme = window.localStorage.getItem('isDarkTheme');
@@ -63,5 +64,9 @@ function app() {
     const controlSearchbox = async function (e) {
     console.log(searchBox.value);
     }
+    const searchView = new SearchView(searchResults);
     searchBox.addEventListener('input', controlSearchbox)
+
+    searchView.renderError();
+    searchResults.classList.toggle('hidden')
 }

@@ -4,7 +4,15 @@
     </a>
     <div class="navbar-links">
         <div class="container-always-visible">
-            <input class="navbar-search always-visible" placeholder="Search for a movie">
+            <div class="searchbox">
+
+                <input class="navbar-search always-visible" placeholder="Search for a movie">
+                <i class="fas fa-magnifying-glass always-visible" style="transform: translateX(-150%)"></i>
+
+                <div class=" search-results hidden">
+
+                </div>
+            </div>
             <button class="navbar-toggle always-visible">☰</button>
         </div>
         <a href="{{ path('app_home') }}">Home</a>
@@ -17,6 +25,6 @@
 
             </select>
         <a href="#to_section_search_below_changme">Book a ticket now</a>
-        <a class="theme-toggle"><i class="fas fa-moon"></i> <i class="fas fa-sun"></i></a>
+        <a class="theme-toggle"><i class="fas fa-moon"></i>  <i class="fas fa-sun"></i></a>
     </div>
 </nav>
