@@ -21,6 +21,8 @@ export default class Slider {
         this.#offset = offset;
         this.#initializeSlider();
         this.moveSlides(0);
+
+        window.addEventListener('resize', this.#resizeParent.bind(this))
     }
 
     /**
@@ -28,7 +30,6 @@ export default class Slider {
      */
     #initializeSlider() {
         this.#createLastSlide();
-
         this.#resizeParent();
         this.#setSlidesPosition();
         this.#offsetSlides();
@@ -181,7 +182,10 @@ export default class Slider {
      * @param {Element} element - The element that triggers the move to the left.
      */
     addHandlerMoveLeft(element) {
-        element.addEventListener('click', () => this.movePrevious());
+        element.addEventListener('click', () => {
+            clearInterval(this.#interval);
+            this.movePrevious();
+        });
     }
 
     /**
@@ -189,7 +193,10 @@ export default class Slider {
      * @param {Element} element - The element that triggers the move to the right.
      */
     addHandlerMoveRight(element) {
-        element.addEventListener('click', () => this.moveNext());
+        element.addEventListener('click', () => {
+            clearInterval(this.#interval);
+            this.moveNext()
+        });
     }
 
     /**

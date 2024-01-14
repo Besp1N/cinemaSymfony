@@ -68,6 +68,7 @@ function app() {
     document.querySelector('#search-form').addEventListener('submit', e => {
         e.preventDefault();
         const query = document.querySelector('.navbar-search').value;
+        if (!query) return;
         document.location.href = `/search/${query}`;
     })
 
