@@ -5,7 +5,7 @@ import View from './View.js';
  */
 export default class ScreeningsView extends View {
     errorMessage = `<li class="container-simple-movie container">
-                   <p>Movie information not available</p>
+                   <p>No screenings here:( CHECK ANOTHER CINEMA!</p>
                 </li>`;
     generateMarkup() {
         console.log(this.data)

@@ -22,7 +22,6 @@
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     transition: translate 0.3s ease;
-    color: var(--text-color)
 }
 li {
     list-style: none;
@@ -86,7 +85,6 @@ a, a:hover, a:checked {
     border-radius: 2px;
     cursor: pointer;
 }
-
 
 .container {
     background: var(--container-primary);
@@ -371,4 +369,3 @@ a, a:hover, a:checked {
     transform: translateY(-5px);
     cursor: pointer;
 }
-
