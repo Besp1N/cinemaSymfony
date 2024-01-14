@@ -9,19 +9,20 @@
     <hr class="section-divider">
     <div class="section" data-section="1">
         <div class="container container-posters">
-            <div style="margin: auto 1%">
+            <div style="margin: auto 1%; width: 20%">
                 <h2>Hot premieres</h2>
                 <h2>See the most popular recent releases</h2>
             </div>
+            <div class="slider-button-left"><i class="fas fa-arrow-circle-left fa-2x"></i></div>
 
-        <ul class="slides-poster">
+            <ul class="slides-poster">
             {% for movie in movies %}
             <li class="slide-poster" data-movie="{{ movie.id }}">
                 <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
-                </a>
             </li>
             {% endfor %}
-        </ul>
+            </ul>
+            <div class="slider-button-right"><i class="fas fa-arrow-circle-right fa-2x"></i></div>
 
         </div>
         <hr class="section-divider">

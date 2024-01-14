@@ -5,3 +5,6 @@ const slider = new Slider(document.querySelector('.slides-poster'), 75);
 document.querySelectorAll('.slide-poster').forEach(slide => {
     slider.addLink(+slide.dataset.slide, `/${slide.dataset.movie}`)
 });
+slider.addHandlerMoveRight(document.querySelector('.slider-button-right'));
+
+slider.addHandlerMoveLeft(document.querySelector('.slider-button-left'));
