@@ -65,6 +65,8 @@ function app() {
     searchBox.addEventListener('focusout', () => {
         setTimeout(() => searchResults.classList.add('hidden'), 100);
     })
+
+    // chuj dupa cipa szukalem kurwa tej scierzki /search/query z 2 godziny
     document.querySelector('#search-form').addEventListener('submit', e => {
         e.preventDefault();
         const query = document.querySelector('.navbar-search').value;

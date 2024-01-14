@@ -63,4 +63,23 @@ class HomeController extends AbstractController
             "headerText" => "Results for ".$genre,
         ]);
     }
+
+
+    // trzeba poprawic zeby bylo np search?movieTitle=dupa ale to jutro
+    #[Route('/search/{query}', name: 'app_home_search', methods: ['GET'])]
+    public function showSearchResults(MovieRepository $movieRepository ,String $query): Response
+    {
+        $movies = $movieRepository->findMovieByTitle($query);
+        if (empty($movies)) {
+            $headerText = 'No results for '. $query;
+        }else {
+            $headerText = 'Results for '. $query;
+        }
+        return $this->render('home/results.html.twig', [
+           'movies' => $movies,
+            'headerText' => $headerText
+        ]);
+
+    }
+
 }
