@@ -1,5 +1,5 @@
 import './styles/app.css';
-
+import './scripts/views/searchView.js';
 importModules();
 app();
 
@@ -23,19 +23,29 @@ async function importModules() {
     }
 }
 
+
 /**
  * Script used on all pages.
  */
 function app() {
-    const themeBtn = document.querySelector('.theme-toggle');
-    const genreSelect = document.querySelector('.navbar-genres');
-
-    genreSelect.value = genreSelect.firstElementChild.value
     const isDarkMode = () =>
         window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (isDarkMode()) document.body.classList.add('dark-mode');
+    const themeBtn = document.querySelector('.theme-toggle');
+    const genreSelect = document.querySelector('.navbar-genres');
+    const searchBox = document.querySelector('input.navbar-search');
+    genreSelect.value = genreSelect.firstElementChild.value
+    //INIT THEME
+    const prevTheme = window.localStorage.getItem('isDarkTheme');
+    if (prevTheme) {
+        document.body.classList.add(prevTheme);
+    }
+    else {
+        if (isDarkMode()) document.body.classList.add('dark-mode');
+    }
+    /////////////
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
+        window.localStorage.setItem('isDarkTheme', document.body.classList.contains('dark-mode') ? 'dark-mode' : "light-mode")
     })
     document.querySelector('.navbar-toggle').addEventListener('click', function () {
         const links = document.querySelector('.navbar-links');
@@ -48,4 +58,10 @@ function app() {
         const genre = genreSelect.value.toLowerCase();
         window.location.href = `/genre/${genre}`;
     })
+    /////////////////// SEARCHBOX
+
+    const controlSearchbox = async function (e) {
+    console.log(searchBox.value);
+    }
+    searchBox.addEventListener('input', controlSearchbox)
 }

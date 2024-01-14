@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <h1>{{ headerText }}</h1>
+    <div class="container-card-movie">
     {% for movie in movies %}
-    {{ movie.title }}
+        {{ include("components/_movie_card.html.twig", {"movie": movie}) }}
     {% endfor %}
+    </div>
 {% endblock %}
