@@ -130,26 +130,31 @@ a, a:hover, a:checked {
 .navbar-links {
     display: flex;
 }
-
-.navbar-links a {
+.navbar-genres {
+    border: none;
+    width: auto;
+    background-color: var(--container-primary);
+    color: var(--text-color);
+    cursor: pointer;
+}
+.navbar-links a, .navbar-genres {
     color: var(--text-color);
     text-decoration: none;
     padding: 0.75rem;
     display: block;
 }
 
-.navbar-toggle, .navbar-search{
+.navbar-toggle {
     display: none;
     border: none;
     color: var(--text-color);
-}
-.navbar-toggle {
     font-size: 1.5rem;
     margin: 0 5px;
     background: var(--container-primary);
 }
 .navbar-search {
-    font-size: 1rem;
+    border: none;
+    font-size: clamp(0.5rem, 1rem, 2rem);
     border-radius: 3px;
     background: var(--background-color-opaque);
 
@@ -164,21 +169,18 @@ a, a:hover, a:checked {
     .navbar-links {
         display: flex;
         flex-direction: column;
-        justify-content: right;
+        align-items: flex-end;
     }
-    .navbar-links a {
-        display: none;
-    }
-    .navbar-links .always-visible {
-        display: inline;
-        max-width: fit-content;
-    }
+    /* ... other styles ... */
     .navbar-links .active {
         display: flex;
-        justify-content: right;
+        align-items: flex-end;
     }
-
+    .navbar-genres.active {
+        margin-left: auto;
+    }
 }
+
 /* POSTERS */
 .slide-poster-image {
     height: 40rem;

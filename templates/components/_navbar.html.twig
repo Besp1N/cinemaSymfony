@@ -9,8 +9,14 @@
         </div>
         <a href="{{ path('app_home') }}">Home</a>
         <a href="{{ path('app_admin') }}">Panel admina</a>
-        <a href="#yourpath">Placeholder</a>
+            <select class="navbar-genres">
+                <option value="" disabled selected hidden>Genres</option>
+                {% for genre in genres %}
+                    <option value="{{ genre }}">{{ genre }}</option>
+                {% endfor %}
+
+            </select>
         <a href="#to_section_search_below_changme">Book a ticket now</a>
-        <a class="theme-toggle">Toggle theme</a>
+        <a class="theme-toggle"><i class="fas fa-moon"></i> <i class="fas fa-sun"></i></a>
     </div>
 </nav>

@@ -38,10 +38,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/movie.html.twig', [
             "movie" => $movie,
-            "screenings" => $screeningRepository->findBy(
-                ["movie" => $movie],
-                ["start_time" => "ASC"]
-            ),
+
             "cinemas" => $cinemaRepository->findAll(),
         ]);
     }
@@ -61,6 +58,13 @@ class HomeController extends AbstractController
 
         return $this->render('home/add.html.twig', [
             "form" => $form
+        ]);
+    }
+    #[Route('/genre/{genre}', name: 'app_home_show')]
+    public function showResults(String $genre, MovieRepository $movieRepository): Response {
+        $movies = $movieRepository->findBy(["genre" => $genre]);
+        return $this->render('home/results.html.twig', [
+            'movies' => $movies
         ]);
     }
 }

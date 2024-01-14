@@ -1,6 +1,5 @@
 import './styles/app.css';
 
-
 importModules();
 app();
 
@@ -27,8 +26,11 @@ async function importModules() {
 /**
  * Script used on all pages.
  */
-function  app() {
+function app() {
     const themeBtn = document.querySelector('.theme-toggle');
+    const genreSelect = document.querySelector('.navbar-genres');
+
+    genreSelect.value = genreSelect.firstElementChild.value
     const isDarkMode = () =>
         window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (isDarkMode()) document.body.classList.add('dark-mode');
@@ -40,6 +42,10 @@ function  app() {
         [...links.children].forEach(child => {
             if (!child.classList.contains('always-visible')) child.classList.toggle('active')
         })
-
     });
+
+    genreSelect.addEventListener('change', () => {
+        const genre = genreSelect.value.toLowerCase();
+        window.location.href = `/genre/${genre}`;
+    })
 }

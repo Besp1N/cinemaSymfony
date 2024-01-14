@@ -68,6 +68,7 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+    .addStyleEntry('fontawesome', './node_modules/@fortawesome/fontawesome-free/css/all.min.css')
 ;
 
 module.exports = Encore.getWebpackConfig();

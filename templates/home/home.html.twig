@@ -16,8 +16,7 @@
 
         <ul class="slides-poster">
             {% for movie in movies %}
-            <li class="slide-poster">
-                <a href="{{ path('app_home_movie', {movie: movie.id}) }}">
+            <li class="slide-poster" data-movie="{{ movie.id }}">
                 <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
                 </a>
             </li>
@@ -38,11 +37,7 @@
 
 </ul>
 
-    <div class="section-divider">
-        {% for genre in genres %}
-        <p>{{ genre }}</p>
-        {% endfor %}
-    </div>
+    <div class="section-divider"></div>
 
 
 {% endblock %}

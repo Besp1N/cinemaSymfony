@@ -21,6 +21,7 @@ class CinemaRepository extends ServiceEntityRepository
         parent::__construct($registry, Cinema::class);
     }
 
+
 //    /**
 //     * @return Cinema[] Returns an array of Cinema objects
 //     */

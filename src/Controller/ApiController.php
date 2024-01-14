@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
-    #[Route('/api_screenings', name: 'app_api')]
+    #[Route('/api/screenings', name: 'app_api')]
     public function index(Request $request, ScreeningRepository $screeningRepository): JsonResponse
     {
         // hardcore totalny
