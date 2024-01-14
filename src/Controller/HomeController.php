@@ -22,14 +22,8 @@ class HomeController extends AbstractController
     {
         $movies = $movieRepository->findAll();
 
-        // testowe zwracanie gatunkow - sa w home.html.twig na samym dole
-        // nspisalem query ktore zwraca unikalne gatunki ( bez powtorzen )
-        $genres = $movieRepository->findUniqueGenres();
-        $flatGenres = array_column($genres, 'genre');
-
         return $this->render('home/home.html.twig', [
             "movies" => $movies,
-            "genres" => $flatGenres
         ]);
     }
 

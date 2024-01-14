@@ -16,7 +16,7 @@
         {% endblock %}
     </head>
     <body>
-        {% include 'components/_navbar.html.twig' %}
+    {{ render(controller('App\\Controller\\NavFragmentController::index')) }}
         <main class="container" style="margin-top: 2rem">
             {% block body %}{% endblock %}
         </main>
