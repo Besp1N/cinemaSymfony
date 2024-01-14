@@ -334,3 +334,38 @@ a, a:hover, a:checked {
     background-color: var(--container-secondary);
     color: var(--text-color)
 }
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    background-color: #fff;
+    width: clamp(150px, 15vw, 500px);
+}
+
+/* Title inside the movie card */
+.movie-card-title {
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Container for movie cards */
+.container-card-movie {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem auto;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+/* Hover effect for movie cards */
+.movie-card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}

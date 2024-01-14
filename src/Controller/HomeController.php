@@ -67,8 +67,9 @@ class HomeController extends AbstractController
         $flatGenres = array_column($genres, 'genre');
 
         return $this->render('home/results.html.twig', [
-            'movies' => $movies,
-            "genres" => $flatGenres
+            "movies" => $movies,
+            "headerText" => "Results for ".$genre,
+            "genres" => $flatGenres, //USUNAC TO POZNIEJ
         ]);
     }
 }
