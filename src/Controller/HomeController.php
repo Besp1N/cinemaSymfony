@@ -65,10 +65,15 @@ class HomeController extends AbstractController
     }
 
 
-    // trzeba poprawic zeby bylo np search?movieTitle=dupa ale to jutro
-    #[Route('/search/{query}', name: 'app_home_search', methods: ['GET'])]
-    public function showSearchResults(MovieRepository $movieRepository ,String $query): Response
+    #[Route('/search', name: 'app_home_search', methods: ['GET'], priority: 1)]
+    public function showSearchResults(Request $request, MovieRepository $movieRepository): Response
     {
+        $query = $request->get('q');
+
+        if (!$query) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $movies = $movieRepository->findMovieByTitle($query);
         if (empty($movies)) {
             $headerText = 'No results for '. $query;

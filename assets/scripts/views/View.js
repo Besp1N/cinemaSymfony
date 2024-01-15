@@ -28,5 +28,7 @@ export default class View {
     generateMarkup() {
         return 'Change the method #generateMarkup.'
     }
-
+    clear() {
+        this.#parentElement.innerHTML = '';
+    }
 }

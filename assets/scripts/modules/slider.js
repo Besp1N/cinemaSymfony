@@ -45,7 +45,6 @@ export default class Slider {
     #setSlidesPosition() {
         this.#slides.forEach(slide => {
             slide.style.position = 'absolute';
-            slide.style.left = '25%';
             slide.style.transition = 'all 1s ease';
         });
     }

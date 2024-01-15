@@ -71,7 +71,7 @@ function app() {
         e.preventDefault();
         const query = document.querySelector('.navbar-search').value;
         if (!query) return;
-        document.location.href = `/search/${query}`;
+        document.location.href = `/search?q=${query}`;
     })
 
 }

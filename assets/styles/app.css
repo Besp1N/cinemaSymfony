@@ -181,6 +181,11 @@ a, a:hover, a:checked {
     color: var(--text-color);
     height: 100%;
 }
+
+.searchbox.always-visible:focus-within .search-results {
+    display: block; /* or whatever display style you prefer */
+}
+
 .container-always-visible {
     display: flex;
     justify-content: space-between;
@@ -220,7 +225,7 @@ a, a:hover, a:checked {
     transform: scale(110%);
 }
 .slide-poster {
-    min-height: 100px;
+    margin-left: 25%;
 }
 
 .slides-poster {
@@ -229,24 +234,49 @@ a, a:hover, a:checked {
     overflow: hidden;
     position: relative;
 }
-
-
 .container-posters {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
+@media screen and (max-width: 700px) {
+    .container-posters {
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+    .slide-poster {
+        left: 25%;
+        margin-left: 0;
+        margin-right: 10%;
+    }
 
+    .slider-header h2 {
+        font-size: 2em;
+    }
+    .slider-button-right, .slider-button-left {
+        display: none;
+    }
+
+}
 .slider-button-left, .slider-button-right {
-    margin: auto 0;
-    z-index: 1000;
+    position: absolute; /* Change to absolute positioning */
+    top: 50%; /* Align vertically */
+    z-index: 150;
     cursor: pointer;
 }
 .slider-button-left {
-    transform: translateX(50%);
+    transform: translate(-50%, -50%);
 }
 .slider-button-right {
-    transform: translate(-50%);
+    transform: translate(50%, -50%);
+}
+.slider-button-left {
+    left: 0; /* Align to the left */
+}
+
+.slider-button-right {
+    right: 0; /* Align to the right */
 }
 
 
