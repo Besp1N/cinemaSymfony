@@ -24,9 +24,12 @@
                 {% for genre in genres %}
                     <option value="{{ genre }}">{{ genre }}</option>
                 {% endfor %}
-
             </select>
-        <a href="#to_section_search_below_changme" class="hide">Book a ticket now</a>
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}" class="hide">Logout</a>
+        {% else %}
+            <a href="{{ path('app_login') }}" class="hide">Login</a>
+        {% endif %}
         <a class="theme-toggle hide" ><i class="fas fa-moon"></i>  <i class="fas fa-sun"></i></a>
     </div>
 </nav>

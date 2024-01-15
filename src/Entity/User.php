@@ -187,16 +187,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        // TODO: Implement getRoles() method.
+        return [$this->getRole()];
     }
 
     public function eraseCredentials(): void
     {
-        // TODO: Implement eraseCredentials() method.
+        // Jeśli musisz wyczyścić jakiekolwiek poufne dane związane z użytkownikiem, zrób to tutaj
+        // Na przykład, jeśli masz hasło w czystej postaci, możesz je tutaj usunąć.
     }
 
     public function getUserIdentifier(): string
     {
-        // TODO: Implement getUserIdentifier() method.
+        return (string) $this->getEmail();
     }
 }

@@ -3,11 +3,12 @@
 {% block body %}
 
    <h1>Login form</h1>
+    {{ error }}
 
-    <form action="{{ path('app_logn') }}" method="POST">
+    <form action="{{ path('app_login') }}" method="POST">
         <div>
             <label>Email</label>
-            <input type="text" name="_email">
+            <input type="text" name="_username">
         </div>
         <div>
             <label>Password</label>
@@ -20,3 +21,5 @@
     </form>
 
 {% endblock %}
+
+
