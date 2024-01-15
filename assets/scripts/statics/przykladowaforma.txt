@@ -1,0 +1,39 @@
+<h1>Sign-up</h1>
+            <form class="flex-form" action="/submit-form" method="post" enctype="multipart/form-data">
+                <div class="form-row">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" class="dropdown" name="gender" required>
+                        <option value="">Select...</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <input type="checkbox" id="term1" name="term1" required>
+                    <label for="term1">I agree to the Terms and Conditions</label>
+                </div>
+                <div class="form-row">
+                    <input type="checkbox" id="term2" name="term2" required>
+                    <label for="term2">I agree to the Privacy Policy</label>
+                </div>
+
+                <div class="form-row">
+                    <label for="file">Profile Picture:</label>
+                    <input type="file" id="file" name="file">
+                </div>
+
+                    <button type="submit">Register</button>
+
+            </form>

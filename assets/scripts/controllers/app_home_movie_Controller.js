@@ -1,5 +1,5 @@
 import {getJSON, timeout} from "../modules/helpers.js";
-import { URL_SCREENINGS, TIMEOUT_SEC } from '../modules/config.js';
+import { URL_SCREENINGS, TIMEOUT_SEC } from '../statics/config.js';
 import ScreeningsView from "../views/screeningsView.js";
 
 const screeningView = new ScreeningsView(document.getElementById('screenings'));
