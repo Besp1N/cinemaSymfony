@@ -1,9 +1,9 @@
 import {getJSON, timeout} from "../modules/helpers.js";
-import { URL_SCREENINGS, TIMEOUT_SEC } from '../modules/config.js';
+import { URL_SCREENINGS, TIMEOUT_SEC } from '../statics/config.js';
 import ScreeningsView from "../views/screeningsView.js";
 
 const screeningView = new ScreeningsView(document.getElementById('screenings'));
-const dropdown = document.querySelector('.dropdown');
+const dropdown = document.querySelector('#cinema-select-dropdown');
 dropdown.value = dropdown.firstElementChild.value;
 const controlCinemaSelector = async function () {
     try {

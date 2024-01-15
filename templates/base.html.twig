@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +16,14 @@
         {% endblock %}
     </head>
     <body>
+    <div class="overlay hidden"></div>
+    <div class="modal hidden">
+        <button class="btn-close-modal"><i class="fas fa-close fa-2x"></i></button>
+        <div id="modal-content">
+
+
+        </div>
+    </div>
     {{ render(controller('App\\Controller\\NavFragmentController::index')) }}
         <main class="container" style="margin-top: 2rem">
             {% block body %}{% endblock %}

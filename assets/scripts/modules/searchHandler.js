@@ -1,7 +1,7 @@
 'use strict';
 import SearchView from "../views/searchView.js";
 import {getJSON, timeout} from "./helpers.js";
-import {URL_MOVIES} from "./config.js";
+import {URL_MOVIES} from "../statics/config.js";
 
 const results = document.querySelector('.search-results');
 const input = document.querySelector('input.navbar-search')
