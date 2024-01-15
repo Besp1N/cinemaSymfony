@@ -45,6 +45,7 @@ export default class Slider {
     #setSlidesPosition() {
         this.#slides.forEach(slide => {
             slide.style.position = 'absolute';
+            slide.style.left = '25%';
             slide.style.transition = 'all 1s ease';
         });
     }
@@ -79,7 +80,7 @@ export default class Slider {
         this.#slides.forEach((slide, i) => {
             slide.dataset.slide = i;
             if (+slide.dataset.slide === this.#slides.length - 1) {
-                slide.style.zIndex =  100 - this.#slides.length
+                slide.style.zIndex =  100 + this.#slides.length
                 return
             }
 
@@ -120,12 +121,13 @@ export default class Slider {
                 return
             }
             slide.style.transform = `translateX(${(i - this.#current) * this.#offset}%)`;
-            if (+slide.dataset.slide === this.#current) {
+            if (+slide.dataset.slide === position) {
                 slide.style.zIndex = 100;
                 slide.style.opacity = 1;
-            }
-            else {
-                slide.style.zIndex = 100 - slide.dataset.slide;
+            } else {
+                // Calculate zIndex based on distance from the active slide
+                let zIndex = 100 - Math.abs(i - position);
+                slide.style.zIndex = zIndex;
                 slide.style.opacity = 0.5;
             }
         });

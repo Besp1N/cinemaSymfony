@@ -63,7 +63,7 @@ function app() {
     searchBox.addEventListener('input', searchHandler);
     searchBox.addEventListener('focus', searchHandler);
     searchBox.addEventListener('focusout', () => {
-        setTimeout(() => searchResults.classList.add('hidden'), 100);
+        setTimeout(() => searchResults.classList.add('hidden'), 150);
     })
     document.querySelector('#search-form').addEventListener('submit', e => {
         e.preventDefault();
