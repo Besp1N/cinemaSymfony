@@ -36,8 +36,8 @@ function app() {
     ///
     /// TUTAJ WYLACZYSZ OKIENKO
     const modal = new Modal();
-    modal.appendContent(forms.dupaForm);
-    modal.showModal();
+    // modal.appendContent(forms.dupaForm);
+    // modal.showModal();
     // tu mozna select form i wziac formdata.
     // i bez odswiezania strony mozna cos zrobic
     // ale to do formularzy np. select city lub seans, wtedy przekierowuje
