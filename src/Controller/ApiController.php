@@ -60,6 +60,16 @@ class ApiController extends AbstractController
     public function Cinemas(CinemaRepository $cinemaRepository): JsonResponse
     {
         $allCinemas = $cinemaRepository->findAll();
-        return new JsonResponse($allCinemas);
+
+        $data = [];
+        foreach ($allCinemas as $cinema) {
+            $data[] = [
+              'id' => $cinema->getId(),
+              'name' => $cinema->getName(),
+              'coords' => $cinema->getCoords()
+            ];
+        }
+
+        return new JsonResponse($data);
     }
 }
