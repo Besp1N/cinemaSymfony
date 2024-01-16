@@ -33,9 +33,9 @@ class AppFixtures extends Fixture
         $user123->setPhoneNumber('123456789');
         $user123->setPassword($this->userPasswordHasher->hashPassword($user123, '12345678'));
 
-        $manager->persist($user123);
-        $manager->flush();
-
+//        $manager->persist($user123);
+//        $manager->flush();
+//
 //        $user = new User();
 //        $user->setName('Luke');
 //        $user->setLastname('Skywalker');
@@ -45,72 +45,87 @@ class AppFixtures extends Fixture
 //        $user->setRole('User');
 //        $user->setProfilePicture("test//test");
 //        $user->setPhoneNumber("+48 123 456 789");
-//
-//        // Tworzenie filmu
-//        $movie = new Movie();
-//        $movie->setTitle('Indiana Jones');
-//        $movie->setDescription('cool movie');
-//        $movie->setDirector('Steven Spielberg');
-//        $movie->setGenre('Adventure');
-//        $movie->setDuration(new DateTimeImmutable());
-//        $movie->setRating(9.0);
-//        $movie->setRelaseYear(new DateTime());
-//        $movie->setImage("test//test");
-//
-//        // Tworzenie kina
-//        $cinema = new Cinema();
-//        $cinema->setName("Multikino");
-//        $cinema->setCity("Warszawa");
-//        $cinema->setAddress("zielona 1");
-//
-//        // Tworzenie sali kinowej
-//        $movieTheater = new MovieTheater();
-//        $movieTheater->setName("Sala 1");
-//
-//        // Tworzenie miejsca (siedzenia) w sali kinowej
-//        $seat = new Seat();
-//        $seat->setSeatRow("A");
-//        $seat->setSeatNumber("1");
-//        $seat->setSeatType("Vip");
-//
-//        // Dodawanie filmu do seansu
-//        $screening = new Screening();
-//        $screening->setMovie($movie);
-//        $screening->setStartTime(new DateTimeImmutable());
-//
-//        // Tworzenie rezerwacji dla użytkownika, miejsca i seansu
-//        $reservation = new Reservation();
-//        $reservation->setUser($user);
-//        $reservation->setSeat($seat);
-//        $reservation->setScreening($screening);
-//
-//        // Dodawanie elementów do relacji
-//        $user->addReservation($reservation);
-//        $movieTheater->addSeat($seat);
-//        $movieTheater->addScreening($screening);
-//        $cinema->addMovieTheater($movieTheater);
-//
-//        // Persystencja obiektów do bazy danych
-//        $manager->persist($user);
-//        $manager->persist($movie);
-//        $manager->persist($cinema);
-//
-//        // Flush do zapisania zmian w bazie danych
-//        $manager->flush();
-//
-//        $movie = new Movie();;
-//        $movie->setTitle('Star Wars');
-//        $movie->setDescription('cool movie');
-//        $movie->setDirector('George Lucas');
-//        $movie->setGenre('Sci-Fi');
-//        $movie->setDuration(new DateTimeImmutable());
-//        $movie->setRelaseYear(new DateTime());
-//        $movie->setImage("test//test");
-//        $movie->setRating(5.0);
-//
-//        $manager->persist($movie);
-//        $manager->flush();
-//
+
+        // Tworzenie filmu
+        $movie = new Movie();
+        $movie->setTitle('Indiana Jones');
+        $movie->setDescription('cool movie');
+        $movie->setDirector('Steven Spielberg');
+        $movie->setGenre('Adventure');
+        $movie->setDuration(new DateTimeImmutable());
+        $movie->setRating(9.0);
+        $movie->setReleaseYear(new DateTime());
+        $movie->setImage("images/poster1.jpg");
+
+        // Tworzenie kina
+        $cinema = new Cinema();
+        $cinema->setName("Multikino");
+        $cinema->setCity("Warszawa");
+        $cinema->setAddress("zielona 1");
+
+        // Tworzenie sali kinowej
+        $movieTheater = new MovieTheater();
+        $movieTheater->setName("Sala 1");
+
+        // Tworzenie miejsca (siedzenia) w sali kinowej
+        $seat = new Seat();
+        $seat->setSeatRow("A");
+        $seat->setSeatNumber("1");
+        $seat->setSeatType("Vip");
+
+        // Dodawanie filmu do seansu
+        $screening = new Screening();
+        $screening->setMovie($movie);
+        $screening->setStartTime(new DateTimeImmutable());
+
+        // Tworzenie rezerwacji dla użytkownika, miejsca i seansu
+        $reservation = new Reservation();
+        $reservation->setUser($user123);
+        $reservation->setSeat($seat);
+        $reservation->setScreening($screening);
+
+        // Dodawanie elementów do relacji
+        $user123->addReservation($reservation);
+        $movieTheater->addSeat($seat);
+        $movieTheater->addScreening($screening);
+        $cinema->addMovieTheater($movieTheater);
+
+        // Persystencja obiektów do bazy danych
+        $manager->persist($user123);
+        $manager->persist($movie);
+        $manager->persist($cinema);
+
+        // Flush do zapisania zmian w bazie danych
+        $manager->flush();
+
+        $movie = new Movie();;
+        $movie->setTitle('Star Wars');
+        $movie->setDescription('cool movie');
+        $movie->setDirector('George Lucas');
+        $movie->setGenre('Sci-Fi');
+        $movie->setDuration(new DateTimeImmutable());
+        $movie->setReleaseYear(new DateTime());
+        $movie->setImage("images/poster2.jpg");
+        $movie->setRating(5.0);
+
+
+        $adminUser = new User();
+        $adminUser->setName('admin');
+        $adminUser->setLastname('admin');
+        $adminUser->setProfilePicture('dupa/dupa');
+        $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, 'dupa'));
+        $adminUser->setRole('ROLE_ADMIN');
+        $adminUser->setCreatedAt(new DateTimeImmutable());
+        $adminUser->setPhoneNumber('+48 123456789');
+        $adminUser->setEmail('admin@admin.pl');
+
+        $manager->persist($adminUser);
+        $manager->flush();
+
+
+        $manager->persist($movie);
+        $manager->flush();
+
 
 
 

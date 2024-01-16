@@ -37,9 +37,9 @@ function app() {
     /// TUTAJ WYLACZYSZ OKIENKO
 
 
-    const modal = new Modal();
-    modal.appendContent(forms.dupaForm);
-    modal.showModal();
+    // const modal = new Modal();
+    // modal.appendContent(forms.dupaForm);
+    // modal.showModal();
 
 
 
