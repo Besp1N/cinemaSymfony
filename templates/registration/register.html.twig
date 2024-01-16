@@ -8,18 +8,31 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.name) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.phone_number) }}
-        {{ form_row(registrationForm.profile_picture) }}
-
-
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+        <div class="flex-form">
+            <div class="form-row">
+                {{ form_row(registrationForm.name) }}
+            </div>
+            <div class="form-row">
+                {{ form_row(registrationForm.lastname) }}
+            </div>
+            <div class="form-row">
+                {{ form_row(registrationForm.email) }}
+            </div>
+            <div class="form-row">
+                {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
+            </div>
+            <div class="form-row">
+                {{ form_row(registrationForm.phone_number) }}
+            </div>
+            <div class="form-row">
+                {{ form_row(registrationForm.profile_picture) }}
+            </div>
+            <div class="form-row">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+            <div class="form-row">
+                <button type="submit" class="btn">Register</button>
+            </div>
+        </div>
     {{ form_end(registrationForm) }}
 {% endblock %}
