@@ -55,4 +55,11 @@ class ApiController extends AbstractController
         }
         return new JsonResponse($data);
     }
+
+    #[Route('/api/cinemas', name: 'api_cinemas')]
+    public function Cinemas(CinemaRepository $cinemaRepository): JsonResponse
+    {
+        $allCinemas = $cinemaRepository->findAll();
+        return new JsonResponse($allCinemas);
+    }
 }

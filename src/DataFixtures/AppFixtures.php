@@ -33,18 +33,18 @@ class AppFixtures extends Fixture
         $user123->setPhoneNumber('123456789');
         $user123->setPassword($this->userPasswordHasher->hashPassword($user123, '12345678'));
 
-        $manager->persist($user123);
-        $manager->flush();
-
-        $user = new User();
-        $user->setName('Luke');
-        $user->setLastname('Skywalker');
-        $user->setEmail('elo@wp.pl');
-        $user->setPassword('ok');
-        $user->setCreatedAt(new DateTimeImmutable());
-        $user->setRole('User');
-        $user->setProfilePicture("test//test");
-        $user->setPhoneNumber("+48 123 456 789");
+//        $manager->persist($user123);
+//        $manager->flush();
+//
+//        $user = new User();
+//        $user->setName('Luke');
+//        $user->setLastname('Skywalker');
+//        $user->setEmail('elo@wp.pl');
+//        $user->setPassword('ok');
+//        $user->setCreatedAt(new DateTimeImmutable());
+//        $user->setRole('User');
+//        $user->setProfilePicture("test//test");
+//        $user->setPhoneNumber("+48 123 456 789");
 
         // Tworzenie filmu
         $movie = new Movie();
@@ -55,7 +55,7 @@ class AppFixtures extends Fixture
         $movie->setDuration(new DateTimeImmutable());
         $movie->setRating(9.0);
         $movie->setReleaseYear(new DateTime());
-        $movie->setImage("images/poster1.png");
+        $movie->setImage("images/poster1.jpg");
 
         // Tworzenie kina
         $cinema = new Cinema();
@@ -80,18 +80,18 @@ class AppFixtures extends Fixture
 
         // Tworzenie rezerwacji dla użytkownika, miejsca i seansu
         $reservation = new Reservation();
-        $reservation->setUser($user);
+        $reservation->setUser($user123);
         $reservation->setSeat($seat);
         $reservation->setScreening($screening);
 
         // Dodawanie elementów do relacji
-        $user->addReservation($reservation);
+        $user123->addReservation($reservation);
         $movieTheater->addSeat($seat);
         $movieTheater->addScreening($screening);
         $cinema->addMovieTheater($movieTheater);
 
         // Persystencja obiektów do bazy danych
-        $manager->persist($user);
+        $manager->persist($user123);
         $manager->persist($movie);
         $manager->persist($cinema);
 
@@ -105,8 +105,23 @@ class AppFixtures extends Fixture
         $movie->setGenre('Sci-Fi');
         $movie->setDuration(new DateTimeImmutable());
         $movie->setReleaseYear(new DateTime());
-        $movie->setImage("test/poster2.png");
+        $movie->setImage("images/poster2.jpg");
         $movie->setRating(5.0);
+
+
+        $adminUser = new User();
+        $adminUser->setName('admin');
+        $adminUser->setLastname('admin');
+        $adminUser->setProfilePicture('dupa/dupa');
+        $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, 'dupa'));
+        $adminUser->setRole('ROLE_ADMIN');
+        $adminUser->setCreatedAt(new DateTimeImmutable());
+        $adminUser->setPhoneNumber('+48 123456789');
+        $adminUser->setEmail('admin@admin.pl');
+
+        $manager->persist($adminUser);
+        $manager->flush();
+
 
         $manager->persist($movie);
         $manager->flush();
