@@ -24,6 +24,9 @@ class Cinema
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $coords = null;
+
     #[ORM\OneToMany(mappedBy: 'cinema', targetEntity: MovieTheater::class, cascade: ["persist"])]
     private Collection $movieTheaters;
 
@@ -59,6 +62,18 @@ class Cinema
         $this->name = $name;
 
         return $this;
+    }
+
+    public function setCoords(string $coords): static
+    {
+        $this->coords = $coords;
+
+        return $this;
+    }
+
+    public function getCoords(): ?string
+    {
+        return $this->coords;
     }
 
     public function getAddress(): ?string
