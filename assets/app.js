@@ -1,10 +1,12 @@
+import state from './scripts/modules/state.js';
 import './styles/app.css';
 import "./scripts/views/searchView.js";
 import './scripts/modules/searchHandler.js';
-import Modal from "./scripts/modules/modal.js";
+import "./scripts/modules/modal.js";
 import('./scripts/modules/helpers.js');
 import('./scripts/statics/config.js');
 import navbarController from './scripts/controllers/navbar_Controller.js';
+import geoLocator from './scripts/modules/geolocator.js';
 import * as forms from './scripts/statics/forms.js';
 importModules();
 app();
@@ -32,14 +34,14 @@ async function importModules() {
  */
 function app() {
     navbarController();
-    ///
-    ///
-    /// TUTAJ WYLACZYSZ OKIENKO
-    const modal = new Modal();
-    // modal.appendContent(forms.dupaForm);
-    // modal.showModal();
-    // tu mozna select form i wziac formdata.
-    // i bez odswiezania strony mozna cos zrobic
-    // ale to do formularzy np. select city lub seans, wtedy przekierowuje
-    // na dedykowana strone np. rezerwuj na ten seans
+    setInterval(() => window.localStorage.setItem('state', JSON.stringify(state)), 10000);
+    if (state.visited) {
+        //Logic for first visit
+        geoLocator.getLocation();
+        state.visited = true;
+
+    }
+
+
+
 }

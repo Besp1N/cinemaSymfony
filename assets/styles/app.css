@@ -207,6 +207,7 @@ a, a:hover, a:checked {
     background: var(--container-secondary);
     color: var(--text-color);
     height: 100%;
+    display: block;
 }
 
 .searchbox.always-visible:focus-within .search-results {
@@ -463,19 +464,31 @@ a, a:hover, a:checked {
 .flex-form {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    /*align-items: left;*/
     flex-wrap: wrap;
 }
 .flex-form input {
     margin-bottom: 1rem;
-    width: clamp(100px, 70%, 600px);
+    width: 50vw;
+    @media only screen and (max-width: 700px) {
+        width: 80vw;
+    }
+
 }
 
 .form-row {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
     gap: 5%;
-    margin-bottom: 1rem;
+    width: 50%;
+    @media only screen and (max-width: 700px ) {
+        width: 100%;
+        padding: 0 10px;
+    }
+
 }
 
 /* Text and password input styles */
@@ -490,23 +503,24 @@ a, a:hover, a:checked {
 /* Select element styles */
 .flex-form select {
     padding: 0.5rem;
-    border: 1px var(--text-color) solid;
+    border: 1px blueviolet solid;
     border-radius: 4px;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 /* Radio button and checkbox styles */
 .flex-form input[type="radio"],
 .flex-form input[type="checkbox"] {
-    margin-right: 0.5rem;
     width: min-content;
+    margin: 0 auto 0 1rem;
 }
 
 /* Label styling for better alignment with inputs */
 .flex-form label {
-    display: flex;
-    align-items: center;
     margin-bottom: 0.5rem;
+    min-width: 20%;
+
 }
 
 .flex-form input:focus,
@@ -521,7 +535,6 @@ a, a:hover, a:checked {
     padding: 0.5rem;
     margin-bottom: 1rem;
 }
-
 /* Button Styling */
 .flex-form button {
     padding: 0.5rem 1rem;
@@ -531,6 +544,8 @@ a, a:hover, a:checked {
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    width: 50%;
+    margin: 1rem auto;
 }
 
 /* Checkbox alignment with text */

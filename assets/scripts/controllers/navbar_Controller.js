@@ -1,5 +1,6 @@
 
 import searchHandler from "../modules/searchHandler.js";
+import  state  from "../modules/state.js";
 const isDarkMode = () =>
     window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 export default function() {
@@ -18,6 +19,7 @@ export default function() {
     else {
         if (isDarkMode()) document.body.classList.add('dark-mode');
     }
+    state.theme = 'gowno';
     /////////////
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');

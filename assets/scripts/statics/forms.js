@@ -1,5 +1,4 @@
 export const dupaForm = '<h1>Sign-up</h1>\n' +
-    'mozesz wylaczyc w app.js komentujac/ przykladowa forma wygenerowana przez chatgpt' +
     '            <form class="flex-form" action="/submit-form" method="post" enctype="multipart/form-data">\n' +
     '                <div class="form-row">\n' +
     '                    <label for="name">Name:</label>\n' +
