@@ -5,9 +5,11 @@ import './scripts/modules/searchHandler.js';
 import "./scripts/modules/modal.js";
 import('./scripts/modules/helpers.js');
 import('./scripts/statics/config.js');
+import './vendor/geolib/geolib.index.js';
 import navbarController from './scripts/controllers/navbar_Controller.js';
 import geoLocator from './scripts/modules/geolocator.js';
 import * as forms from './scripts/statics/forms.js';
+
 importModules();
 app();
 
@@ -35,7 +37,7 @@ async function importModules() {
 function app() {
     navbarController();
     setInterval(() => window.localStorage.setItem('state', JSON.stringify(state)), 10000);
-    if (state.visited) {
+    if (!state.cinema && !state.visited) {
         //Logic for first visit
         geoLocator.getLocation();
         state.visited = true;

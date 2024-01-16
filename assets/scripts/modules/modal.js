@@ -44,4 +44,7 @@ export default class Modal {
     clearContent() {
         this.#content.innerHTML = '';
     }
+    getContent() {
+        return this.#content;
+    }
 }

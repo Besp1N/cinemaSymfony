@@ -18,4 +18,7 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'geolib' => [
+        'version' => '3.3.4',
+    ],
 ];

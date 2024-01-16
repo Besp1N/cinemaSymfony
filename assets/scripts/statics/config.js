@@ -10,3 +10,4 @@ export const URL_SCREENINGS = '/api/screenings'
 export const URL_MOVIES = '/api/movies';
 export const TIMEOUT_SEC = 10;
 
+export const URL_CINEMAS = '/api/cinemas';

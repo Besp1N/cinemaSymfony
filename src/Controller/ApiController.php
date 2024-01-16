@@ -66,6 +66,8 @@ class ApiController extends AbstractController
             $data[] = [
               'id' => $cinema->getId(),
               'name' => $cinema->getName(),
+                'address' => $cinema->getAddress(),
+                'city' => $cinema->getCity(),
               'coords' => $cinema->getCoords()
             ];
         }

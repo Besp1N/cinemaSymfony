@@ -9,7 +9,7 @@ export default class ScreeningsView extends View {
                    <p>No screenings here:( CHECK ANOTHER CINEMA!</p>
                 </li>`;
     generateMarkup() {
-        return this.data.map(this.#generateLi).join('');
+        return `<h2>Screenings in selected cinema:</h2>` + this.data.map(this.#generateLi).join('');
     }
     #generateLi(screening) {
         // glowne zwracanie i wyswietlanie
