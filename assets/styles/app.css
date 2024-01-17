@@ -573,6 +573,16 @@ a, a:hover, a:checked {
     text-align: center;
 }
 
+img.profile-picture {
+    max-width: 100px;
+    height: auto;
+    border-radius: 5%;
+    margin-bottom: 20px;
+}
 
+div.user-info {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
 
 

@@ -17,13 +17,16 @@ class UserController extends AbstractController
             return new Response("no chyba nie XD");
         }
 
+        // symfony ma jakis problem z tym ale to dziala wiec gitara
         $userName = $user->getName();
+        $userLastname = $user->getLastname();
         $userCreatedAt = $user->getCreatedAt()->format('Y-m-d');
         $userEmail = $user->getEmail();
         $userProfilePicture = $user->getProfilePicture();
 
         return $this->render('user/index.html.twig', [
             'userName' => $userName,
+            'userLastname' => $userLastname,
             'userCreatedAt' => $userCreatedAt,
             'userEmail' => $userEmail,
             'userProfilePicture' => $userProfilePicture

@@ -4,12 +4,15 @@
 
 {% block body %}
     <div class="container">
+        <h2>Your Profile</h2>
 
-        <h2>Your profile Profile</h2>
-        <div>Profile Picture: {{ userProfilePicture }}</div>
+        <div>
+            <img src="{{ asset(userProfilePicture) }}" alt="profile picture" class="profile-picture">
+        </div>
 
-        <div>Name: {{ userName }}</div>
-        <div>Created At: {{ userCreatedAt }}</div>
-        <div>Email: {{ userEmail }}</div>
+        <div class="user-info">Name: {{ userName }}</div>
+        <div class="user-info">Lastname: {{ userLastname }}</div>
+        <div class="user-info">Email: {{ userEmail }}</div>
+        <div class="user-info">Created At: {{ userCreatedAt }}</div>
     </div>
 {% endblock %}
