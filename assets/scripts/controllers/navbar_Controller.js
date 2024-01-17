@@ -1,30 +1,25 @@
 
 import searchHandler from "../modules/searchHandler.js";
-import  state  from "../modules/state.js";
+import  state  from "../state.js";
+import geolocator from "../modules/geolocator.js";
 const isDarkMode = () =>
     window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 export default function() {
 
-
     const themeBtn = document.querySelector('.theme-toggle');
-    const genreSelect = document.querySelector('.navbar-genres');
+    const genreSelect = document.getElementById('navbar-genres');
+    const settingsSelect = document.getElementById('navbar-settings');
     const searchBox = document.querySelector('input.navbar-search');
     const searchResults = document.querySelector('.search-results');
     genreSelect.value = genreSelect.firstElementChild.value
-    //INIT THEME
-    const prevTheme = window.localStorage.getItem('isDarkTheme');
-    if (prevTheme) {
-        document.body.classList.add(prevTheme);
-    }
-    else {
-        if (isDarkMode()) document.body.classList.add('dark-mode');
-    }
-    state.theme = 'gowno';
-    /////////////
+
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
-        window.localStorage.setItem('isDarkTheme', document.body.classList.contains('dark-mode') ? 'dark-mode' : "light-mode")
+        state.theme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+        window.localStorage.setItem('state', JSON.stringify(state));
     })
+
+
     document.querySelector('.navbar-toggle').addEventListener('click', function () {
         const links = document.querySelector('.navbar-links');
         [...links.children].forEach(child => {
@@ -36,6 +31,19 @@ export default function() {
         const genre = genreSelect.value.toLowerCase();
         window.location.href = `/genre/${genre}`;
     })
+
+    settingsSelect.addEventListener('change', () => {
+        const option = settingsSelect.value;
+        settingsSelect.value = settingsSelect.firstElementChild.value;
+        switch (option) {
+            case 'cinema':
+                geolocator.getLocation();
+                break;
+        }
+    })
+
+
+
     /////////////////// SEARCHBOX
     searchBox.addEventListener('input', searchHandler);
     searchBox.addEventListener('focus', searchHandler);

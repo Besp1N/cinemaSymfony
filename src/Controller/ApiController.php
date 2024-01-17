@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Json;
 
 class ApiController extends AbstractController
 {
@@ -57,8 +58,24 @@ class ApiController extends AbstractController
     }
 
     #[Route('/api/cinemas', name: 'api_cinemas')]
-    public function Cinemas(CinemaRepository $cinemaRepository): JsonResponse
+    public function Cinemas(CinemaRepository $cinemaRepository, Request $request): JsonResponse
     {
+
+        $id = $request->get('id');
+        if (!is_null($id)) {
+            $cinema =  $cinemaRepository->find($id);
+            if (!$cinema) {
+                return new JsonResponse(null, 404);
+            }
+            $data = [ 'id' => $cinema->getId(),
+                'name' => $cinema->getName(),
+                'address' => $cinema->getAddress(),
+                'city' => $cinema->getCity(),
+                'coords' => $cinema->getCoords()
+            ];
+            return new JsonResponse($data);
+        }
+
         $allCinemas = $cinemaRepository->findAll();
 
         $data = [];

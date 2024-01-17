@@ -85,10 +85,17 @@ a, a:hover, a:checked {
     transform: translate(-50%, -50%);
     padding: 1rem;
     overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .btn-close-modal {
-    float:right;
+    margin-left: auto;
+    margin-right: 0;
     background: none;
+}
+#modal-content {
+    margin: auto 0;
 }
 .glass{
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
@@ -167,7 +174,7 @@ a, a:hover, a:checked {
 .navbar-links {
     display: flex;
 }
-.navbar-genres {
+.navbar-select {
     border: none;
     max-width: 6rem;
 
@@ -175,7 +182,7 @@ a, a:hover, a:checked {
     color: var(--text-color);
     cursor: pointer;
 }
-.navbar-links a, .navbar-genres {
+.navbar-links a, .navbar-select {
     color: var(--text-color);
     text-decoration: none;
     padding: 0.75rem;
@@ -465,15 +472,10 @@ a, a:hover, a:checked {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /*align-items: left;*/
-    flex-wrap: wrap;
 }
 .flex-form input {
     margin-bottom: 1rem;
-    width: 50vw;
-    @media only screen and (max-width: 700px) {
-        width: 80vw;
-    }
+    width: clamp(200px, 80vw, 700px);
 
 }
 
@@ -481,11 +483,12 @@ a, a:hover, a:checked {
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 5%;
-    width: 50%;
+    width: 60%;
     @media only screen and (max-width: 700px ) {
-        width: 100%;
+        max-width: 100%;
         padding: 0 10px;
     }
 
@@ -518,9 +521,10 @@ a, a:hover, a:checked {
 
 /* Label styling for better alignment with inputs */
 .flex-form label {
+    display: block;
     margin-bottom: 0.5rem;
-    min-width: 20%;
-
+    min-width: fit-content;
+    width: 25%;
 }
 
 .flex-form input:focus,

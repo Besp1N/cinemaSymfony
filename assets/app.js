@@ -1,4 +1,4 @@
-import state from './scripts/modules/state.js';
+import state from './scripts/state.js';
 import './styles/app.css';
 import "./scripts/views/searchView.js";
 import './scripts/modules/searchHandler.js';
@@ -35,15 +35,13 @@ async function importModules() {
  * Script used on all pages.
  */
 function app() {
-    navbarController();
     setInterval(() => window.localStorage.setItem('state', JSON.stringify(state)), 10000);
+    navbarController();
     if (!state.cinema && !state.visited) {
-        //Logic for first visit
         geoLocator.getLocation();
         state.visited = true;
-
     }
-
-
+    
+    document.body.classList.add(state.theme)
 
 }

@@ -9,19 +9,25 @@
             <div class="alert-success">{{ flashMessage }}</div>
     {% endfor %}
 
-    <form action="{{ path('app_login') }}" class="flex-form" method="POST">
-        <div class="form-row">
-            <label>Email</label>
-            <input type="text" name="_username">
-        </div>
-        <div class="form-row">
-            <label>Password</label>
-            <input type="password" name="_password">
-        </div>
+    <form action="{{ path('app_login') }}" method="POST">
+        <div class="flex-form">
+            <div class="form-row">
+                <div>
+                    <label>Email</label>
+                    <input type="text" name="_username">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Password</label>
+                    <input type="password" name="_password">
+                </div>
+            </div>
 
-        <input type="hidden" name="_target_path" value="{{ path('app_home') }}">
+            <input type="hidden" name="_target_path" value="{{ path('app_home') }}">
 
-        <button type="submit">Login!</button>
+            <button type="submit">Login!</button>
+        </div>
     </form>
 
 {% endblock %}

@@ -20,7 +20,7 @@
             <button class="navbar-toggle always-visible">☰</button>
         </div>
         <a href="{{ path('app_admin') }}" class="hide">Panel admina</a>
-            <select class="navbar-genres hide" onfocus="this.selectedIndex = 0;">
+            <select class="navbar-select hide" id="navbar-genres" onfocus="this.selectedIndex = 0;">
                 <option value="" disabled selected hidden>Genres</option>
                 {% for genre in genres %}
                     <option value="{{ genre }}">{{ genre }}</option>
@@ -30,8 +30,13 @@
             <a href="{{ path('app_logout') }}" class="hide">Logout</a>
         {% else %}
             <a href="{{ path('app_login') }}" class="hide">Login</a>
-            <a href="{{ path('app_register') }}" class="hide">Register</a>
+            <a href="{{ path('app_register') }}" class="hide">Sign up</a>
         {% endif %}
+        <select class="navbar-select hide" id="navbar-settings" onfocus="this.selectedIndex = 0;">
+            <option value="" disabled selected hidden>Settings</option>
+            <option value="cinema">Selected Cinema</option>
+
+        </select>
         <a class="theme-toggle hide" ><i class="fas fa-moon"></i>  <i class="fas fa-sun"></i></a>
     </div>
 </nav>
