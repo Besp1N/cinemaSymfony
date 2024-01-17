@@ -29,22 +29,22 @@ class AppFixtures extends Fixture
         $user123->setLastname('Doe');
         $user123->setEmail('wielkitest@wp.pl');
         $user123->setCreatedAt(new \DateTimeImmutable());
-        $user123->setRole('ROLE_USER');
+        $user123->setRoles(['ROLE_USER']);
         $user123->setPhoneNumber('123456789');
         $user123->setPassword($this->userPasswordHasher->hashPassword($user123, '12345678'));
 
-//        $manager->persist($user123);
-//        $manager->flush();
-//
-//        $user = new User();
-//        $user->setName('Luke');
-//        $user->setLastname('Skywalker');
-//        $user->setEmail('elo@wp.pl');
-//        $user->setPassword('ok');
-//        $user->setCreatedAt(new DateTimeImmutable());
-//        $user->setRole('User');
-//        $user->setProfilePicture("test//test");
-//        $user->setPhoneNumber("+48 123 456 789");
+        $manager->persist($user123);
+        $manager->flush();
+
+        $user = new User();
+        $user->setName('Luke');
+        $user->setLastname('Skywalker');
+        $user->setEmail('elo@wp.pl');
+        $user->setPassword('ok');
+        $user->setCreatedAt(new DateTimeImmutable());
+        $user->setRoles(['ROLE_USER']);
+        $user->setProfilePicture("test//test");
+        $user->setPhoneNumber("+48 123 456 789");
 
         // Tworzenie filmu
         $movie = new Movie();
@@ -62,6 +62,7 @@ class AppFixtures extends Fixture
         $cinema->setName("Multikino");
         $cinema->setCity("Warszawa");
         $cinema->setAddress("zielona 1");
+        $cinema->setCoords("0, 0");
 
         // Tworzenie sali kinowej
         $movieTheater = new MovieTheater();
@@ -114,7 +115,7 @@ class AppFixtures extends Fixture
         $adminUser->setLastname('admin');
         $adminUser->setProfilePicture('dupa/dupa');
         $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, 'dupa'));
-        $adminUser->setRole('ROLE_ADMIN');
+        $adminUser->setRoles(['ROLE_ADMIN']);
         $adminUser->setCreatedAt(new DateTimeImmutable());
         $adminUser->setPhoneNumber('+48 123456789');
         $adminUser->setEmail('admin@admin.pl');
