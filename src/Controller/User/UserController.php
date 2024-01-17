@@ -18,9 +18,15 @@ class UserController extends AbstractController
         }
 
         $userName = $user->getName();
+        $userCreatedAt = $user->getCreatedAt()->format('Y-m-d');
+        $userEmail = $user->getEmail();
+        $userProfilePicture = $user->getProfilePicture();
 
         return $this->render('user/index.html.twig', [
-            'userName' => $userName
+            'userName' => $userName,
+            'userCreatedAt' => $userCreatedAt,
+            'userEmail' => $userEmail,
+            'userProfilePicture' => $userProfilePicture
         ]);
     }
 }

@@ -3,5 +3,13 @@
 {% block title %}{{ userName }} profile{% endblock %}
 
 {% block body %}
+    <div class="container">
 
+        <h2>Your profile Profile</h2>
+        <div>Profile Picture: {{ userProfilePicture }}</div>
+
+        <div>Name: {{ userName }}</div>
+        <div>Created At: {{ userCreatedAt }}</div>
+        <div>Email: {{ userEmail }}</div>
+    </div>
 {% endblock %}

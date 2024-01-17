@@ -561,6 +561,7 @@ a, a:hover, a:checked {
 
 /*
     dodac mobile view
+    i poprawic zeby to bylo na srodku
  */
 .alert-success {
     border: 1px solid #4CAF50;
@@ -571,4 +572,7 @@ a, a:hover, a:checked {
     border-radius: 4px;
     text-align: center;
 }
+
+
+
 

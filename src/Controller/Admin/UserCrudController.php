@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Reservation;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -32,7 +33,7 @@ class UserCrudController extends AbstractCrudController
                     'html5' => true,
                     'data' => new \DateTimeImmutable(),
                 ]),
-            TextField::new('role'),
+            ArrayField::new('roles'),
             TextField::new('profile_picture'),
             TextField::new('phone_number'),
         ];
