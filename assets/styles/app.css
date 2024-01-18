@@ -50,7 +50,7 @@ h1 {
     margin: 0.3em auto;
 }
 h2 {
-    font-size: clamp(1rem, 3vw, 2rem);
+    font-size: clamp(1rem, 5vw, 2rem);
     text-align: left;
     margin: 1em;
 }
@@ -143,6 +143,7 @@ a, a:hover, a:checked {
     .container {
         width: 100%;
     }
+
 }
 .section-divider {
     background: var(--background-color);
@@ -585,11 +586,13 @@ a, a:hover, a:checked {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+
 }
 .user-card-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+    gap: 5rem;
 }
 
 
@@ -602,15 +605,94 @@ a, a:hover, a:checked {
 }
 
 .profile-picture {
-    max-width: 100px;
+    width: clamp(150px, 30%, 500px);
     height: auto;
-    border-radius: 5%;
-    margin-bottom: 20px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+}
+.profile-picture img {
+    border-radius: 1000px;
+}
+.profile-info-container {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+
+    }
+    margin-bottom: 1rem;
+}
+.profile-bio {
+    min-width: 50vw;
+    background: var(--container-secondary);
+    box-shadow: 0.25rem 0.25rem var(--glow);
+    padding: 1rem;
 }
 
-div.user-info {
-    font-size: 18px;
-    margin-bottom: 10px;
+
+.user-info {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
 }
+
+/* PROFILE TABS */
+/* Tabs Content Container */
+.tabs-content-container {
+}
+
+/* Tab Content */
+.tab-content {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    display: none; /* Hide all tab content by default */
+}
+
+.tab-content.tab--selected {
+
+    display: block; /* Show the selected tab content */
+}
+
+/* Tab Navigation */
+.tab-navigation {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.tab-list {
+    list-style-type: none;
+    padding: 0 0 0 1rem;
+    display: flex;
+    justify-content: flex-start;
+    background: var(--container-secondary); /* Light grey background */
+    border-radius: 5px; /* Rounded corners for the tab list */
+}
+
+.tab-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.tab-item:hover {
+    background-color: blueviolet;
+}
+
+.tab-item--selected {
+    background: blueviolet;/* Even darker grey for selected tab */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tab-list {
+        flex-direction: column;
+        padding: 0;
+
+    }
+    .tab-item {
+        width: 100%;
+    }
+}
+
 
 

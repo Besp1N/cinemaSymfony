@@ -10,24 +10,50 @@
                 <a href="{{ path('app_home') }}"><i class="fas fa-user-gear fa-xl"></i></a>
             {% endif %}
         </div>
+
+   <div class="profile-info-container">
         <div class="profile-picture">
             <img src="{{ asset(user.profilepicture) }}" alt="profile picture">
         </div>
-        <div class="user-details">
-            <div class="user-info">Last name: {{ user.lastname }}</div>
-            <div class="user-info">Email: {{ user.email }}</div>
-            <div class="user-info">Created At: {{ user.createdat | date("M d, Y") }}</div>
+        <div class="profile-bio">
+            Moze bio dodamy
+        </div>
+   </div>
+        <div class="profile-info-container">
+            <div class="user-details">
+                <div class="user-info">Last name: {{ user.lastname }}</div>
+                <div class="user-info">Email: {{ user.email }}</div>
+                <div class="user-info">Created At: {{ user.createdat | date("M d, Y") }}</div>
+            </div>
         </div>
     </div>
     <hr class="section-divider">
-    <div class="container">
-        <div class="profile-tabs" style="display: flex">
-            <div class="profile-tab">DUPA </div>
-            <div class="profile-tab">DUPA ></div>
-            <div class="profile-tab">DUPA</div>
+        <nav class="tab-navigation">
+            <ul class="tab-list">
+                <li class="tab-item tab-item--selected" data-target="#reviews">Reviews</li>
+                <li class="tab-item" data-target="#favorites">Favorites</li>
+                {% if app.user == user %}
+                <li class="tab-item" data-target="#bookings">Bookings</li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="tabs-content-container">
+            <div class="tab-content tab--selected" id="reviews">
+                Mam propozycje dodania tutaj recenzji albo ocen w sumie
+            </div>
+            <div class="tab-content" id="favorites">
+                <div class="container-simple-movie">
+                    TU BEDA RENDEROWANE ULUBIONE FILMY
+                </div>
+            </div>
+            <div class="tab-content" id="bookings">
+                <div class="container-simple-movie">
+                    12 czerwca 1999 Shrek Multikino Zielona
+                </div>
+                <div class="container-simple-movie">
+                    Dla bezpieczenstwa twig wyrenderuje po stronie serwera jezeli user == user
+                </div>
+            </div>
         </div>
-        <div class="tab-content">
-            DIASDSAD S
-        </div>
-    </div>
+        <hr class="section-divider">
 {% endblock %}
