@@ -9,6 +9,7 @@ class Geolocator {
     #cinemas
 
  async getLocation() {
+        this.#modal.clearContent();
      this.#modal.appendContent(this.#markup);
      this.#modal.showModal();
      await this.#getCinemas();
@@ -44,6 +45,7 @@ class Geolocator {
  #renderCinemas() {
      const cinemasDropdown = new CinemasDropdown(this.#modal.getContent());
      cinemasDropdown.render(this.#cinemas);
+     document.getElementById('cinema-select-dropdown').value = state.cinema.id ?? '';
      this.#modal.appendContent(`<div class="container"><h2>We couldn't get your location! Please select your cinema for better experience.</h2></div>`)
 
      document.getElementById('selectCinemaModal').addEventListener('submit', this.#handleCinemaSelect.bind(this));
@@ -69,8 +71,9 @@ async #handleCinemaSelect(e) {
 }
  #markup = `
     <div class="container">
-   <h1>Hi there!</h1>
-   <h2>For better user experience please enable location or select your cinema!<h2>
+    ${state.cinema ? `<h2>Your cinema is: </h2><h2>${state.cinema.name} - ${state.cinema.city} - ${state.cinema.address}</h2>` : 
+   `<h1>Hi there!</h1>
+   <h2>For better user experience please enable location or select your cinema!<h2>`}
    </div>
  `
 }

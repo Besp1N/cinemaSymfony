@@ -28,7 +28,8 @@
                 {{ form_row(registrationForm.profile_picture) }}
             </div>
             <div class="form-row">
-                {{ form_row(registrationForm.agreeTerms) }}
+                {{ form_widget(registrationForm.agreeTerms) }}
+                <label>I agree to terms and conditions</label>
             </div>
             <div class="form-row">
                 <button type="submit" class="btn">Register</button>

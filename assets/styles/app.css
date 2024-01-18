@@ -7,6 +7,7 @@
     --text-color: #000;
     --container-primary: #eeeeee;
     --container-secondary: #dedede;
+    --glow: rgba(164, 84, 241, 0.4);
 
 }
 
@@ -155,7 +156,6 @@ a, a:hover, a:checked {
 .navbar {
     background-color: var(--container-primary);
     opacity: 0.9;
-    color: var(--text-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -177,16 +177,20 @@ a, a:hover, a:checked {
 .navbar-select {
     border: none;
     max-width: 6rem;
-
     background-color: var(--container-primary);
-    color: var(--text-color);
     cursor: pointer;
 }
+
 .navbar-links a, .navbar-select {
     color: var(--text-color);
     text-decoration: none;
     padding: 0.75rem;
     display: block;
+}
+.navbar-links a:hover , .navbar-select:focus, .navbar-select:hover {
+    transition: all 0.1s linear ;
+    background: var(--glow);
+    box-shadow: 0 0 10px blueviolet;
 }
 
 .navbar-toggle {
@@ -207,6 +211,7 @@ a, a:hover, a:checked {
     top: 3.5rem;
     width: clamp(200px, 50%, 500px);
     background: var(--container-primary);
+    opacity: 1;
 }
 .navbar-search {
     border: none;
@@ -516,13 +521,13 @@ a, a:hover, a:checked {
 .flex-form input[type="radio"],
 .flex-form input[type="checkbox"] {
     width: min-content;
-    margin: 0 auto 0 1rem;
+    margin: 0 1rem;
 }
 
 /* Label styling for better alignment with inputs */
 .flex-form label {
-    display: block;
-    margin-bottom: 0.5rem;
+    display: flex;
+    /*margin-bottom: ;*/
     min-width: fit-content;
     width: 25%;
 }
@@ -550,8 +555,11 @@ a, a:hover, a:checked {
     font-size: 1rem;
     width: 50%;
     margin: 1rem auto;
+    transition: box-shadow 0.3s linear;
 }
-
+.flex-form button:hover {
+    box-shadow: 0 5px 15px var(--glow);
+}
 /* Checkbox alignment with text */
 .flex-form input[type="checkbox"] {
     vertical-align: middle;

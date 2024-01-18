@@ -62,6 +62,7 @@ class AppFixtures extends Fixture
         $cinema->setName("Multikino");
         $cinema->setCity("Warszawa");
         $cinema->setAddress("zielona 1");
+        $cinema->setCoords('53.123,18.000');
 
         // Tworzenie sali kinowej
         $movieTheater = new MovieTheater();
