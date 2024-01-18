@@ -25,7 +25,7 @@ async function importModules() {
     if (path === '/') {
         await import('./scripts/modules/slider.js');
     }
-    if (new RegExp('/\\d').test(path)) {
+    if (new RegExp('^/\\d').test(path)) {
         await import('./scripts/views/screeningsView.js')
         await import('./scripts/modules/starsHandler.js')
     }
