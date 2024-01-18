@@ -6,11 +6,14 @@ use App\Entity\Screening;
 use App\Repository\CinemaRepository;
 use App\Repository\MovieRepository;
 use App\Repository\ScreeningRepository;
+use App\Repository\UserRepository;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Validator\Constraints\Json;
 
 class ApiController extends AbstractController
@@ -90,5 +93,25 @@ class ApiController extends AbstractController
         }
 
         return new JsonResponse($data);
+    }
+
+
+    #[Route('/api/login', name: 'api_login', methods: ['POST'])]
+    public function login(Request $request, UserRepository $userRepository, JWTTokenManagerInterface $jwtManager): JsonResponse
+    {
+        $username = $request->request->get('username');
+        $password = $request->request->get('password');
+
+        $user = $userRepository->findOneBy(['username' => $username]);
+
+        if (!$user) {
+            throw new BadCredentialsException('Invalid credentials');
+        }
+
+        // Symfony automatycznie sprawdzi hasło w procesie uwierzytelniania.
+
+        $token = $jwtManager->create($user);
+
+        return new JsonResponse(['token' => $token]);
     }
 }

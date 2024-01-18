@@ -34,8 +34,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $role = null;
+    #[ORM\Column]
+    private array $roles = [];
 
     #[ORM\Column(length: 255)]
     private ?string $profile_picture = null;
@@ -116,14 +116,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRoles(): array
     {
-        return $this->role;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function setRole(string $role): static
+    public function setRoles(array $roles): static
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
@@ -187,10 +191,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->getName() . '' . $this->getLastname();
     }
 
-    public function getRoles(): array
-    {
-        return [$this->getRole()];
-    }
 
     public function eraseCredentials(): void
     {

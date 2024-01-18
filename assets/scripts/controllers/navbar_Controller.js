@@ -39,6 +39,9 @@ export default function() {
             case 'cinema':
                 geolocator.getLocation();
                 break;
+            case 'profile_settings':
+                window.location.href = '/user/profile-settings';
+                break;
         }
     })
 

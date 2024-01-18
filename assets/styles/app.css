@@ -177,7 +177,7 @@ a, a:hover, a:checked {
 .navbar-select {
     border: none;
     max-width: 6rem;
-    background-color: var(--container-primary);
+    background: none;
     cursor: pointer;
 }
 
@@ -569,6 +569,7 @@ a, a:hover, a:checked {
 
 /*
     dodac mobile view
+    i poprawic zeby to bylo na srodku
  */
 .alert-success {
     border: 1px solid #4CAF50;
@@ -579,4 +580,37 @@ a, a:hover, a:checked {
     border-radius: 4px;
     text-align: center;
 }
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.user-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+
+.user-card-header a:hover {
+    background: none;
+    text-shadow: 0 0 20px var(--glow);
+}
+.user-card-header h2 {
+    margin: 0;
+}
+
+.profile-picture {
+    max-width: 100px;
+    height: auto;
+    border-radius: 5%;
+    margin-bottom: 20px;
+}
+
+div.user-info {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
 

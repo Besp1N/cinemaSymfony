@@ -26,7 +26,10 @@ async function importModules() {
         await import('./scripts/modules/slider.js');
     }
     if (new RegExp('/\\d').test(path)) {
-            import('./scripts/views/screeningsView.js');
+        await import('./scripts/views/screeningsView.js');
+    }
+    if (path.startsWith('/user')) {
+        await import('./scripts/controllers/profile_Controller.js')
     }
 }
 

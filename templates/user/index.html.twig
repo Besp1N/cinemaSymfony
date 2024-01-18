@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.name}} profile{% endblock %}
+
+{% block body %}
+    <div class="profile-card">
+        <div class="user-card-header">
+        <h2>{{ user.name }}'s Profile</h2>
+            {% if app.user == user %}
+                <a href="{{ path('app_home') }}"><i class="fas fa-user-gear fa-xl"></i></a>
+            {% endif %}
+        </div>
+        <div class="profile-picture">
+            <img src="{{ asset(user.profilepicture) }}" alt="profile picture">
+        </div>
+        <div class="user-details">
+            <div class="user-info">Last name: {{ user.lastname }}</div>
+            <div class="user-info">Email: {{ user.email }}</div>
+            <div class="user-info">Created At: {{ user.createdat | date("M d, Y") }}</div>
+        </div>
+    </div>
+    <hr class="section-divider">
+    <div class="container">
+        <div class="profile-tabs" style="display: flex">
+            <div class="profile-tab">DUPA </div>
+            <div class="profile-tab">DUPA ></div>
+            <div class="profile-tab">DUPA</div>
+        </div>
+        <div class="tab-content">
+            DIASDSAD S
+        </div>
+    </div>
+{% endblock %}

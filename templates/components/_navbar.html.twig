@@ -19,8 +19,10 @@
             </div>
             <button class="navbar-toggle always-visible">☰</button>
         </div>
-        <a href="{{ path('app_admin') }}" class="hide">Panel admina</a>
-            <select class="navbar-select hide" id="navbar-genres" onfocus="this.selectedIndex = 0;">
+        {% if app.user is defined and app.user is not null and 'ROLE_ADMIN' in app.user.roles %}
+            <a href="{{ path('app_admin') }}" class="hide">Admin Panel</a>
+        {% endif %}
+        <select class="navbar-select hide" id="navbar-genres" onfocus="this.selectedIndex = 0;">
                 <option value="" disabled selected hidden>Genres</option>
                 {% for genre in genres %}
                     <option value="{{ genre }}">{{ genre }}</option>
@@ -28,6 +30,7 @@
             </select>
         {% if app.user %}
             <a href="{{ path('app_logout') }}" class="hide">Logout</a>
+            <a href="{{ path('app_user', {user: app.user.id}) }}" class="hide">Your Profile</a>
         {% else %}
             <a href="{{ path('app_login') }}" class="hide">Login</a>
             <a href="{{ path('app_register') }}" class="hide">Sign up</a>
@@ -35,6 +38,9 @@
         <select class="navbar-select hide" id="navbar-settings" onfocus="this.selectedIndex = 0;">
             <option value="" disabled selected hidden>Settings</option>
             <option value="cinema">Selected Cinema</option>
+            {% if app.user is defined and app.user is not null %}
+                <option value="profile_settings">Profile Settings</option>
+            {% endif %}
 
         </select>
         <a class="theme-toggle hide" ><i class="fas fa-moon"></i>  <i class="fas fa-sun"></i></a>
