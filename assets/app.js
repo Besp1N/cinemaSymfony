@@ -26,7 +26,8 @@ async function importModules() {
         await import('./scripts/modules/slider.js');
     }
     if (new RegExp('/\\d').test(path)) {
-        await import('./scripts/views/screeningsView.js');
+        await import('./scripts/views/screeningsView.js')
+        await import('./scripts/modules/starsHandler.js')
     }
     if (path.startsWith('/user')) {
         await import('./scripts/controllers/profile_Controller.js')
@@ -41,8 +42,8 @@ function app() {
     setInterval(() => window.localStorage.setItem('state', JSON.stringify(state)), 10000);
     navbarController();
     if (!state.cinema && !state.visited) {
-        geoLocator.getLocation();
         state.visited = true;
+        geoLocator.getLocation();
     }
     
     document.body.classList.add(state.theme)

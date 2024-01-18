@@ -45,7 +45,7 @@ class Geolocator {
  #renderCinemas() {
      const cinemasDropdown = new CinemasDropdown(this.#modal.getContent());
      cinemasDropdown.render(this.#cinemas);
-     document.getElementById('cinema-select-dropdown').value = state.cinema.id ?? '';
+     document.getElementById('cinema-select-dropdown').value = state.cinema ? state.cinema.id : '';
      this.#modal.appendContent(`<div class="container"><h2>We couldn't get your location! Please select your cinema for better experience.</h2></div>`)
 
      document.getElementById('selectCinemaModal').addEventListener('submit', this.#handleCinemaSelect.bind(this));

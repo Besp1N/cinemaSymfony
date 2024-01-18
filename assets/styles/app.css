@@ -391,6 +391,9 @@ a, a:hover, a:checked {
 
 
 .movie-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 95%;
     margin: 5%;
 }
@@ -692,6 +695,37 @@ a, a:hover, a:checked {
     .tab-item {
         width: 100%;
     }
+}
+
+/* STARS  */
+/* Hide radio buttons */
+.rating input {
+    display: none;
+}
+
+/* General style for stars */
+.rating label {
+    float: right; /* Arrange stars from right to left */
+    width: 1em; /* Size of stars */
+    cursor: pointer;
+    font-size: 3rem; /* Star size */
+}
+
+/* Half star styling using pseudo-elements */
+.rating label.half:before {
+    content: '☆'; /* Unicode for empty star */
+}
+
+.rating label.full:before {
+    content: '★'; /* Unicode for full star */
+}
+
+/* Style when hovered or checked */
+.rating label:hover:before,
+.rating label:hover ~ label:before,
+.rating input:checked ~ label:before {
+    content: '★'; /* Unicode for full star */
+    color: gold; /* Color of star */
 }
 
 

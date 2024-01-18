@@ -9,6 +9,7 @@
     <div class="movie-page">
         <div class="movie-image">
             <img src="{{ asset(movie.image) }}" alt="Poster">
+            {{ include('components/_stars.html.twig') }}
         </div>
         <div class="movie-details">
             <h2 class="movie-title">
