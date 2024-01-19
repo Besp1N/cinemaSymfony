@@ -7,6 +7,7 @@ use App\Repository\CinemaRepository;
 use App\Repository\MovieRepository;
 use App\Repository\ScreeningRepository;
 use App\Repository\UserRepository;
+use DateTime;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,9 +22,37 @@ class ApiController extends AbstractController
     #[Route('/api/screenings', name: 'app_api')]
     public function index(Request $request, ScreeningRepository $screeningRepository): JsonResponse
     {
-        // hardcore totalny
+        $dateString = $request->query->get('datetime');
         $cinemaId = $request->query->get('cinema');
         $movieId = $request->query->get('movie');
+
+        if ($dateString) {
+            $dateArray = explode('-', $dateString);
+
+            $year = $dateArray[0];
+            $month = $dateArray[1];
+            $day = $dateArray[2];
+
+            $datetime = new DateTime("$year-$month-$day");
+
+
+            $screenings = $screeningRepository->findScreeningsByMovieCinemaAndDate($movieId, $cinemaId, $datetime);
+
+            $data = [];
+            // jak juz mam screening po movie i po cinema to getuje co potrzeba i zwracam
+            // mysle nad dodaniem jakiego if ze jak dane sa puste to zwroc cos tam, ale moze lepiej to w js zrobic nwm
+
+            foreach ($screenings as $screening) {
+                $data[] = [
+                    'movieTitle' => $screening->getMovie()->getTitle(),
+                    'screeningStartTime' => $screening->getStartTime()->format('Y-m-d H:i:s'),
+                    'movieTheaterName' => $screening->getMovieTheater()->getName()
+                ];
+            }
+            return new JsonResponse($data);
+        }
+
+        // hardcore totalny
 
         $screenings = $screeningRepository->findScreeningsByMovieAndCinema($movieId, $cinemaId);
 
@@ -94,6 +123,9 @@ class ApiController extends AbstractController
 
         return new JsonResponse($data);
     }
+
+
+
 
 
     #[Route('/api/login', name: 'api_login', methods: ['POST'])]
