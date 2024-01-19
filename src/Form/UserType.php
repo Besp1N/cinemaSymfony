@@ -23,7 +23,8 @@ class UserType extends AbstractType
             ])
             ->add('bio', TextareaType::class, [
                 'label' => 'bio',
-                'required' => 'false'
+                'required' => 'false',
+                'attr' => ['class' => 'form-text-area', 'form-fields']
             ])
         ;
     }

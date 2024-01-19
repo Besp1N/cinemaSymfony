@@ -39,7 +39,8 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Your settings have been updated successfully.');
+            // narazie bez flash
+            // $this->addFlash('success', 'Your settings have been updated successfully.');
 
             return $this->redirectToRoute('app_user', [
                 'user' => $user->getId()

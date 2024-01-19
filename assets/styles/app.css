@@ -729,5 +729,9 @@ a, a:hover, a:checked {
     color: gold; /* Color of star */
 }
 
-
+.form-text-area {
+    resize: none;
+    height: 200px;
+    width: 700px;
+}
 

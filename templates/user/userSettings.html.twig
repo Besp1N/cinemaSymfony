@@ -7,15 +7,18 @@
     {{ form_errors(SettingsForm) }}
 
     {{ form_start(SettingsForm) }}
-
-    <div>
-        {{ form_row(SettingsForm.phone_number) }}
-    </div>
-    <div>
-        {{ form_row(SettingsForm.bio) }}
-    </div>
-    <div>
-        <button type="submit">Save changes</button>
+    <div class="flex-form">
+        <div class="form-row">
+            {{ form_label(SettingsForm.phone_number) }}
+            {{ form_widget(SettingsForm.phone_number) }}
+        </div>
+        <div class="form-row form-text-area">
+            {{ form_label(SettingsForm.bio) }}
+            {{ form_widget(SettingsForm.bio) }}
+        </div>
+        <div class="form-row">
+            <button type="submit">Save changes</button>
+        </div>
     </div>
 
     {{ form_end(SettingsForm) }}
