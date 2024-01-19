@@ -23,13 +23,13 @@
             <div class="movie-description glass">
                 <p>{{ movie.description }}</p>
             </div>
-            <div class="movie-goto-book"></div>
+            <a href="#section-advanced-screenings" class="movie-goto-book">Book a ticket right now!</a>
         </div>
     </div>
-    <div class="section-divider"></div>
-            <div class="select-cinema-container">
-            <h2 style="display: inline">Next screenings</h2>
-            <form id="selectCinema" style="display: inline">
+    <hr class="section-divider">
+        <div class="select-cinema-container">
+            <div style="font-size: 2rem; font-weight: bold">Next screenings</div>
+            <form id="selectCinema" >
                 <label for="cinema">Select your cinema:</label>
                 <select name="cinema" class="dropdown" id="cinema-select-dropdown">
                     {% for cinema in cinemas %}
@@ -38,10 +38,40 @@
                     {% endfor %}
                 </select>
             </form>
+        </div>
+        <hr style="margin-bottom: 2%">
+        <ul id="screenings">
+            <h2>Pick your location and book a ticket right now!</h2>
+        </ul>
+    <hr class="section-divider">
+    <div id="section-advanced-screenings">
+        <h1>Select your place and time</h1>
+
+        <form id='advanced-screenings' class="flex-form">
+            <div class="form-row">
+                <select name="cinema" class="dropdown" id="cinema-select-dropdown-advanced">
+                    {% for cinema in cinemas %}
+                        <option value="" selected>---</option>
+                        <option value="{{ cinema.id }}">{{ cinema.city }} - {{ cinema.name }} - {{ cinema.address }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            <hr style="margin-bottom: 2%">
-            <ul id="screenings">
-                <h2>Pick your location and book a ticket right now!</h2>
-            </ul>
+            <div class="form-row">
+                <input type="date" class="dropdown">
+            </div>
+
+            <button type="submit" class="form-row">Lol</button>
+        </form>
+        <hr style="margin-bottom: 2rem">
+        <div class="container" id="advanced-results">
+            <div class="container-simple-movie">DUPERSKO</div>
+            <div class="container-simple-movie">DUPERSKO</div>
+
+            <div class="container-simple-movie">DUPERSKO</div>
+
+            <div class="container-simple-movie">DUPERSKO</div>
+
+        </div>
+    </div>
 {% endblock %}
 

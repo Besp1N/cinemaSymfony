@@ -425,22 +425,65 @@ a, a:hover, a:checked {
     margin: 1rem auto;
 }
 .movie-goto-book {
-
-
+    border-radius: 2px;
+    box-shadow: 0 0 15px blueviolet;
+    text-align: center;
+    text-shadow: black ;
+    width: 90%;
+    margin: 0 auto;
+    color: white;
+    background: linear-gradient(-45deg, navy, rgb(167, 2, 167), navy);
+    background-size: 400% 400%; /* Enlarge background size to create the shimmer effect */
+    animation: shimmer 8s infinite linear; /* Adjust speed if needed */
+    transition: transform 0.5s ease, background-position 2s linear;
 }
+
+.movie-goto-book:hover {
+    transform: scale(1.05) rotate(-1deg); /* Scales up and rotates slightly on hover */
+    animation: shimmer 8s infinite linear, gentle-rock 0.5s ease-in-out infinite forwards;
+}
+@keyframes gentle-rock {
+    0%, 100% {
+        transform: scale(1.05) rotate(-1deg);
+    }
+    50% {
+        transform: scale(1.05) rotate(1deg);
+    }
+}
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
 
 .select-cinema-container {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    @media screen and (max-width: 700px){
+        flex-direction: column;
+    }
 }
 .dropdown {
     margin-right: 1%;
+    margin-bottom: 1rem;
     border: 1px solid var(--container-secondary);
     background-color: var(--container-secondary);
     color: var(--text-color)
 }
-
+#selectCinema {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .movie-card {
     display: flex;
     flex-direction: column;
@@ -514,7 +557,8 @@ a, a:hover, a:checked {
 }
 
 /* Select element styles */
-.flex-form select {
+.flex-form select,
+.flex-form input[type="date"]{
     padding: 0.5rem;
     border: 1px blueviolet solid;
     border-radius: 4px;
@@ -609,7 +653,7 @@ a, a:hover, a:checked {
 }
 
 .profile-picture {
-    width: clamp(150px, 30%, 500px);
+    width: clamp(150px, 30%, 300px);
     height: auto;
     object-fit: cover;
     margin-bottom: 2rem;

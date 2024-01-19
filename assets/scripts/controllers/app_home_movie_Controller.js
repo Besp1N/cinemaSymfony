@@ -5,9 +5,11 @@ import state  from '../state.js';
 
 const screeningView = new ScreeningsView(document.getElementById('screenings'));
 const dropdown = document.querySelector('#cinema-select-dropdown');
+const dropdownAdvanced = document.querySelector('#cinema-select-dropdown-advanced');
 const movieId = document.getElementById('movieId').innerText;
-dropdown.value = dropdown.firstElementChild.value;
-
+const btnGoTo = document.querySelector('.movie-goto-book');
+const sectionAS = document.getElementById('section-advanced-screenings');
+const advancedSearchForm = document.getElementById('advanced-screenings');
 const controlCinemaSelector = async function () {
     try {
         const cinemaId = dropdown.value;
@@ -24,9 +26,23 @@ const controlCinemaSelector = async function () {
         screeningView.renderError();
     }
 }
+const controlAdvancedSearch = async function (e) {
+    e.preventDefault();
+    console.log('dupa')
+}
+const init = function () {
+    dropdown.addEventListener('change', controlCinemaSelector);
+    dropdown.value = state.cinema?.id ?? dropdown.firstElementChild.value;
+    controlCinemaSelector();
 
-dropdown.addEventListener('change', controlCinemaSelector)
+    btnGoTo.addEventListener('click', e => {
+        e.preventDefault();
+        sectionAS.scrollIntoView({behavior: 'smooth'});
+    })
 
-dropdown.value = state.cinema?.id ?? '';
-controlCinemaSelector();
+    dropdownAdvanced.value = state.cinema?.id ?? dropdownAdvanced.firstElementChild.value;
+    advancedSearchForm.addEventListener('submit', controlAdvancedSearch);
+}
+
+init();
 

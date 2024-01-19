@@ -64,9 +64,14 @@ async #handleCinemaSelect(e) {
     const cinemaId = +document.getElementById('cinema-select-dropdown').value;
     if(!cinemaId) return;
     this.#modal.clearContent();
-    this.#modal.appendContent(`<div class="container"><h1>Preferences saved!</h1></div>`);
-    state.cinema = await getJSON(`${URL_CINEMAS}?id=${cinemaId}`);
-    window.localStorage.setItem('state', JSON.stringify(state));
+    try {
+        state.cinema = await getJSON(`${URL_CINEMAS}?id=${cinemaId}`);
+        this.#modal.appendContent(`<div><h1>Preferences saved!</h1><h2>Your cinema: </h2><h2>${state.cinema.name} - ${state.cinema.city} - ${state.cinema.address}</h2></div>`);
+        window.localStorage.setItem('state', JSON.stringify(state));
+    }
+    catch (err) {
+        this.#modal.appendContent(err.message)
+    }
 
 }
  #markup = `
