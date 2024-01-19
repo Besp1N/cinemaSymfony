@@ -39,7 +39,7 @@ async function importModules() {
  * Script used on all pages.
  */
 function app() {
-    setInterval(() => window.localStorage.setItem('state', JSON.stringify(state)), 10000);
+    // setInterval(() => window.localStorage.setItem('state', JSON.stringify(state)), 10000);
     navbarController();
     if (!state.cinema && !state.visited) {
         state.visited = true;

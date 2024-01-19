@@ -12,13 +12,15 @@ class UserController extends AbstractController
 {
     #[Route('/user/{user}', name: 'app_user', priority: 5)]
     public function index(User $user): Response {
-        $currentUser = $this->getUser();
-        if (!$currentUser) {
-            $this->addFlash('warning', "You must first log-in to see other's profiles!");
-            throw new AccessDeniedException('DUPA :)');
-        }
+
         return $this->render('user/index.html.twig', [
             'user' => $user
         ]);
+    }
+
+    #[Route('/user/settings', name: 'app_user_settings', priority: 6)]
+    public function userSettings(): Response {
+        $user = $this->getUser();
+        dd($user);
     }
 }

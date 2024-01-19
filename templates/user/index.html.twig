@@ -7,7 +7,7 @@
         <div class="user-card-header">
         <h2>{{ user.name }}'s Profile</h2>
             {% if app.user == user %}
-                <a href="{{ path('app_home') }}"><i class="fas fa-user-gear fa-xl"></i></a>
+                <a href="{{ path('app_user_settings') }}"><i class="fas fa-user-gear fa-xl"></i></a>
             {% endif %}
         </div>
 
