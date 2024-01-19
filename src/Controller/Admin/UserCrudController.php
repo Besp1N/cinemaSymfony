@@ -36,6 +36,7 @@ class UserCrudController extends AbstractCrudController
             ArrayField::new('roles'),
             TextField::new('profile_picture'),
             TextField::new('phone_number'),
+            TextField::new('bio')
         ];
     }
 

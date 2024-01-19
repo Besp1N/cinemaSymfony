@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit - {{ user.name}} profile{% endblock %}
+
+{% block body %}
+
+    {{ form_errors(SettingsForm) }}
+
+    {{ form_start(SettingsForm) }}
+
+    {{ form_end(SettingsForm) }}
+
+{% endblock %}
