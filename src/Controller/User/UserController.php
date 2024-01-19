@@ -30,7 +30,20 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() and $form->isValid()) {
-            dd('chuj');
+            $phoneNumber = $form->get('phone_number')->getData();
+            $bio = $form->get('bio')->getData();
+
+            $user->setPhoneNumber($phoneNumber);
+            $user->setBio($bio);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Your settings have been updated successfully.');
+
+            return $this->redirectToRoute('app_user', [
+                'user' => $user->getId()
+            ]);
         }
 
 

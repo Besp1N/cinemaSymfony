@@ -8,6 +8,16 @@
 
     {{ form_start(SettingsForm) }}
 
+    <div>
+        {{ form_row(SettingsForm.phone_number) }}
+    </div>
+    <div>
+        {{ form_row(SettingsForm.bio) }}
+    </div>
+    <div>
+        <button type="submit">Save changes</button>
+    </div>
+
     {{ form_end(SettingsForm) }}
 
 {% endblock %}
