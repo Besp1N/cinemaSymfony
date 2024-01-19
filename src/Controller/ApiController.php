@@ -8,6 +8,7 @@ use App\Repository\MovieRepository;
 use App\Repository\ScreeningRepository;
 use App\Repository\UserRepository;
 use DateTime;
+use DateTimeImmutable;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,12 +29,11 @@ class ApiController extends AbstractController
 
         if ($dateString) {
             $dateArray = explode('-', $dateString);
-
             $year = $dateArray[0];
             $month = $dateArray[1];
             $day = $dateArray[2];
+            $datetime =  new DateTime("$year-$month-$day");
 
-            $datetime = new DateTime("$year-$month-$day");
 
 
             $screenings = $screeningRepository->findScreeningsByMovieCinemaAndDate($movieId, $cinemaId, $datetime);

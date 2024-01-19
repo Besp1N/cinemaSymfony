@@ -37,7 +37,7 @@ const controlAdvancedSearch = async function (e) {
             throw new Error('Something went wrong! Try again in a while.')
         advancedScreeningView.renderSpinner();
         const json = await Promise.race([
-            getJSON(`${URL_SCREENINGS}?cinema=${cinemaId}&movie=${movieId}&datetime=${data.date}`),
+            getJSON(`${URL_SCREENINGS}?cinema=${data.cinema}&movie=${data.movie}&datetime=${data.date}`),
             timeout(TIMEOUT_SEC)]);
         advancedScreeningView.render(json)
     }
