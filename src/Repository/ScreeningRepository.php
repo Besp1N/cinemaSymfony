@@ -35,6 +35,26 @@ class ScreeningRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findScreeningsByMovieCinemaAndDate($movieId, $cinemaId, $date)
+    {
+        $endDate = clone $date;
+        $endDate->setTime(23, 59, 59);
+        return $this->createQueryBuilder('s')
+            ->join('s.movie_theater', 'mt')
+            ->join('mt.cinema', 'c')
+            ->join('s.movie', 'm')
+            ->where('c.id = :cinemaId')
+            ->andWhere('m.id = :movieId')
+            ->andWhere('s.start_time >= :date')
+            ->andWhere('s.start_time <= :endDate')
+            ->setParameter('cinemaId', $cinemaId)
+            ->setParameter('movieId', $movieId)
+            ->setParameter('date', $date)
+            ->setParameter('endDate', $endDate)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Screening[] Returns an array of Screening objects
 //     */
