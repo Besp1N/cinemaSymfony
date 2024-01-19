@@ -7,6 +7,7 @@ export default class Slider {
     #current = 0;
     #interval;
     #lastSlide;
+    #initialHeight
 
     /**
      * Creates a simple slider given a parent container.
@@ -19,10 +20,10 @@ export default class Slider {
         if (!this.#parent) throw new Error (`Couldn't construct a slider.`)
         this.#slides = Array.from(parent.children);
         this.#offset = offset;
+        this.#initialHeight = window.innerHeight * 0.5;
         this.#initializeSlider();
         this.moveSlides(0);
-
-        window.addEventListener('resize', this.#resizeParent.bind(this))
+        // window.addEventListener('resize', this.#resizeParent.bind(this))
     }
 
     /**
@@ -62,6 +63,9 @@ export default class Slider {
      * Adjusts the parent container's height to fit the tallest slide.
      */
     #resizeParent() {
+        document.querySelectorAll('.slide-poster-image').forEach(slide => {
+            slide.style.maxHeight = `${this.#initialHeight}px`;
+        });
         let maxHeight = 0;
         this.#slides.forEach(slide => {
             const img = slide.querySelector('img'); // Assuming each slide contains an <img>

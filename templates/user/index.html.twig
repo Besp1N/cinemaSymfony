@@ -34,6 +34,7 @@
                 <li class="tab-item" data-target="#favorites">Favorites</li>
                 {% if app.user == user %}
                 <li class="tab-item" data-target="#bookings">Bookings</li>
+                <li class="tab-item" data-target="#rated">Rated</li>
                 {% endif %}
             </ul>
         </nav>
@@ -53,6 +54,9 @@
                 <div class="container-simple-movie">
                     Dla bezpieczenstwa twig wyrenderuje po stronie serwera jezeli user == user
                 </div>
+            </div>
+            <div class="tab-content" id="rated">
+
             </div>
         </div>
         <hr class="section-divider">

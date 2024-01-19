@@ -255,7 +255,6 @@ a, a:hover, a:checked {
 /* POSTERS */
 .slide-poster-image {
     height: 40rem;
-    max-height: 50vh;
     width: auto;
     object-fit: cover; /* This will ensure the aspect ratio is maintained */
     cursor: pointer;
@@ -279,6 +278,8 @@ a, a:hover, a:checked {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    box-shadow: none;
+
 }
 @media screen and (max-width: 700px) {
     .container-posters {
