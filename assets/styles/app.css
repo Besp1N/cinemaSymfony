@@ -332,6 +332,9 @@ a, a:hover, a:checked {
     overflow: visible;
     transition: all 0.5s ease;
     justify-content: left;
+    @media screen and (min-width: 700px) {
+        font-size: 1.5rem;
+    }
 
 }
 .container-simple-movie:hover {
@@ -426,13 +429,13 @@ a, a:hover, a:checked {
 }
 .movie-goto-book {
     border-radius: 2px;
-    box-shadow: 0 0 15px blueviolet;
+    box-shadow: 0 0 15px gold;
     text-align: center;
-    text-shadow: black ;
+    text-shadow: 1px 1px gray ;
     width: 90%;
-    margin: 0 auto;
+    margin: auto auto;
     color: white;
-    background: linear-gradient(-45deg, navy, rgb(167, 2, 167), navy);
+    background: linear-gradient(-45deg, gold, darkorange, gold);
     background-size: 400% 400%; /* Enlarge background size to create the shimmer effect */
     animation: shimmer 8s infinite linear; /* Adjust speed if needed */
     transition: transform 0.5s ease, background-position 2s linear;

@@ -44,7 +44,7 @@
             <h2>Pick your location and book a ticket right now!</h2>
         </ul>
     <hr class="section-divider">
-    <div id="section-advanced-screenings">
+    <div id="section-advanced-screenings" style="margin-bottom: 10rem;">
         <h1>Select your place and time</h1>
 
         <form id='advanced-screenings' class="flex-form">
@@ -57,21 +57,17 @@
                 </select>
             </div>
             <div class="form-row">
-                <input type="date" class="dropdown">
+                <input type="date" class="dropdown" name="date" id="date-input">
             </div>
-
             <button type="submit" class="form-row">Lol</button>
+            <input type="hidden" name="movie" value="{{ movie.id }}">
+
         </form>
         <hr style="margin-bottom: 2rem">
-        <div class="container" id="advanced-results">
-            <div class="container-simple-movie">DUPERSKO</div>
-            <div class="container-simple-movie">DUPERSKO</div>
+        <ul id="advanced-results">
 
-            <div class="container-simple-movie">DUPERSKO</div>
+        </ul>
 
-            <div class="container-simple-movie">DUPERSKO</div>
-
-        </div>
     </div>
 {% endblock %}
 

@@ -10,7 +10,8 @@ const movieId = document.getElementById('movieId').innerText;
 const btnGoTo = document.querySelector('.movie-goto-book');
 const sectionAS = document.getElementById('section-advanced-screenings');
 const advancedSearchForm = document.getElementById('advanced-screenings');
-const controlCinemaSelector = async function () {
+const advancedScreeningView = new ScreeningsView(document.getElementById('advanced-results'))
+const controlCinemaSelector = async function (view) {
     try {
         const cinemaId = dropdown.value;
         if (!cinemaId) return;
@@ -20,7 +21,8 @@ const controlCinemaSelector = async function () {
         const json = await Promise.race([
             getJSON(`${URL_SCREENINGS}?cinema=${cinemaId}&movie=${movieId}`),
             timeout(TIMEOUT_SEC)]);
-        screeningView.render(json)
+        screeningView.render(json);
+
     }
     catch (err) {
         screeningView.renderError();
@@ -28,7 +30,20 @@ const controlCinemaSelector = async function () {
 }
 const controlAdvancedSearch = async function (e) {
     e.preventDefault();
-    console.log('dupa')
+    const data = Object.fromEntries(new FormData(advancedSearchForm).entries());
+    if (!data.date || !data.cinema) return;
+    try {
+        if (!isFinite(+data.cinema) || !isFinite(+data.movie))
+            throw new Error('Something went wrong! Try again in a while.')
+        advancedScreeningView.renderSpinner();
+        const json = await Promise.race([
+            getJSON(`${URL_SCREENINGS}?cinema=${cinemaId}&movie=${movieId}&datetime=${data.date}`),
+            timeout(TIMEOUT_SEC)]);
+        advancedScreeningView.render(json)
+    }
+    catch (err) {
+        advancedScreeningView.renderError();
+    }
 }
 const init = function () {
     dropdown.addEventListener('change', controlCinemaSelector);
@@ -41,6 +56,7 @@ const init = function () {
     })
 
     dropdownAdvanced.value = state.cinema?.id ?? dropdownAdvanced.firstElementChild.value;
+    document.getElementById('date-input').value = new Date().toISOString().split('T')[0]
     advancedSearchForm.addEventListener('submit', controlAdvancedSearch);
 }
 

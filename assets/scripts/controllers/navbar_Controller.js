@@ -40,7 +40,7 @@ export default function() {
                 geolocator.getLocation();
                 break;
             case 'profile_settings':
-                window.location.href = '/user/profile-settings';
+                window.location.href = '/user/settings';
                 break;
         }
     })
