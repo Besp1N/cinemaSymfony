@@ -43,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $phone_number = null;
 
+    #[ORM\Column(length: 600)]
+    private ?string $bio = null;
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservation::class, cascade: ["persist"])]
     private Collection $reservations;
 
@@ -66,6 +69,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->name = $name;
 
         return $this;
+    }
+
+    public function setBio(string $bio): static
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
     }
 
     public function getLastname(): ?string
