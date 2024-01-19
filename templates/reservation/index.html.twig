@@ -3,12 +3,13 @@
 {% block title %}Hello ReservationController!{% endblock %}
 
 {% block body %}
-    <div>{{  }}</div>
+    <div>Reservation for: {{ screening.getMovie().getTitle() }} </div>
+    <div>Movie theater: {{ screening.getMovieTheater().getName() }}</div>
     <form method="post" action="">
         <label for="selectedSeat">Choose a Seat:</label>
         <select id="selectedSeat" name="selectedSeat">
             {% for seat in seats %}
-                <option value="{{ seat.id }}">{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }}</option>
+                <option value="{{ seat.id }}">{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }} - {{ seat.getSeatType() }}</option>
             {% endfor %}
         </select>
         <div>
