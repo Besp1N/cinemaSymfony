@@ -44,13 +44,11 @@ input, button, textarea, select {
 }
 
 h1 {
-    font-size: clamp(1.5rem, 5vw, 3rem);
     display: grid;
     place-content: center;
     margin: 0.3em auto;
 }
 h2 {
-    font-size: clamp(1rem, 5vw, 2rem);
     text-align: left;
     margin: 1em;
 }
@@ -130,6 +128,12 @@ a, a:hover, a:checked {
 .hidden {
     display:none;
 }
+.hidden-mobile {
+    @media screen and (max-width: 700px) {
+        display: none;
+
+    }
+}
 
 .container {
     background: var(--container-primary);
@@ -137,8 +141,9 @@ a, a:hover, a:checked {
     border-radius: 3px;
     margin: 0 auto;
     overflow: auto;
-    box-shadow: 0.5rem 0.5rem rgba(0, 0, 0, 0.3);
+    /*box-shadow: 0.5rem 0.5rem rgba(0, 0, 0, 0.3);*/
 }
+
 @media screen and (max-width: 700px) {
     .container {
         width: 100%;
@@ -262,40 +267,61 @@ a, a:hover, a:checked {
 
 }
 .slide-poster-image:hover {
-    transform: scale(110%);
+    transform: scale(105%);
 }
+
+
 .slide-poster {
-    margin-left: 25%;
+    left: 10%;
+    @media screen and (max-width: 700px) {
+        left: 12.5%;
+    }
 }
 
 .slides-poster {
     width: 100%;
-    height: 100%;
+    @media screen and (max-width: 700px) {
+        width: 90%;
+    }
+
+    margin: auto;
+    background: none;
     overflow: hidden;
     position: relative;
 }
-.container-posters {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    box-shadow: none;
+.slides-poster:before {
+    content: '';
+    position: absolute;
+    top: -1rem; /* Extend out of the container */
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    box-shadow: 0 0 10px gold;
+    background: linear-gradient(-45deg, gold, darkorange, gold);
+    background-size: 400% 400%;
+    animation: shimmer 8s infinite linear;
+    transition: background-position 2s linear;
 
 }
+.slides-poster:after {
+    content: '';
+    position: absolute;
+    top: -0.5rem; /* Extend out of the container */
+    right: -0.5rem;
+    bottom: -0.5rem;
+    left: -0.5rem;
+    background: var(--container-primary);
+
+}
+
+
 @media screen and (max-width: 700px) {
     .container-posters {
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
     }
-    .slide-poster {
-        left: 25%;
-        margin-left: 0;
-        margin-right: 10%;
-    }
 
-    .slider-header h2 {
-        font-size: 2em;
-    }
     .slider-button-right, .slider-button-left {
         display: none;
     }
@@ -444,7 +470,16 @@ a, a:hover, a:checked {
 .movie-goto-book:hover {
     transform: scale(1.05) rotate(-1deg); /* Scales up and rotates slightly on hover */
     animation: shimmer 8s infinite linear, gentle-rock 0.5s ease-in-out infinite forwards;
+    transition: transform 0.5s ease, background-position 2s linear; /* Ensure consistent transition */
 }
+.shimmer {
+    box-shadow: 0 0 10px gold;
+    background: linear-gradient(-45deg, gold, darkorange, gold);
+    background-size: 400% 400%;
+    animation: shimmer 8s infinite linear;
+    transition: background-position 2s linear;
+}
+
 @keyframes gentle-rock {
     0%, 100% {
         transform: scale(1.05) rotate(-1deg);
@@ -777,8 +812,10 @@ a, a:hover, a:checked {
 }
 
 .form-text-area {
+    padding: 1rem;
+    margin-bottom: 1rem;
     resize: none;
-    height: 200px;
-    width: 700px;
+    height: 30vh;
+    width: max(300px, 60%);
 }
 

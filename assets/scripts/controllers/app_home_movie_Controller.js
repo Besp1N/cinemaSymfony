@@ -11,6 +11,7 @@ const btnGoTo = document.querySelector('.movie-goto-book');
 const sectionAS = document.getElementById('section-advanced-screenings');
 const advancedSearchForm = document.getElementById('advanced-screenings');
 const advancedScreeningView = new ScreeningsView(document.getElementById('advanced-results'))
+
 const controlCinemaSelector = async function (view) {
     try {
         const cinemaId = dropdown.value;

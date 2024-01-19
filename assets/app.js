@@ -32,7 +32,7 @@ async function importModules() {
         ]);
 
     }
-    if (path.startsWith('/user')) {
+    if (new RegExp('^/user/\\d').test(path)) {
         await import('./scripts/controllers/profile_Controller.js')
     }
 }

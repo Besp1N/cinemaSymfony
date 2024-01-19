@@ -13,7 +13,7 @@ export default class ScreeningsView extends View {
     }
     #generateLi(screening) {
         return `<li class="container-simple-movie container">
-               <p>${screening.movieTitle} - ${screening.screeningStartTime} - ${screening.movieTheaterName}</p>
+               <a href="#">${screening.movieTitle} - ${screening.screeningStartTime} - ${screening.movieTheaterName}</a>
             </li>`;
     }
 

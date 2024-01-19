@@ -46,14 +46,24 @@ export default class Slider {
     #setSlidesPosition() {
         this.#slides.forEach(slide => {
             slide.style.position = 'absolute';
-            slide.style.transition = 'all 1s ease';
+            slide.style.transition = 'all 0.6s ease';
         });
     }
     #createLastSlide() {
         const lastSlide = document.createElement('div');
         lastSlide.style.position = 'absolute';
         lastSlide.style.right = 0;
-        // lastSlide.innerHTML = '<h2 style="@media screen and (max-width: 1000px) {display: none;}">Thats not all</h2>'
+
+        lastSlide.innerHTML = `<a href="#tosomesection">
+                <div class="container hidden-mobile" style="max-width: 400px; background: none;">
+                <h2 >That's not all</h2>
+                <h2>We are sure your movie is somewhere nearby. Feel free to search!</h2>
+                <div style="display: flex; justify-content: center">
+                <i class="fa-solid fa-circle-chevron-down fa-xl" style="margin-bottom: 2rem"></i>
+                </div>
+
+                </div>
+                                </a>`
         this.#parent.appendChild(lastSlide);
         this.#slides.push(lastSlide)
         this.#lastSlide = lastSlide;
@@ -82,12 +92,12 @@ export default class Slider {
     #offsetSlides() {
         this.#slides.forEach((slide, i) => {
             slide.dataset.slide = i;
-            if (+slide.dataset.slide === this.#slides.length - 1) {
+            if (+slide.dataset.slide === this.#slides.length - 1 ) {
                 slide.style.zIndex =  100 + this.#slides.length
                 return
             }
 
-            slide.style.transform = `translateX(${(i - this.#current) * this.#offset}%)`;
+            slide.style.transform = `translateX(${(i - this.#current) * this.#offset - slide.dataset.slide * 10}%)`;
         });
     }
 
@@ -117,18 +127,18 @@ export default class Slider {
      */
     moveSlides(position) {
         this.#current = position;
-        this.#lastSlide.style.opacity = this.#current === this.#slides.length - 2 ? 1 : 0
+        this.#lastSlide.style.visibility = this.#current >= this.#slides.length - 2 ? 'visible' : 'hidden';
+        this.#lastSlide.style.opacity = this.#current >= this.#slides.length - 2 ?  1 : 0;
 
         this.#slides.forEach((slide, i) => {
-            if(+slide.dataset.slide === this.#slides.length - 1 ) {
-                return
+            if (+slide.dataset.slide === this.#slides.length - 1 ) {
+                return;
             }
             slide.style.transform = `translateX(${(i - this.#current) * this.#offset}%)`;
             if (+slide.dataset.slide === position) {
                 slide.style.zIndex = 100;
                 slide.style.opacity = 1;
             } else {
-                // Calculate zIndex based on distance from the active slide
                 let zIndex = 100 - Math.abs(i - position);
                 slide.style.zIndex = zIndex;
                 slide.style.opacity = 0.5;

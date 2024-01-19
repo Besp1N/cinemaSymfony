@@ -7,18 +7,25 @@
     {{ form_errors(SettingsForm) }}
 
     {{ form_start(SettingsForm) }}
-    <div class="flex-form">
-        <div class="form-row">
-            {{ form_label(SettingsForm.phone_number) }}
+    <div class="flex-form" style="padding: 3rem">
+
+        <div class="form-row" style="flex-direction: column; margin-bottom: 1rem; text-align: center">
+            <div style="font-size: 2rem">Phone Number</div>
             {{ form_widget(SettingsForm.phone_number) }}
         </div>
-        <div class="form-row form-text-area">
-            {{ form_label(SettingsForm.bio) }}
-            {{ form_widget(SettingsForm.bio) }}
+
+        <hr style="margin-bottom: 1rem">
+
+        <div class="form-row" style="flex-direction: column">
+            <div style="font-size: 2rem">Bio</div>
+            {{ form_widget(SettingsForm.bio, {'attr': {'class': 'form-text-area'}}) }}
         </div>
-        <div class="form-row">
+
+        <hr>
+
+
             <button type="submit">Save changes</button>
-        </div>
+
     </div>
 
     {{ form_end(SettingsForm) }}
