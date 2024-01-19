@@ -24,21 +24,6 @@
                 <div class="user-info">Last name: {{ user.lastname }}</div>
                 <div class="user-info">Email: {{ user.email }}</div>
                 <div class="user-info">Created At: {{ user.createdat | date("M d, Y") }}</div>
-                <div class="user-info">Reservations: </div>
-                {% for reservation in reservations %}
-
-                    {# najwieksze jajca tego widoku #}
-                    <div>
-                        {{ reservation.getScreening().getMovie().getTitle() }} -
-                        {{ reservation.getScreening().getMovieTheater().getCinema().getName() }} -
-                        {{ reservation.getScreening().getMovieTheater().getCinema().getCity() }} -
-                        {{ reservation.getScreening().getMovieTheater().getCinema().getAddress() }} -
-                        {{ reservation.getScreening().getMovieTheater().getName() }} -
-                        {{ reservation.getScreening().getStartTime()|date('Y-m-d H:i:s') }}
-                       seat: {{ reservation.getSeat().getSeatRow() }} - {{ reservation.getSeat().getSeatNumber() }}
-                    </div>
-
-                {% endfor %}
             </div>
         </div>
     </div>
@@ -63,13 +48,19 @@
                 </div>
             </div>
             <div class="tab-content" id="bookings">
-                <div class="container-simple-movie">
-                    12 czerwca 1999 Shrek Multikino Zielona
-                </div>
-                <div class="container-simple-movie">
-                    Dla bezpieczenstwa twig wyrenderuje po stronie serwera jezeli user == user
-                </div>
-            </div>
+                {# najwieksze jajca tego widoku #}
+                {% for reservation in reservations %}
+                    <div class="container-simple-movie">
+                        {{ reservation.getScreening().getMovie().getTitle() }} -
+                        {{ reservation.getScreening().getMovieTheater().getCinema().getName() }} -
+                        {{ reservation.getScreening().getMovieTheater().getCinema().getCity() }} -
+                        {{ reservation.getScreening().getMovieTheater().getCinema().getAddress() }} -
+                        {{ reservation.getScreening().getMovieTheater().getName() }} -
+                        {{ reservation.getScreening().getStartTime()|date('Y-m-d H:i:s') }}
+                        seat: {{ reservation.getSeat().getSeatRow() }} - {{ reservation.getSeat().getSeatNumber() }}
+                    </div>
+                {% endfor %}
+
             <div class="tab-content" id="rated">
 
             </div>
