@@ -32,7 +32,6 @@ class HomeController extends AbstractController
     {
         return $this->render('home/movie.html.twig', [
             "movie" => $movie,
-
             "cinemas" => $cinemaRepository->findAll(),
         ]);
     }
