@@ -22,6 +22,7 @@ class ReservationController extends AbstractController
 
         // bardzo dobra radziecka metoda, a co lepsze to nawet dziala
         // a bez jaj to musze zrobic ReservationType form i z niej to brac ale juz na dzisiaj tak bedzie
+
         if ($request->isMethod('POST')) {
             $selectedSeatId = $request->request->get('selectedSeat');
             $selectedSeat = $seatRepository->find($selectedSeatId);
@@ -39,10 +40,6 @@ class ReservationController extends AbstractController
             ]);
 
         }
-
-
-
-
 
         return $this->render('reservation/index.html.twig', [
             'seats' => $seats,

@@ -27,6 +27,7 @@
                 <div class="user-info">Reservations: </div>
                 {% for reservation in reservations %}
 
+                    {# najwieksze jajca tego widoku #}
                     <div>
                         {{ reservation.getScreening().getMovie().getTitle() }} -
                         {{ reservation.getScreening().getMovieTheater().getCinema().getName() }} -
