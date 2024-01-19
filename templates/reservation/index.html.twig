@@ -3,5 +3,17 @@
 {% block title %}Hello ReservationController!{% endblock %}
 
 {% block body %}
-    <div>chuj</div>
+    <div>{{  }}</div>
+    <form method="post" action="">
+        <label for="selectedSeat">Choose a Seat:</label>
+        <select id="selectedSeat" name="selectedSeat">
+            {% for seat in seats %}
+                <option value="{{ seat.id }}">{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }}</option>
+            {% endfor %}
+        </select>
+        <div>
+            <button type="submit">Confirm Reservation</button>
+        </div>
+
+    </form>
 {% endblock %}

@@ -21,6 +21,17 @@ class SeatRepository extends ServiceEntityRepository
         parent::__construct($registry, Seat::class);
     }
 
+
+    public function findByMovieTheater($movieTheaterId)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.movie_theater', 'mt')
+            ->where('mt.id = :movieTheaterId')
+            ->setParameter('movieTheaterId', $movieTheaterId)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Seat[] Returns an array of Seat objects
 //     */
