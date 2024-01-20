@@ -840,6 +840,7 @@ a, a:hover, a:checked {
 }
 .seat-occupied {
     color: red;
+    pointer-events: none;
 }
 .seat-empty {
     color: lightgreen;
