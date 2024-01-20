@@ -10,7 +10,7 @@ const controller = function () {
     const selectSeat = function (e) {
         const seat = e.target.closest('.seat');
         if (!seat) return;
-        seatsInput.value = [...seatsInput.children]
+        seatsInput.value = options
             .find(opt => opt.value === seat.dataset.id)
             .value;
         [...seatsContainer.children]
@@ -32,13 +32,14 @@ const controller = function () {
     const seatsInput = document.getElementById('selectedSeat');
     const seatsContainer = document.querySelector('.container-seats');
     const options = [...seatsInput.children].filter(opt => opt.dataset.info);
+
     // MAKE SURE TO GET AROUND REFRESH FUCKERY AND RESET THE CHOICE
     seatsInput.value = seatsInput.firstElementChild.value;
-    console.log(options)
     const seats = options.map(opt => {
-        return {id: opt.value, row: opt.dataset.info[0], col: opt.dataset.info.slice(1)};
+        return {id: opt.value, row: opt.dataset.info[0], col: opt.dataset.info.slice(1), type: opt.dataset.type};
     });
     const seatsSorted = group(seats);
+
     const seatsView = new SeatsView(seatsContainer);
     seatsView.render(seatsSorted);
     seatsContainer.addEventListener('click', selectSeat);

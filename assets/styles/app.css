@@ -4,6 +4,7 @@
     /*--background-color-opaque: linear-gradient(-45deg, rgba(255,165,0,0.5),rgba(255,215,0,0.5),rgba(255,165,0,0.5));*/
     --background-color: linear-gradient(-45deg, navy, rgb(167, 2, 167), navy);
     --background-color-opaque: linear-gradient(-45deg,rgba(0,0,128,0.5), rgba(167,2,167,0.5),rgba(0,0,128,0.5));
+    --gold-gradient: linear-gradient(-45deg, gold, darkorange, gold);
     --text-color: #000;
     --container-primary: #eeeeee;
     --container-secondary: #dedede;
@@ -302,7 +303,7 @@ a, a:hover, a:checked {
     bottom: -1rem;
     left: -1rem;
     box-shadow: 0 0 10px gold;
-    background: linear-gradient(-45deg, gold, darkorange, gold);
+    background: var(--gold-gradient);
     background-size: 400% 400%;
     animation: shimmer 8s infinite linear;
     transition: background-position 2s linear;
@@ -467,7 +468,7 @@ a, a:hover, a:checked {
     width: 90%;
     margin: auto auto;
     color: white;
-    background: linear-gradient(-45deg, gold, darkorange, gold);
+    background: var(--gold-gradient);
     background-size: 400% 400%; /* Enlarge background size to create the shimmer effect */
     animation: shimmer 8s infinite linear; /* Adjust speed if needed */
     transition: transform 0.5s ease, background-position 2s linear;
@@ -480,7 +481,7 @@ a, a:hover, a:checked {
 }
 .shimmer {
     box-shadow: 0 0 10px gold;
-    background: linear-gradient(-45deg, gold, darkorange, gold);
+    background: var(--gold-gradient);
     background-size: 400% 400%;
     animation: shimmer 8s infinite linear;
     transition: background-position 2s linear;
@@ -825,9 +826,37 @@ a, a:hover, a:checked {
     width: 100%
 }
 
+.container-seats {
+    margin: auto;
+    text-align: center;
+    width: 30vw;
+    display: grid;
+    gap: 10px;
+}
 .seat {
-    display: inline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.seat-occupied {
+    color: red;
+}
+.seat-empty {
+    color: lightgreen;
 }
 .seat-selected {
-    color:red;
+    color: blueviolet;
+}
+
+.seat-handicapped {
+
+}
+.screen {
+    height: 3px;
+    display: grid;
+    background: var(--background-color);
+    background-size: 400% 400%;
+    animation: shimmer 3s infinite;
+    box-shadow: 0 0 10px var(--glow);
+    grid-column: 2 / -1;
 }

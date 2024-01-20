@@ -10,7 +10,7 @@
         <select id="selectedSeat" class="hidden" name="selectedSeat">
             <option selected value="">DYPA</option>
             {% for seat in seats %}
-                <option value="{{ seat.id }}" data-info="{{ seat.seatrow }}{{ seat.seatnumber }}">{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }} - {{ seat.getSeatType() }}</option>
+                <option value="{{ seat.id }}" data-info="{{ seat.seatrow }}{{ seat.seatnumber }}" data-type="{{ seat.seattype }}">{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }} - {{ seat.getSeatType() }}</option>
             {% endfor %}
         </select>
         <div class="container-seats">
