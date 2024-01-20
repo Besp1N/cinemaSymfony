@@ -26,7 +26,6 @@ class SeatCrudController extends AbstractCrudController
             AssociationField::new('movie_theater')
                 ->setCustomOption('multiple', false)
                 ->setFormTypeOptions([
-                    'by_reference' => false,
                     'required' => true,
                     'class' => MovieTheater::class,
                     'choice_label' => function (MovieTheater $movieTheater) {

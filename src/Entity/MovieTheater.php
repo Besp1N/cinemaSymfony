@@ -15,13 +15,13 @@ class MovieTheater
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'movieTheaters')]
+    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'movieTheaters')]
     private ?Cinema $cinema = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'movie_theater', targetEntity: Seat::class)]
+    #[ORM\OneToMany(mappedBy: 'movie_theater', targetEntity: Seat::class, cascade: ['persist'])]
     private Collection $seats;
 
     #[ORM\OneToMany(mappedBy: 'movie_theater', targetEntity: Screening::class)]
