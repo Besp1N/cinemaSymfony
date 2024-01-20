@@ -1,17 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}Reservation - {{screening.movie.title  }}{% endblock %}
 
 {% block body %}
     <div>Reservation for: {{ screening.getMovie().getTitle() }} </div>
     <div>Movie theater: {{ screening.getMovieTheater().getName() }}</div>
-    <form method="post" action="">
+    <form method="POST" action="" class="flex-form" id="reservation-form">
         <label for="selectedSeat">Choose a Seat:</label>
-        <select id="selectedSeat" name="selectedSeat">
+        <select id="selectedSeat" class="hidden" name="selectedSeat">
+            <option selected value="">DYPA</option>
             {% for seat in seats %}
-                <option value="{{ seat.id }}">{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }} - {{ seat.getSeatType() }}</option>
+                <option value="{{ seat.id }}" data-info="{{ seat.seatrow }}{{ seat.seatnumber }}">{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }} - {{ seat.getSeatType() }}</option>
             {% endfor %}
         </select>
+        <div class="container-seats">
+
+        </div>
         <div>
             <button type="submit">Confirm Reservation</button>
         </div>

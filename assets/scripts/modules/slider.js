@@ -53,9 +53,10 @@ export default class Slider {
         const lastSlide = document.createElement('div');
         lastSlide.style.position = 'absolute';
         lastSlide.style.right = 0;
+        lastSlide.style.top = '20%';
 
         lastSlide.innerHTML = `<a href="#tosomesection">
-                <div class="container hidden-mobile" style="max-width: 400px; background: none;">
+                <div class="container hidden-mobile" style="max-width: 400px; background: none">
                 <h2 >That's not all</h2>
                 <h2>We are sure your movie is somewhere nearby. Feel free to search!</h2>
                 <div style="display: flex; justify-content: center">

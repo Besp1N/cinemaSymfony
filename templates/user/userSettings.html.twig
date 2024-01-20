@@ -9,15 +9,15 @@
     {{ form_start(SettingsForm) }}
     <div class="flex-form" style="padding: 3rem">
 
-        <div class="form-row" style="flex-direction: column; margin-bottom: 1rem; text-align: center">
-            <div style="font-size: 2rem">Phone Number</div>
+        <div class="form-row col-on-mobile">
+            <label style="font-size: 2rem">Phone Number</label>
             {{ form_widget(SettingsForm.phone_number) }}
         </div>
 
         <hr style="margin-bottom: 1rem">
 
-        <div class="form-row" style="flex-direction: column">
-            <div style="font-size: 2rem">Bio</div>
+        <div class="form-row col-on-mobile">
+            <label style="font-size: 2rem">Bio</label>
             {{ form_widget(SettingsForm.bio, {'attr': {'class': 'form-text-area'}}) }}
         </div>
 

@@ -33,8 +33,11 @@ async function importModules() {
 
     }
     if (new RegExp('^/user/\\d').test(path)) {
-        await import('./scripts/controllers/profile_Controller.js')
+        await import('./scripts/controllers/profile_Controller.js');
     }
+    if (new RegExp('^/reservation/\\d').test(path)) {
+         await import('./scripts/controllers/reservation_Controller.js');
+     }
 }
 
 

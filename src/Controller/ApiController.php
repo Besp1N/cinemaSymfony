@@ -60,6 +60,7 @@ class ApiController extends AbstractController
 
         foreach ($screenings as $screening) {
             $data[] = [
+                'screeningId' => $screening->getId(),
                 'movieTitle' => $screening->getMovie()->getTitle(),
                 'screeningStartTime' => $screening->getStartTime()->format('Y-m-d H:i:s'),
                 'movieTheaterName' => $screening->getMovieTheater()->getName()

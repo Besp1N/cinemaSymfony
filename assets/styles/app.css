@@ -109,6 +109,14 @@ a, a:hover, a:checked {
 .spinner {
     animation: spin 2s infinite linear;
 }
+.col-on-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+    }
+}
 @keyframes spin {
     0% {
         transform: rotate(0);
@@ -280,15 +288,12 @@ a, a:hover, a:checked {
 
 .slides-poster {
     width: 100%;
-    @media screen and (max-width: 700px) {
-        width: 90%;
-    }
-
     margin: auto;
     background: none;
     overflow: hidden;
     position: relative;
 }
+@media screen and (min-width: 700px) {
 .slides-poster:before {
     content: '';
     position: absolute;
@@ -312,6 +317,7 @@ a, a:hover, a:checked {
     left: -0.5rem;
     background: var(--container-primary);
 
+}
 }
 
 
@@ -816,6 +822,12 @@ a, a:hover, a:checked {
     margin-bottom: 1rem;
     resize: none;
     height: 30vh;
-    width: max(300px, 60%);
+    width: 100%
 }
 
+.seat {
+    display: inline;
+}
+.seat-selected {
+    color:red;
+}

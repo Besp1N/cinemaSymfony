@@ -15,6 +15,7 @@ export default class Modal {
     }
 
     closeModal() {
+        this.#btnCloseModal.dispatchEvent(new Event('close'));
         this.#overlay.classList.add('hidden');
         this.#modal.classList.add('hidden');
         // Use the same bound function reference to remove the listener

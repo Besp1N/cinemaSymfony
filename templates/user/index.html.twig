@@ -16,7 +16,11 @@
             <img src="{{ asset(user.profilepicture) }}" alt="profile picture">
         </div>
         <div class="profile-bio">
+            {% if user.bio %}
             {{ user.bio }}
+            {% else %}
+            {{ user.name }}'s bio - nothing here!
+            {% endif %}
         </div>
    </div>
         <div class="profile-info-container">
@@ -48,8 +52,9 @@
                 </div>
             </div>
             <div class="tab-content" id="bookings">
-                {# najwieksze jajca tego widoku #}
-                {% for reservation in reservations %}
+                {% if app.user == user %}
+
+                    {% for reservation in reservations %}
                     <div class="container-simple-movie">
                         {{ reservation.getScreening().getMovie().getTitle() }} -
                         {{ reservation.getScreening().getMovieTheater().getCinema().getName() }} -
@@ -60,7 +65,9 @@
                         seat: {{ reservation.getSeat().getSeatRow() }} - {{ reservation.getSeat().getSeatNumber() }}
                     </div>
                 {% endfor %}
+                {% endif %}
 
+            </div>
             <div class="tab-content" id="rated">
 
             </div>
