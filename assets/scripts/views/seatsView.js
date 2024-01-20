@@ -35,7 +35,9 @@ export default class SeatsView extends View {
         return rowLabel + rowMarkup;
     }
     #generateSeat(seat) {
+        console.log(seat);
         let icon;
+        let seatClass;
         switch (seat.type) {
             case 'Regular':
                 icon = "fas fa-chair";
@@ -49,7 +51,16 @@ export default class SeatsView extends View {
                 break;
             }
         }
-        return `<div class="seat seat-empty" data-id="${seat.id}"><i class="${icon}"></i></div>`;
+        switch (seat.status) {
+            case 'taken':
+                seatClass = 'seat-occupied';
+                break;
+            case 'available':
+                seatClass = 'seat-empty';
+                break;
+        }
+        // return `<div class="seat seat-empty" data-id="${seat.id}"><i class="${icon}"></i></div>`;
+        return `<div class="seat ${seatClass}" data-id="${seat.id}"><i class="${icon}"></i></div>`;
     }
 
 }

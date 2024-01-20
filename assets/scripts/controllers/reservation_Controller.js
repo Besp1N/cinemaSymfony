@@ -10,6 +10,7 @@ const controller = function () {
     const selectSeat = function (e) {
         const seat = e.target.closest('.seat');
         if (!seat) return;
+        const seatStatus = seat.dataset.status;  // dodalem tu ta linie ale nie wiem czy tu powinnac byc
         seatsInput.value = options
             .find(opt => opt.value === seat.dataset.id)
             .value;
@@ -36,7 +37,8 @@ const controller = function () {
     // MAKE SURE TO GET AROUND REFRESH FUCKERY AND RESET THE CHOICE
     seatsInput.value = seatsInput.firstElementChild.value;
     const seats = options.map(opt => {
-        return {id: opt.value, row: opt.dataset.info[0], col: opt.dataset.info.slice(1), type: opt.dataset.type};
+        // dodalem do zwracania status siedzenia, nie bede oszukiwal, szukalem gdzie to sie odbywa w chuj czasu
+        return {id: opt.value, row: opt.dataset.info[0], col: opt.dataset.info.slice(1), type: opt.dataset.type, status: opt.dataset.status};
     });
     const seatsSorted = group(seats);
 

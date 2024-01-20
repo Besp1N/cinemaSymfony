@@ -29,6 +29,14 @@ class ReservationController extends AbstractController
             $occupiedSeats[$reservation->getSeat()->getId()] = true;
         }
 
+        $seatsWithStatus = [];
+        foreach ($seats as $seat) {
+            $seatId = $seat->getId();
+            $status = isset($occupiedSeats[$seatId]) ? 'taken' : 'available';
+            $seatsWithStatus[] = ['seat' => $seat, 'status' => $status];
+        }
+
+
 
         // bardzo dobra radziecka metoda, a co lepsze to nawet dziala
         // a bez jaj to musze zrobic ReservationType form i z niej to brac ale juz na dzisiaj tak bedzie
@@ -46,11 +54,10 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('app_user', [
                 'user' => $user->getId()
             ]);
-
         }
 
         return $this->render('reservation/index.html.twig', [
-            'seats' => $seats,
+            'seats' => $seatsWithStatus,
             'screening' => $screening
         ]);
     }
