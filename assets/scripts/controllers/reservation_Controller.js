@@ -1,7 +1,7 @@
 import {timeout} from "../modules/helpers.js";
 import Modal from "../modules/modal.js";
 import SeatsView from "../views/seatsView.js";
-
+import MockPayment from "../modules/mockPayment.js";
 
 
 const controller = function () {
@@ -9,9 +9,7 @@ const controller = function () {
     const seatsInput = document.getElementById('selectedSeat');
     const seatsContainer = document.querySelector('.container-seats');
     const options = [...seatsInput.children].filter(opt => opt.dataset.info);
-    const handlePayment = async function () {
 
-    }
     const handleMinorCheaters = function () {
         const seat = [...seatsContainer.children].find( s => s.dataset.id === seatsInput.value);
         [...seatsContainer.children]
@@ -120,12 +118,13 @@ const controller = function () {
             e.preventDefault();
             if (seatsInput.value === '')
                 throw new Error('Something went wrong when selecting your seat!');
-            await handlePayment();
+            const mockPayment = new MockPayment();
+            await mockPayment.process();
             if(isScumbag()) throw new Error('dirty cheater scumbag');
             form.submit();
         } catch (err) {
+            console.log('stopped')
             console.error(err.message);
-
         }
     })
 }

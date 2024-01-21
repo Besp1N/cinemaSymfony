@@ -15,7 +15,11 @@ export default class Modal {
     }
 
     closeModal() {
-        this.#btnCloseModal.dispatchEvent(new Event('close'));
+        const event = new CustomEvent('modalClosed', {
+            detail: {time: Date.now()}
+        });
+        document.dispatchEvent(event);
+
         this.#overlay.classList.add('hidden');
         this.#modal.classList.add('hidden');
         // Use the same bound function reference to remove the listener
