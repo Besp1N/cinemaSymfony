@@ -305,8 +305,8 @@ class AppFixtures extends Fixture
         // Tworzenie siedzen na dupe w sali kinowej
         $seatTypes = ["Handicapped", "Vip", "Regular"];
         $seatRows = ["A", "B", "C"];
-        $seatNumbers = ["1", "2"];
-        $totalSeats = 30;
+        $seatNumbers = ["1", "2", "3"];
+        $totalSeats = 54;
         $movieTheaters = [
             $movieTheater1,
             $movieTheater2,
