@@ -11,10 +11,12 @@ use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ReservationController extends AbstractController
 {
     #[Route('/reservation/{screening}', name: 'app_reservation', priority: 7)]
+    #[IsGranted('ROLE_USER')]
     public function index(Request $request , Screening $screening, SeatRepository $seatRepository, ReservationRepository $reservationRepository, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();

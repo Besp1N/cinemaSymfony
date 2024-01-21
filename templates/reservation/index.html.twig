@@ -3,24 +3,47 @@
 {% block title %}Reservation - {{screening.movie.title  }}{% endblock %}
 
 {% block body %}
-    <div>Reservation for: {{ screening.getMovie().getTitle() }} </div>
-    <div>Movie theater: {{ screening.getMovieTheater().getName() }}</div>
-    <form method="POST" action="" class="flex-form" id="reservation-form">
-        <label for="selectedSeat">Choose a Seat:</label>
-        <select id="selectedSeat" class="hidden" name="selectedSeat">
-            <option selected value="">DYPA</option>
-            {% for seatWithStatus in seats %}
-                {% set seat = seatWithStatus.seat %}
-                {% set status = seatWithStatus.status %}
-                <option value="{{ seat.id }}" data-info="{{ seat.seatrow }}{{ seat.seatnumber }}" data-type="{{ seat.seattype }}" data-status="{{ status }}">{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }} - {{ seat.getSeatType() }}</option>
-            {% endfor %}
-        </select>
-        <div class="container-seats">
-
-        </div>
-        <div>
-            <button type="submit">Confirm Reservation</button>
+        <div class="profile-bio" style="text-align: center; margin: 2rem auto; width: 90%">
+                <h1>{{ screening.movie.title }} </h1>
+                <h1> {{ screening.movietheater.cinema }} -
+                    {{ screening.movietheater.cinema.address}}
+                    {{ screening.movietheater.cinema.city}}
+                </h1>
+            <div class="col-on-mobile" >
+                <h2>{{  screening.starttime | date('F d, h:m')}}</h2>
+                <h2>{{ screening.movietheater }}</h2>
+            </div>
         </div>
 
-    </form>
+        <form method="POST" action="" id="reservation-form">
+            <label for="selectedSeat" class="col-on-mobile">Choose your seat</label>
+            <select id="selectedSeat" class="hidden" name="selectedSeat" readonly>
+                <option selected value=""></option>
+                {% for seatWithStatus in seats %}
+                    {% set seat = seatWithStatus.seat %}
+                    {% set status = seatWithStatus.status %}
+                    <option value="{{ seat.id }}" data-info="{{ seat.seatrow }}{{ seat.seatnumber }}" data-type="{{ seat.seattype }}" data-status="{{ status }}" {% if status == 'taken' %}disabled{% endif %}>{{ seat.getSeatRow() }} - {{ seat.getSeatNumber() }} - {{ seat.getSeatType() }}</option>
+                {% endfor %}
+            </select>
+            <div class="container-seats">
+
+            </div>
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem">
+                <div>
+                    <i class="fas fa-chair"> </i> Regular
+                </div>
+                <div>
+                    <i class="fas fa-crown"></i> VIP
+                </div>
+                <div>
+                    <i class="fas fa-wheelchair"> </i> Accessible
+                </div>
+            </div>
+
+            <div class="flex-form">
+                <button type="submit">Confirm Reservation</button>
+            </div>
+
+        </form>
+
 {% endblock %}

@@ -486,6 +486,15 @@ a, a:hover, a:checked {
     animation: shimmer 8s infinite linear;
     transition: background-position 2s linear;
 }
+.gold-font {
+    text-shadow: 0 0 15px gold;
+    background: var(--gold-gradient);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 8s infinite linear;
+
+}
 
 @keyframes gentle-rock {
     0%, 100% {
@@ -827,33 +836,42 @@ a, a:hover, a:checked {
 }
 
 .container-seats {
+    background: var(--container-secondary);
+    box-shadow: 0 10px 15px 0 rgba(0,0,0,0.5);
+    border-radius: 3px;
+    padding: 1rem;
     margin: auto;
+    width: min(95%, 800px);
     text-align: center;
-    width: 30vw;
     display: grid;
     gap: 10px;
+
 }
 .seat {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s linear;
 }
 .seat-occupied {
     color: red;
-    pointer-events: none;
+    cursor: not-allowed;
 }
 .seat-empty {
-    color: lightgreen;
+    color: green;
+}
+.seat-empty:hover {
+    transform: scale(1.5);
 }
 .seat-selected {
     color: blueviolet;
+    transform: scale(1.5);
 }
 
-.seat-handicapped {
-
-}
 .screen {
     height: 3px;
+    margin-bottom: 2rem;
     display: grid;
     background: var(--background-color);
     background-size: 400% 400%;

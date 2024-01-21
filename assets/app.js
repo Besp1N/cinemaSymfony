@@ -36,7 +36,9 @@ async function importModules() {
         await import('./scripts/controllers/profile_Controller.js');
     }
     if (new RegExp('^/reservation/\\d').test(path)) {
-         await import('./scripts/controllers/reservation_Controller.js');
+        await Promise.all([
+            import('./scripts/modules/mockPayment.js'),
+            import('./scripts/controllers/reservation_Controller.js')]);
      }
 }
 

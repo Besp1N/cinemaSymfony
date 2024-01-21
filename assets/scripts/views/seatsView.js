@@ -4,9 +4,6 @@ import View from './View.js';
  * Set errorMessage field and generateMarkup method before using.
  */
 export default class SeatsView extends View {
-    constructor(parent) {
-        super(parent);
-    }
 
     errorMessage = `<li class="container-simple-movie container">
                    <p>No seats ayo wtf you doin admin</p>
@@ -35,9 +32,7 @@ export default class SeatsView extends View {
         return rowLabel + rowMarkup;
     }
     #generateSeat(seat) {
-        console.log(seat);
         let icon;
-        let seatClass;
         switch (seat.type) {
             case 'Regular':
                 icon = "fas fa-chair";
@@ -51,16 +46,8 @@ export default class SeatsView extends View {
                 break;
             }
         }
-        switch (seat.status) {
-            case 'taken':
-                seatClass = 'seat-occupied';
-                break;
-            case 'available':
-                seatClass = 'seat-empty';
-                break;
-        }
-        // return `<div class="seat seat-empty" data-id="${seat.id}"><i class="${icon}"></i></div>`;
-        return `<div class="seat ${seatClass}" data-id="${seat.id}"><i class="${icon}"></i></div>`;
+
+        return `<div class="seat ${seat.status === 'taken' ? 'seat-occupied' : 'seat-empty'}" data-id="${seat.id}"><i class="${icon}"></i></div>`;
     }
 
 }
