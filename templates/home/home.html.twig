@@ -20,21 +20,6 @@
                     <li class="slide-poster" data-movie="{{ movie.id }}">
                         <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
                     </li>
-                        <li class="slide-poster" data-movie="{{ movie.id }}">
-                            <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
-                        </li>
-                        <li class="slide-poster" data-movie="{{ movie.id }}">
-                            <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
-                        </li>
-                        <li class="slide-poster" data-movie="{{ movie.id }}">
-                            <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
-                        </li>
-                        <li class="slide-poster" data-movie="{{ movie.id }}">
-                            <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
-                        </li>
-                        <li class="slide-poster" data-movie="{{ movie.id }}">
-                            <img src="{{ asset(movie.image) }}" alt="{{ movie.title }}" class="slide-poster-image" />
-                        </li>
                     {% endfor %}
 
                 </ul>
@@ -43,7 +28,7 @@
         </div>
 
     <hr class="section-divider">
-    <div class="section" data-section="2">
+    <div class="section section-hidden" data-section="2">
     <ul>
         <h2>Now playing...</h2>
         {% for movie in movies %}
@@ -58,9 +43,9 @@
     <hr class="section-divider">
     </div>
 
-    <div class="section">
+    <div class="section section-hidden">
         <ul class="tab-list container-nav-about-us">
-           <li class="item-nav-about-us tab-item" data-target="1">
+           <li class="item-nav-about-us tab-item tab-item--selected" data-target="1">
                Hello there!
            </li >
             <li class="item-nav-about-us tab-item" data-target="2">
@@ -71,9 +56,9 @@
             </li>
         </ul>
         <div class="about-us-container">
-            <div class="about-us-slide" data-slide="1">
+            <div class="about-us-slide expanded" data-slide="1">
                 <h3>Hello there!</h3>
-                <p class="hidden">
+                <p>
                 Welcome to Symfony Cinema, the ultimate destination for movie enthusiasts nationwide!
                 We believe that the magic of cinema should be easily accessible,
                 and our mission is to bring that unparalleled experience right to your fingertips.
@@ -89,7 +74,7 @@
             </div>
             <div class="about-us-slide" data-slide="3">
                 <h3>Ease of use</h3>
-                <p class="hidden"">
+                <p class="hidden">
                 With just a few taps, you can explore movie times, securely book tickets, select your preferred seats,
                 all in one place online, but in many places in real world!
                 </p>
@@ -98,7 +83,7 @@
     </div>
     <hr class="section-divider">
 
-    <div class="section">
+    <div class="section section-hidden">
         <h1> BIG MAP</h1>
 
     </div>

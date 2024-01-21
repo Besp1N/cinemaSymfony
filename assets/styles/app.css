@@ -157,7 +157,6 @@ a, a:hover, a:checked {
     .container {
         width: 100%;
     }
-
 }
 .section-divider {
     background: var(--background-color);
@@ -166,6 +165,14 @@ a, a:hover, a:checked {
     height: 0.6rem;
     margin: 2rem 0;
     transform: skewY(-1deg);
+}
+.section {
+    transition: all 0.5s ease;
+
+}
+.section-hidden {
+    visibility: hidden;
+    transform: translateY(30vh);
 }
 /* NAVBAR */
 .navbar {
@@ -379,6 +386,7 @@ a, a:hover, a:checked {
     border-radius: 5px; /* Rounded corners for a polished look */
     visibility: hidden;
     display: none;
+
 }
 .about-us-slide.expanded {
     display: block;
@@ -391,7 +399,7 @@ a, a:hover, a:checked {
 
 @media  screen and (max-width: 700px) {
     .about-us-slide p {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
     .container-nav-about-us.tab-list {
         display: flex;
@@ -400,7 +408,6 @@ a, a:hover, a:checked {
     }
     .about-us-slide {
         padding: 1rem;
-        width: calc(100% - 3rem); /* Stack the slides on smaller screens */
         font-size: 1rem; /* Adjust font size for smaller screens */
     }
 

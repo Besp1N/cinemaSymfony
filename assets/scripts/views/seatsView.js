@@ -45,6 +45,10 @@ export default class SeatsView extends View {
                 icon = "fas fa-wheelchair"
                 break;
             }
+            default: {
+                icon = "fas fa-chair";
+                break;
+            }
         }
 
         return `<div tabindex="0" class="seat ${seat.status === 'taken' ? 'seat-occupied' : 'seat-empty'}" data-id="${seat.id}"><i class="${icon}"></i></div>`;

@@ -29,9 +29,10 @@ class AppFixtures extends Fixture
         $user123->setLastname('Doe');
         $user123->setEmail('wielkitest@wp.pl');
         $user123->setCreatedAt(new \DateTimeImmutable());
-        $user123->setRole('ROLE_USER');
+        $user123->setRoles(['ROLE_USER']);
         $user123->setPhoneNumber('123456789');
         $user123->setPassword($this->userPasswordHasher->hashPassword($user123, '12345678'));
+        $user123->setBio("TWOJA STARA");
 
 //        $manager->persist($user123);
 //        $manager->flush();
@@ -115,18 +116,101 @@ class AppFixtures extends Fixture
         $adminUser->setLastname('admin');
         $adminUser->setProfilePicture('dupa/dupa');
         $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, 'dupa'));
-        $adminUser->setRole('ROLE_ADMIN');
+        $adminUser->setRoles(['ROLE_ADMIN']);
         $adminUser->setCreatedAt(new DateTimeImmutable());
         $adminUser->setPhoneNumber('+48 123456789');
         $adminUser->setEmail('admin@admin.pl');
+        $adminUser->setBio('DUPA');
 
         $manager->persist($adminUser);
         $manager->flush();
 
 
         $manager->persist($movie);
-        $manager->flush();
+        function createSeatsForTheater($manager,MovieTheater $theater, $rows, $seatsPerRow, $seatType) {
+            foreach (range('A', chr(ord('A') + $rows - 1)) as $row) {
+                for ($number = 1; $number <= $seatsPerRow; $number++) {
+                    $seat = new Seat();
+                    $seat->setSeatRow($row);
+                    $seat->setSeatNumber((string)$number);
+                    $seat->setSeatType($seatType); // Assuming seat type is uniform for simplicity
+                    $theater->addSeat($seat);
+                    $manager->persist($seat);
+                }
+            }
+        }
 
+        // Creating multiple cinemas and theaters
+        $cinemas = [];
+        for ($i = 1; $i <= 3; $i++) {
+            $cinema = new Cinema();
+            $cinema->setName("Cinema $i");
+            $cinema->setCity("City $i");
+            $cinema->setAddress("Address $i");
+            $cinema->setCoords('Coords $i');
+
+            $movieTheater = new MovieTheater();
+            $movieTheater->setName("Theater $i");
+
+            // Create seats for each theater
+            createSeatsForTheater($manager, $movieTheater, 10, 15, 'Standard'); // Example: 10 rows, 15 seats per row
+
+            $cinema->addMovieTheater($movieTheater);
+            $manager->persist($cinema);
+            $manager->persist($movieTheater);
+
+            $cinemas[] = $cinema;
+        }
+
+        // Persists and flushes for each cinema
+        foreach ($cinemas as $cinema) {
+            $manager->persist($cinema);
+            foreach ($cinema->getMovieTheaters() as $theater) {
+                foreach ($theater->getSeats() as $seat) {
+                    $manager->persist($seat);
+                }
+            }
+        }
+
+        $cinema1 = $cinemas[0]; // Assuming $cinemas is the array holding the cinema entities
+        $theater1 = $cinema1->getMovieTheaters()[0]; // Assuming getMovieTheaters() returns an array or a Collection
+
+        // Create additional movies
+        $movies = [
+            ['title' => 'The Matrix', 'description' => 'Sci-fi classic', 'director' => 'The Wachowskis', 'genre' => 'Sci-Fi', 'image' => 'images/matrix.jpg', 'rating' => 8.7],
+            ['title' => 'Inception', 'description' => 'Dream within a dream', 'director' => 'Christopher Nolan', 'genre' => 'Action', 'image' => 'images/inception.jpg', 'rating' => 8.8],
+            // ... add as many as you like
+        ];
+
+        foreach ($movies as $movieData) {
+            $movie = new Movie();
+            $movie->setTitle($movieData['title']);
+            $movie->setDescription($movieData['description']);
+            $movie->setDirector($movieData['director']);
+            $movie->setGenre($movieData['genre']);
+            $movie->setDuration(new DateTimeImmutable());
+            $movie->setReleaseYear(new DateTime());
+            $movie->setImage($movieData['image']);
+            $movie->setRating($movieData['rating']);
+
+            $manager->persist($movie);
+
+            // Create a screening for each movie
+            $screening = new Screening();
+            $screening->setMovie($movie);
+            $screening->setStartTime(new DateTimeImmutable('next Saturday 8pm')); // Example start time, adjust as needed
+
+            // Associate the screening with Theater 1 in Cinema 1
+            $theater1->addScreening($screening);
+            $manager->persist($screening);
+        }
+
+        // Persisting the updated theater and cinema
+        $manager->persist($theater1);
+        $manager->persist($cinema1);
+
+        // Flush to save changes to the database
+        $manager->flush();
 
 
 
