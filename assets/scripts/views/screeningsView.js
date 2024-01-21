@@ -12,9 +12,11 @@ export default class ScreeningsView extends View {
         return `<h2>Screenings in selected cinema:</h2>` + this.data.map(this.#generateLi).join('');
     }
     #generateLi(screening) {
-        return `<li class="container-simple-movie container">
-               <a href="/reservation/${screening.screeningId}">${screening.movieTitle} - ${screening.screeningStartTime} - ${screening.movieTheaterName}</a>
-            </li>`;
+        return ` <a href="/reservation/${screening.screeningId}">
+                <li class="container-simple-movie container">
+              ${screening.movieTitle} - ${screening.screeningStartTime} - ${screening.movieTheaterName}
+            </li>
+            </a>`;
     }
 
 }

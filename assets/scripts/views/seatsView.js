@@ -47,7 +47,7 @@ export default class SeatsView extends View {
             }
         }
 
-        return `<div class="seat ${seat.status === 'taken' ? 'seat-occupied' : 'seat-empty'}" data-id="${seat.id}"><i class="${icon}"></i></div>`;
+        return `<div tabindex="0" class="seat ${seat.status === 'taken' ? 'seat-occupied' : 'seat-empty'}" data-id="${seat.id}"><i class="${icon}"></i></div>`;
     }
 
 }

@@ -44,18 +44,64 @@
 
     <hr class="section-divider">
     <div class="section" data-section="2">
-<ul>
-    <h2>Now playing...</h2>
-    {% for movie in movies %}
-        <li>
-            {{ include('components/_movie_simple.html.twig', {'movie': movie}) }}
-        </li>
-    {% endfor %}
+    <ul>
+        <h2>Now playing...</h2>
+        {% for movie in movies %}
+            <li>
+                {{ include('components/_movie_simple.html.twig', {'movie': movie}) }}
+            </li>
+        {% endfor %}
 
-</ul>
+    </ul>
 
-    <div class="section-divider">
+
+    <hr class="section-divider">
     </div>
 
+    <div class="section">
+        <ul class="tab-list container-nav-about-us">
+           <li class="item-nav-about-us tab-item" data-target="1">
+               Hello there!
+           </li >
+            <li class="item-nav-about-us tab-item" data-target="2">
+                Our mission
+            </li>
+            <li class="item-nav-about-us tab-item" data-target="3">
+                Ease of use
+            </li>
+        </ul>
+        <div class="about-us-container">
+            <div class="about-us-slide" data-slide="1">
+                <h3>Hello there!</h3>
+                <p class="hidden">
+                Welcome to Symfony Cinema, the ultimate destination for movie enthusiasts nationwide!
+                We believe that the magic of cinema should be easily accessible,
+                and our mission is to bring that unparalleled experience right to your fingertips.
+                </p>
+            </div>
+            <div class="about-us-slide" data-slide="2">
+                <h3>Our mission</h3>
+                <p class="hidden">
+                Our mission is to streamline your cinematic journey, making it more convenient,
+                more delightful, and more accessible. We're passionate about movies,
+                and we know that the right film can turn an ordinary day into an extraordinary adventure.
+                </p>
+            </div>
+            <div class="about-us-slide" data-slide="3">
+                <h3>Ease of use</h3>
+                <p class="hidden"">
+                With just a few taps, you can explore movie times, securely book tickets, select your preferred seats,
+                all in one place online, but in many places in real world!
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr class="section-divider">
+
+    <div class="section">
+        <h1> BIG MAP</h1>
+
+    </div>
+    <hr class="section-divider">
 
 {% endblock %}

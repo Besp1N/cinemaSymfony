@@ -135,12 +135,12 @@ a, a:hover, a:checked {
     cursor: pointer;
 }
 .hidden {
-    display:none;
+    visibility: hidden;
+    opacity: 0;
 }
 .hidden-mobile {
     @media screen and (max-width: 700px) {
         display: none;
-
     }
 }
 
@@ -285,6 +285,7 @@ a, a:hover, a:checked {
     @media screen and (max-width: 700px) {
         left: 12.5%;
     }
+
 }
 
 .slides-poster {
@@ -294,32 +295,32 @@ a, a:hover, a:checked {
     overflow: hidden;
     position: relative;
 }
-@media screen and (min-width: 700px) {
-.slides-poster:before {
-    content: '';
-    position: absolute;
-    top: -1rem; /* Extend out of the container */
-    right: -1rem;
-    bottom: -1rem;
-    left: -1rem;
-    box-shadow: 0 0 10px gold;
-    background: var(--gold-gradient);
-    background-size: 400% 400%;
-    animation: shimmer 8s infinite linear;
-    transition: background-position 2s linear;
+/*@media screen and (min-width: 700px) {*/
+/*.slides-poster:before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: -1rem; !* Extend out of the container *!*/
+/*    right: -1rem;*/
+/*    bottom: -1rem;*/
+/*    left: -1rem;*/
+/*    box-shadow: 0 0 10px gold;*/
+/*    background: var(--gold-gradient);*/
+/*    background-size: 400% 400%;*/
+/*    animation: shimmer 8s infinite linear;*/
+/*    transition: background-position 2s linear;*/
 
-}
-.slides-poster:after {
-    content: '';
-    position: absolute;
-    top: -0.5rem; /* Extend out of the container */
-    right: -0.5rem;
-    bottom: -0.5rem;
-    left: -0.5rem;
-    background: var(--container-primary);
+/*}*/
+/*.slides-poster:after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: -0.5rem; !* Extend out of the container *!*/
+/*    right: -0.5rem;*/
+/*    bottom: -0.5rem;*/
+/*    left: -0.5rem;*/
+/*    background: var(--container-primary);*/
 
-}
-}
+/*}*/
+/*}*/
 
 
 @media screen and (max-width: 700px) {
@@ -332,6 +333,7 @@ a, a:hover, a:checked {
     .slider-button-right, .slider-button-left {
         display: none;
     }
+
 
 }
 .slider-button-left, .slider-button-right {
@@ -353,6 +355,105 @@ a, a:hover, a:checked {
 .slider-button-right {
     right: 0; /* Align to the right */
 }
+/*///////////////////////////////////////////////////////////////*/
+/* ABOUT US*/
+
+.about-us-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the start of the container */
+    margin: auto;
+    padding: 1rem;
+    height: fit-content;
+    width: 90%;
+    gap: 1rem; /* Add some space between the slides */
+}
+.about-us-slide {
+    margin: auto;
+    background: var(--container-secondary);
+    perspective: 1000px;
+    width: 100%;
+    cursor: pointer; /* Indicates the slide is clickable */
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 5px; /* Rounded corners for a polished look */
+    visibility: hidden;
+    display: none;
+}
+.about-us-slide.expanded {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+.container-nav-about-us.tab-list {
+    display:none;
+}
+
+@media  screen and (max-width: 700px) {
+    .about-us-slide p {
+        font-size: 1.5rem;
+    }
+    .container-nav-about-us.tab-list {
+        display: flex;
+        justify-content: flex-start;
+        gap: 5%;
+    }
+    .about-us-slide {
+        padding: 1rem;
+        width: calc(100% - 3rem); /* Stack the slides on smaller screens */
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+
+}
+
+
+.about-us-slide h3 {
+    color: blueviolet;
+    margin: 0.5rem 0;
+}
+@media screen and (min-width: 700px) {
+
+    .about-us-slide {
+        font-size: 1.3rem;
+        transition: transform 0.5s ease-in-out, width 0.5s ease-in-out, box-shadow 0.3s ease;
+        transform: skewX(-10deg); /* Skews the slides */
+        height: 50vh; /* Fixed height, or you can make it responsive */
+        overflow: hidden; /* Ensures content fits within the skewed area */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        border-radius: 5px; /* Rounded corners for a polished look */
+        width: 25%;
+        margin-inline: 1.5rem;
+        visibility: visible;
+        display: block;
+    }
+
+    .about-us-slide p {
+        transition: opacity 0.8s ease;
+        line-height: 1.6; /* Improve readability */
+        padding: 1rem;
+    }
+
+
+    /* Expanded slide styling */
+    .about-us-slide.expanded {
+        transform: skewX(0deg);
+        width: 100%;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* More prominent shadow when expanded */
+    }
+
+    /* Styling for the content inside the slides */
+    .about-us-slide-content {
+        transform: skewX(10deg); /* Counteracts the skew of the slide */
+        padding: 2rem;
+        height: 100%;
+        overflow-y: auto; /* Allows vertical scrolling if content is long */
+    }
+}
+/* Add some hover effects for better user interaction */
+.about-us-slide:hover {
+    box-shadow: 0 0 25px var(--glow)
+}
+
 
 
 /* simple movies list */
@@ -853,6 +954,7 @@ a, a:hover, a:checked {
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s linear;
+
 }
 .seat-occupied {
     color: red;
@@ -879,4 +981,3 @@ a, a:hover, a:checked {
     box-shadow: 0 0 10px var(--glow);
     grid-column: 2 / -1;
 }
-

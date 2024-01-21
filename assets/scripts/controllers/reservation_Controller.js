@@ -17,6 +17,7 @@ const controller = function () {
         seat.classList.add('seat-selected');
     }
     const selectSeat = function (e) {
+        if (e.key && e.key !== 'Enter') return;
         const seat = e.target.closest('.seat');
         if (!seat) return;
         const option = options
@@ -64,7 +65,8 @@ const controller = function () {
             return acc;
         }, {});
     };
-
+    function prevDef(e) { e.preventDefault()}
+    window.addEventListener('beforeunload', prevDef);
     window.addEventListener('pageshow', (event) => {
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
             window.location.reload();
@@ -79,7 +81,9 @@ const controller = function () {
     const seatsView = new SeatsView(seatsContainer);
     seatsView.render(seatsSorted);
     seatsContainer.addEventListener('click', selectSeat);
-    //handle CHEATERS
+    seatsContainer.addEventListener('keydown', selectSeat);
+
+    // SECURITY
     seatsInput.addEventListener('change', handleMinorCheaters);
 
     setInterval(isScumbag, 1000);
@@ -99,7 +103,7 @@ const controller = function () {
                     <img src="../images/swat.gif" style="display: inline">
                     </div>
                     <h1>YOU HAVE BEEN REPORTED TO THE POLICE</h1>`);
-
+                window.removeEventListener('beforeunload', prevDef);
                 setInterval(() => {
                     let color = document.querySelector('main').style.backgroundColor;
                     document.querySelector('main').style.backgroundColor = color === 'red' ? 'blue' : 'red';
@@ -123,7 +127,6 @@ const controller = function () {
             if(isScumbag()) throw new Error('dirty cheater scumbag');
             form.submit();
         } catch (err) {
-            console.log('stopped')
             console.error(err.message);
         }
     })
