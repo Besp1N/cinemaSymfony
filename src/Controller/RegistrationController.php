@@ -22,8 +22,9 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRole('ROLE_USER');
+            $user->setRoles(['ROLE_USER']);
             $user->setCreatedAt(new \DateTimeImmutable());
+            $user->setBio("no bio here");
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
