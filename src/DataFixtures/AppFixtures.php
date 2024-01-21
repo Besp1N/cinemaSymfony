@@ -360,12 +360,23 @@ class AppFixtures extends Fixture
         $screening6->setMovie($movie6);
         $screening6->setStartTime(new DateTimeImmutable('2024-02-06 12:00'));
 
+        $screening7 = new Screening();
+        $screening7->setMovie($movie7);
+        $screening7->setStartTime(new DateTimeImmutable('2024-02-07 12:00'));
+
+        $screening8 = new Screening();
+        $screening8->setMovie($movie8);
+        $screening8->setStartTime(new DateTimeImmutable('2024-02-08 12:00'));
+
         $movieTheater1->addScreening($screening1);
-        $movieTheater2->addScreening($screening2);
-        $movieTheater3->addScreening($screening3);
-        $movieTheater4->addScreening($screening4);
-        $movieTheater5->addScreening($screening5);
-        $movieTheater6->addScreening($screening6);
+        $movieTheater1->addScreening($screening2);
+        $movieTheater2->addScreening($screening3);
+        $movieTheater3->addScreening($screening4);
+        $movieTheater4->addScreening($screening5);
+        $movieTheater5->addScreening($screening6);
+        $movieTheater6->addScreening($screening7);
+        $movieTheater6->addScreening($screening8);
+
 
 
         // Blagam zeby to dzialalo <3
