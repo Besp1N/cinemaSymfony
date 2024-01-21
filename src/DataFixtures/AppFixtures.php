@@ -292,24 +292,19 @@ class AppFixtures extends Fixture
         $cinema1->setCity("Warszawa");
         $cinema1->setAddress("Zielona 1");
         $cinema1->setCoords('53.123,18.000');
-        $manager->persist($cinema1);
-        $manager->flush();
 
         $cinema2 = new Cinema();
         $cinema2->setName("Kino Max");
         $cinema2->setCity("Gdansk");
         $cinema2->setAddress("Niebieska 2");
         $cinema2->setCoords('53.123,18.000');
-        $manager->persist($cinema2);
-        $manager->flush();
 
         $cinema3 = new Cinema();
         $cinema3->setName("Cinema City");
         $cinema3->setCity("Krakow");
         $cinema3->setAddress("Czerwona 3");
         $cinema3->setCoords('53.123,18.000');
-        $manager->persist($cinema2);
-        $manager->flush();
+
 
         // Tworzenie 6 sal kinowych po 2 na kazde kino
         $movieTheater1 = new MovieTheater();
@@ -330,13 +325,18 @@ class AppFixtures extends Fixture
         $movieTheater6 = new MovieTheater();
         $movieTheater6->setName("Sala 2");
 
+        $cinema1->addMovieTheater($movieTheater1);
+        $cinema1->addMovieTheater($movieTheater2);
+        $cinema2->addMovieTheater($movieTheater3);
+        $cinema2->addMovieTheater($movieTheater4);
+        $cinema3->addMovieTheater($movieTheater5);
+        $cinema3->addMovieTheater($movieTheater6);
 
-        // Tworzenie siedzenia na dupe w sali kinowej
+
+        // Tworzenie 30 siedzen na dupe w sali kinowej
         $seatTypes = ["Handicapped", "Vip", "Regular"];
         $seatRows = ["A", "B", "C"];
         $seatNumbers = ["1", "2"];
-
-        $seats = [];
         $totalSeats = 30;
         $movieTheaters = [
             $movieTheater1,
@@ -347,8 +347,7 @@ class AppFixtures extends Fixture
             $movieTheater6
         ];
 
-        $seatCounter = 1;
-
+        $seatCounter = 0;
         foreach ($movieTheaters as $movieTheater) {
             foreach ($seatRows as $row) {
                 foreach ($seatNumbers as $number) {
@@ -357,8 +356,9 @@ class AppFixtures extends Fixture
                     $seat->setSeatNumber($number);
                     $seat->setSeatType($seatTypes[array_rand($seatTypes)]);
                     $movieTheater->addSeat($seat);
+                    $seatCounter++;
 
-                    if ($seatCounter > $totalSeats) {
+                    if ($seatCounter == $totalSeats) {
                         break 3;
                     }
                 }
@@ -366,10 +366,15 @@ class AppFixtures extends Fixture
         }
 
 
-        // Dodawanie filmu do seansu
+        // Dodawanie seansow
         $screening = new Screening();
-        $screening->setMovie($movie);
-        $screening->setStartTime(new DateTimeImmutable());
+        $screening->setMovie($movie1);
+        $startTime = new DateTimeImmutable();
+        $startTime->setTime(12,0);
+        $screening->setStartTime($startTime);
+
+
+
 
         // Tworzenie rezerwacji dla użytkownika, miejsca i seansu
         $reservation = new Reservation();
