@@ -24,7 +24,7 @@ class MovieTheater
     #[ORM\OneToMany(mappedBy: 'movie_theater', targetEntity: Seat::class, cascade: ['persist'])]
     private Collection $seats;
 
-    #[ORM\OneToMany(mappedBy: 'movie_theater', targetEntity: Screening::class)]
+    #[ORM\OneToMany(mappedBy: 'movie_theater', targetEntity: Screening::class, cascade: ['persist'])]
     private Collection $screenings;
 
     public function __construct()

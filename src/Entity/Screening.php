@@ -16,7 +16,7 @@ class Screening
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(cascade: ['persist'])]
     private ?Movie $movie = null;
 
     #[ORM\ManyToOne(inversedBy: 'screenings')]

@@ -163,7 +163,7 @@ class AppFixtures extends Fixture
          Hammond and his team of dedicated scientists have populated the park with genetically engineered dinosaurs.');
         $movie2->setDirector('Steven Spielberg');
         $movie2->setGenre('Adventure');
-        $movie1->setDuration($duration);
+        $movie2->setDuration($duration);
         $movie2->setRating(4.0);
         $movie2->setReleaseYear(new DateTime());
         $movie2->setImage("images/poster2.jpg");
