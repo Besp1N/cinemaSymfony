@@ -286,10 +286,6 @@ class AppFixtures extends Fixture
         $manager->flush();
 
 
-
-
-
-
         // Tworzenie 3 kin
         $cinema1 = new Cinema();
         $cinema1->setName("Multikino");
@@ -334,36 +330,41 @@ class AppFixtures extends Fixture
         $movieTheater6 = new MovieTheater();
         $movieTheater6->setName("Sala 2");
 
+
         // Tworzenie siedzenia na dupe w sali kinowej
-        $seat1 = new Seat();
-        $seat1->setSeatRow("A");
-        $seat1->setSeatNumber("1");
-        $seat1->setSeatType("Handicapped");
+        $seatTypes = ["Handicapped", "Vip", "Regular"];
+        $seatRows = ["A", "B", "C"];
+        $seatNumbers = ["1", "2"];
 
-        $seat2 = new Seat();
-        $seat2->setSeatRow("A");
-        $seat2->setSeatNumber("2");
-        $seat2->setSeatType("Handicapped");
+        $seats = [];
+        $totalSeats = 30;
+        $movieTheaters = [
+            $movieTheater1,
+            $movieTheater2,
+            $movieTheater3,
+            $movieTheater4,
+            $movieTheater5,
+            $movieTheater6
+        ];
 
-        $seat3 = new Seat();
-        $seat3->setSeatRow("B");
-        $seat3->setSeatNumber("1");
-        $seat3->setSeatType("Vip");
+        $seatCounter = 1;
 
-        $seat4 = new Seat();
-        $seat4->setSeatRow("B");
-        $seat4->setSeatNumber("2");
-        $seat4->setSeatType("Vip");
+        foreach ($movieTheaters as $movieTheater) {
+            foreach ($seatRows as $row) {
+                foreach ($seatNumbers as $number) {
+                    $seat = new Seat();
+                    $seat->setSeatRow($row);
+                    $seat->setSeatNumber($number);
+                    $seat->setSeatType($seatTypes[array_rand($seatTypes)]);
+                    $movieTheater->addSeat($seat);
 
-        $seat5 = new Seat();
-        $seat5->setSeatRow("C");
-        $seat5->setSeatNumber("1");
-        $seat5->setSeatType("Regular");
+                    if ($seatCounter > $totalSeats) {
+                        break 3;
+                    }
+                }
+            }
+        }
 
-        $seat5 = new Seat();
-        $seat5->setSeatRow("C");
-        $seat5->setSeatNumber("2");
-        $seat5->setSeatType("Regular");
 
         // Dodawanie filmu do seansu
         $screening = new Screening();
