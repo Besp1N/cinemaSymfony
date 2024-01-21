@@ -169,6 +169,8 @@ class AppFixtures extends Fixture
         $movie1->setRating(5.0);
         $movie1->setReleaseYear(new DateTime());
         $movie1->setImage("images/poster1.jpg");
+        $manager->persist($movie1);
+        $manager->flush();
 
         // Gatunek Adventure - Film 2
         $movie2 = new Movie();
@@ -183,6 +185,8 @@ class AppFixtures extends Fixture
         $movie2->setRating(4.0);
         $movie2->setReleaseYear(new DateTime());
         $movie2->setImage("images/poster2.jpg");
+        $manager->persist($movie2);
+        $manager->flush();
 
         // Gatunek Crime - Film 3
         $movie3 = new Movie();
@@ -198,6 +202,8 @@ class AppFixtures extends Fixture
         $movie3->setRating(5.0);
         $movie3->setReleaseYear(new DateTime());
         $movie3->setImage("images/poster3.jpg");
+        $manager->persist($movie3);
+        $manager->flush();
 
         // Gatunek 2 - Film 4
         $movie4 = new Movie();
@@ -211,6 +217,8 @@ class AppFixtures extends Fixture
         $movie4->setRating(3.0);
         $movie4->setReleaseYear(new DateTime());
         $movie4->setImage("images/poster4.jpg");
+        $manager->persist($movie4);
+        $manager->flush();
 
         // Gatunek Science Fiction - Film 5
         $movie5 = new Movie();
@@ -225,6 +233,8 @@ class AppFixtures extends Fixture
         $movie5->setRating(4.5);
         $movie5->setReleaseYear(new DateTime());
         $movie5->setImage("images/poster5.jpg");
+        $manager->persist($movie5);
+        $manager->flush();
 
         // Gatunek Science Fiction - Film 6
         $movie6 = new Movie();
@@ -238,6 +248,8 @@ class AppFixtures extends Fixture
         $movie6->setRating(4.0);
         $movie6->setReleaseYear(new DateTime());
         $movie6->setImage("images/poster6.jpg");
+        $manager->persist($movie6);
+        $manager->flush();
 
         // Gatunek Drama - Film 7
         $movie7 = new Movie();
@@ -253,6 +265,8 @@ class AppFixtures extends Fixture
         $movie7->setRating(2.0);
         $movie7->setReleaseYear(new DateTime());
         $movie7->setImage("images/poster7.jpg");
+        $manager->persist($movie7);
+        $manager->flush();
 
         // Gatunek Drama - Film 8
         $movie8 = new Movie();
@@ -268,28 +282,88 @@ class AppFixtures extends Fixture
         $movie8->setRating(5.0);
         $movie8->setReleaseYear(new DateTime());
         $movie8->setImage("images/poster8.jpg");
+        $manager->persist($movie8);
+        $manager->flush();
 
 
 
 
 
 
-        // Tworzenie kina
-        $cinema = new Cinema();
-        $cinema->setName("Multikino");
-        $cinema->setCity("Warszawa");
-        $cinema->setAddress("zielona 1");
-        $cinema->setCoords('53.123,18.000');
+        // Tworzenie 3 kin
+        $cinema1 = new Cinema();
+        $cinema1->setName("Multikino");
+        $cinema1->setCity("Warszawa");
+        $cinema1->setAddress("Zielona 1");
+        $cinema1->setCoords('53.123,18.000');
+        $manager->persist($cinema1);
+        $manager->flush();
 
-        // Tworzenie sali kinowej
-        $movieTheater = new MovieTheater();
-        $movieTheater->setName("Sala 1");
+        $cinema2 = new Cinema();
+        $cinema2->setName("Kino Max");
+        $cinema2->setCity("Gdansk");
+        $cinema2->setAddress("Niebieska 2");
+        $cinema2->setCoords('53.123,18.000');
+        $manager->persist($cinema2);
+        $manager->flush();
 
-        // Tworzenie miejsca (siedzenia) w sali kinowej
-        $seat = new Seat();
-        $seat->setSeatRow("A");
-        $seat->setSeatNumber("1");
-        $seat->setSeatType("Vip");
+        $cinema3 = new Cinema();
+        $cinema3->setName("Cinema City");
+        $cinema3->setCity("Krakow");
+        $cinema3->setAddress("Czerwona 3");
+        $cinema3->setCoords('53.123,18.000');
+        $manager->persist($cinema2);
+        $manager->flush();
+
+        // Tworzenie 6 sal kinowych po 2 na kazde kino
+        $movieTheater1 = new MovieTheater();
+        $movieTheater1->setName("Sala 1");
+
+        $movieTheater2 = new MovieTheater();
+        $movieTheater2->setName("Sala 2");
+
+        $movieTheater3 = new MovieTheater();
+        $movieTheater3->setName("Sala 1");
+
+        $movieTheater4 = new MovieTheater();
+        $movieTheater4->setName("Sala 2");
+
+        $movieTheater5 = new MovieTheater();
+        $movieTheater5->setName("Sala 1");
+
+        $movieTheater6 = new MovieTheater();
+        $movieTheater6->setName("Sala 2");
+
+        // Tworzenie siedzenia na dupe w sali kinowej
+        $seat1 = new Seat();
+        $seat1->setSeatRow("A");
+        $seat1->setSeatNumber("1");
+        $seat1->setSeatType("Handicapped");
+
+        $seat2 = new Seat();
+        $seat2->setSeatRow("A");
+        $seat2->setSeatNumber("2");
+        $seat2->setSeatType("Handicapped");
+
+        $seat3 = new Seat();
+        $seat3->setSeatRow("B");
+        $seat3->setSeatNumber("1");
+        $seat3->setSeatType("Vip");
+
+        $seat4 = new Seat();
+        $seat4->setSeatRow("B");
+        $seat4->setSeatNumber("2");
+        $seat4->setSeatType("Vip");
+
+        $seat5 = new Seat();
+        $seat5->setSeatRow("C");
+        $seat5->setSeatNumber("1");
+        $seat5->setSeatType("Regular");
+
+        $seat5 = new Seat();
+        $seat5->setSeatRow("C");
+        $seat5->setSeatNumber("2");
+        $seat5->setSeatType("Regular");
 
         // Dodawanie filmu do seansu
         $screening = new Screening();
