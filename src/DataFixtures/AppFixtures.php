@@ -302,7 +302,7 @@ class AppFixtures extends Fixture
         $cinema3->addMovieTheater($movieTheater6);
 
 
-        // Tworzenie 30 siedzen na dupe w sali kinowej
+        // Tworzenie siedzen na dupe w sali kinowej
         $seatTypes = ["Handicapped", "Vip", "Regular"];
         $seatRows = ["A", "B", "C"];
         $seatNumbers = ["1", "2"];
@@ -318,6 +318,7 @@ class AppFixtures extends Fixture
 
         $seatCounter = 0;
         foreach ($movieTheaters as $movieTheater) {
+            $seatCounter++;
             foreach ($seatRows as $row) {
                 foreach ($seatNumbers as $number) {
                     $seat = new Seat();
@@ -325,7 +326,7 @@ class AppFixtures extends Fixture
                     $seat->setSeatNumber($number);
                     $seat->setSeatType($seatTypes[array_rand($seatTypes)]);
                     $movieTheater->addSeat($seat);
-                    $seatCounter++;
+
 
                     if ($seatCounter == $totalSeats) {
                         break 3;
