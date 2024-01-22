@@ -152,7 +152,7 @@ class AppFixtures extends Fixture
         $movie1->setDuration($duration);
         $movie1->setRating(5.0);
         $movie1->setReleaseYear(new DateTime());
-        $movie1->setImage("images/poster3.jpg");
+        $movie1->setImage("images/IndianaJonesArkPoster.jpg");
 
         // Gatunek Adventure - Film 2
         $movie2 = new Movie();
@@ -166,7 +166,7 @@ class AppFixtures extends Fixture
         $movie2->setDuration($duration);
         $movie2->setRating(4.0);
         $movie2->setReleaseYear(new DateTime());
-        $movie2->setImage("images/poster2.jpg");
+        $movie2->setImage("images/JurassicParkPoster.jpg");
 
         // Gatunek Crime - Film 3
         $movie3 = new Movie();
@@ -181,7 +181,7 @@ class AppFixtures extends Fixture
         $movie3->setDuration($duration);
         $movie3->setRating(5.0);
         $movie3->setReleaseYear(new DateTime());
-        $movie3->setImage("images/poster3.jpg");
+        $movie3->setImage("images/TheGodfatherPoster.jpg");
 
         // Gatunek 2 - Film 4
         $movie4 = new Movie();
@@ -194,7 +194,7 @@ class AppFixtures extends Fixture
         $movie4->setDuration($duration);
         $movie4->setRating(3.0);
         $movie4->setReleaseYear(new DateTime());
-        $movie4->setImage("images/poster4.jpg");
+        $movie4->setImage("images/PulpFictionPoster.jpg");
 
         // Gatunek Science Fiction - Film 5
         $movie5 = new Movie();
@@ -208,7 +208,7 @@ class AppFixtures extends Fixture
         $movie5->setDuration($duration);
         $movie5->setRating(4.5);
         $movie5->setReleaseYear(new DateTime());
-        $movie5->setImage("images/poster6.jpg");
+        $movie5->setImage("images/InceptionPoster.jpg");
 
         // Gatunek Science Fiction - Film 6
         $movie6 = new Movie();
@@ -221,7 +221,7 @@ class AppFixtures extends Fixture
         $movie6->setDuration($duration);
         $movie6->setRating(4.0);
         $movie6->setReleaseYear(new DateTime());
-        $movie6->setImage("images/poster6.jpg");
+        $movie6->setImage("images/BladeRunnerPoster.jpg");
 
         // Gatunek Drama - Film 7
         $movie7 = new Movie();
@@ -236,7 +236,7 @@ class AppFixtures extends Fixture
         $movie7->setDuration($duration);
         $movie7->setRating(2.0);
         $movie7->setReleaseYear(new DateTime());
-        $movie7->setImage("images/poster7.jpg");
+        $movie7->setImage("images/ForestGumpPoster.jpg");
 
         // Gatunek Drama - Film 8
         $movie8 = new Movie();
@@ -251,7 +251,7 @@ class AppFixtures extends Fixture
         $movie8->setDuration($duration);
         $movie8->setRating(5.0);
         $movie8->setReleaseYear(new DateTime());
-        $movie8->setImage("images/poster8.jpg");
+        $movie8->setImage("images/CallMeByYourNamePoster.jpg");
 
 
 
