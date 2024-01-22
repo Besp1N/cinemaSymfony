@@ -27,7 +27,7 @@ class Geolocator {
  }
 
  #handleAccept(data) {
-    state.coords = {latitude: data.coords.latitude, longitude: data.coords.longitude};
+    state.coords = [data.coords.latitude, data.coords.longitude];
     this.#cinemas.forEach( cin => cin.coords = {latitude: cin.coords.split[0] ?? 0, longitude: cin.coords.split[1] ?? 0});
     this.cinema = this.#cinemas.reduce( (closest, cin) => {
         return getDistance(state.coords, cin.coords) < closest ? cin : closest;

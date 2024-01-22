@@ -65,7 +65,7 @@ const controller = function () {
             return acc;
         }, {});
     };
-    function prevDef(e) { e.preventDefault()}
+    function prevDef(e) { }
     window.addEventListener('beforeunload', prevDef);
     window.addEventListener('pageshow', (event) => {
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {

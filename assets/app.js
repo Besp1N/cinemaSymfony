@@ -7,9 +7,8 @@ import('./scripts/modules/helpers.js');
 import('./scripts/statics/config.js');
 import './vendor/geolib/geolib.index.js';
 import navbarController from './scripts/controllers/navbar_Controller.js';
-import geoLocator from './scripts/modules/geolocator.js';
-import * as forms from './scripts/statics/forms.js';
-
+import geoLocator from './scripts/modules/geolocator.js'
+import('./vendor/leaflet/dist/leaflet.min.css');
 importModules();
 app();
 
@@ -23,7 +22,10 @@ async function importModules() {
     const path = window.location.pathname;
 
     if (path === '/') {
-        await import('./scripts/modules/slider.js');
+        await Promise.all([import('./scripts/modules/slider.js'),
+            import('./vendor/leaflet/leaflet.index.js'),
+    ]);
+
     }
     if (new RegExp('^/\\d').test(path)) {
         await Promise.all([

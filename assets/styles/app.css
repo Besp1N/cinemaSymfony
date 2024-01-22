@@ -52,6 +52,7 @@ h1 {
     display: grid;
     place-content: center;
     margin: 0.3em auto;
+    color: blueviolet;
 }
 h2 {
     text-align: left;
@@ -147,7 +148,14 @@ a, a:hover, a:checked {
         display: none;
     }
 }
+#map {
+    height: min(50vh, 600px);
+    width: min(90%, 700px);
+    margin: auto;
+    border: 2px solid blueviolet;
+    border-radius: 5px;
 
+}
 .container {
     background: var(--container-primary);
     width: clamp(100px, 95%, 1500px);
@@ -519,12 +527,15 @@ a, a:hover, a:checked {
     flex: 1; /* Adjust as needed */
 }
 .description-simple-movie {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
     max-width: 50%;
     color: var(--text-color);
-    transform: translate(50%, -75%);
+    left: 50%;
+    transform: translate(-50%, -75%);
     position: absolute;
     padding: 10px;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .genre-simple-movie {
@@ -533,10 +544,43 @@ a, a:hover, a:checked {
 }
 @media screen and (min-width: 700px) {
     .container-simple-movie:hover .description-simple-movie {
-        display: block;
+        overflow: visible;
+        opacity: 1;
+        visibility: visible;
     }
 }
+#legend:hover .description-simple-movie{
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+}
+#legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    user-select: none;
+}
+.triangle {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 10vw; /* Adjust as needed */
+    height: 10vw; /* Adjust to maintain the aspect ratio */
+    top: 65%;
+    left: 50%; /* Center the triangle horizontally */
+    background: inherit;
+    transform: translate(-50%, 0) rotate(-45deg); /* Adjust horizontal translate for centering */
+}
 
+/* Media Queries for responsiveness */
+@media (max-width: 600px) {
+    .triangle {
+        width: 15vw;
+        height: 15vw;
+        /* Adjust top or transform properties if necessary */
+    }
+}
 
 /* MOVIE VIEW */
 .movie-page {
@@ -999,8 +1043,9 @@ a, a:hover, a:checked {
 }
 
 .screen {
+    width: 70%;
     height: 3px;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem auto;
     display: grid;
     background: var(--background-color);
     background-size: 400% 400%;
