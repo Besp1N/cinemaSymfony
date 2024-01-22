@@ -1,6 +1,6 @@
 /* COLOR SCHEMES LIGHT AND DARK */
 :root {
-    /*--background-color: linear-gradient(-45deg, orange, gold, orange);*/
+    /*--background-color: linear-gradient(f-45deg, orange, gold, orange);*/
     /*--background-color-opaque: linear-gradient(-45deg, rgba(255,165,0,0.5),rgba(255,215,0,0.5),rgba(255,165,0,0.5));*/
     --background-color: linear-gradient(-45deg, navy, rgb(167, 2, 167), navy);
     --background-color-opaque: linear-gradient(-45deg,rgba(0,0,128,0.5), rgba(167,2,167,0.5),rgba(0,0,128,0.5));
@@ -17,6 +17,7 @@
     --container-primary: #222222;
     --container-secondary: #333333;
 }
+
 /* CSS RESET */
 * {
     margin: 0;
@@ -24,6 +25,9 @@
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     transition: translate 0.3s ease;
+}
+main.container {
+    overflow: hidden;
 }
 li {
     list-style: none;
@@ -172,7 +176,7 @@ a, a:hover, a:checked {
 }
 .section-hidden {
     visibility: hidden;
-    transform: translateY(30vh);
+    transform: translateY(100px);
 }
 /* NAVBAR */
 .navbar {
@@ -277,11 +281,14 @@ a, a:hover, a:checked {
 .slide-poster-image {
     height: 40rem;
     width: auto;
+    aspect-ratio: 27 / 40;
+
     object-fit: cover; /* This will ensure the aspect ratio is maintained */
     cursor: pointer;
     transition: transform 0.2s ease;
 
 }
+
 .slide-poster-image:hover {
     transform: scale(105%);
 }
@@ -386,12 +393,22 @@ a, a:hover, a:checked {
     border-radius: 5px; /* Rounded corners for a polished look */
     visibility: hidden;
     display: none;
-
 }
+
 .about-us-slide.expanded {
     display: block;
     visibility: visible;
     opacity: 1;
+}
+.about-us-slide i {
+    position: absolute;
+    margin-top: 10rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.about-us-slide.expanded i {
+    transition: visibility 0.1s ease;
+    visibility: hidden;
 }
 .container-nav-about-us.tab-list {
     display:none;
@@ -656,7 +673,10 @@ a, a:hover, a:checked {
     background-color: #fff;
     width: clamp(150px, 15vw, 500px);
 }
+.movie-card img {
+    aspect-ratio: 27 /40;
 
+}
 /* Title inside the movie card */
 .movie-card-title {
     padding: 0.5rem;

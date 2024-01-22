@@ -12,25 +12,31 @@ export default class SeatsView extends View {
         const container = document.querySelector('.container-seats');
 
         const max = Object.values(this.data)
-            .reduce( (max, row) => row.length > max ? row.length : max , 0);
+            .reduce((max, row) => row.length > max ? row.length : max, 0);
 
-        container.style.gridTemplateColumns = `repeat(${max + 1}, 1fr)`;
-        const header = '&#10240;' +
-            Array.from({length:max}, (_, i) =>
-                `<div>${i + 1}</div>`).join(' ');
-        const screen = `<div class="screen"></div>`
+        container.style.gridTemplateColumns = `1fr repeat(${max}, 1fr) 1fr`;
+
+        const header = '<div></div>' +
+            Array.from({ length: max }, (_, i) =>
+                `<div>${i + 1}</div>`).join(' ') + '<div></div>';
+
+        const screen = `<div class="screen" style="grid-column: 1 / -1;"></div>`; // Make screen span all columns
+
         return header + screen + Object.entries(this.data)
             .map(this.#generateRow.bind(this, max)).join('');
     }
+
     #generateRow(maxSeatNumber, row) {
         const [rowLabel, seats] = row;
-        // Generate seat or empty cell based on seat number
-        const rowMarkup = Array.from({ length: maxSeatNumber  }, (_, i) => {
-            const seat = seats.find(s => +s.col === i + 1  )
+        const rowMarkup = Array.from({ length: maxSeatNumber }, (_, i) => {
+            const seat = seats.find(s => +s.col === i + 1)
             return seat ? this.#generateSeat(seat) : '<div class="seat-empty"></div>';
         }).join('');
-        return rowLabel + rowMarkup;
+
+        // Add empty div at the end for alignment
+        return `<div>${rowLabel}</div>${rowMarkup}<div></div>`;
     }
+
     #generateSeat(seat) {
         let icon;
         switch (seat.type) {

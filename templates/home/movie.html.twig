@@ -32,7 +32,7 @@
             <form id="selectCinema" >
                 <label for="cinema">Select your cinema:</label>
                 <select name="cinema" class="dropdown" id="cinema-select-dropdown">
-                    <option value="" selected>---</option>
+                    <option value="" selected disabled>---</option>
                     {% for cinema in cinemas %}
                     <option value="{{ cinema.id }}">{{ cinema.city }} - {{ cinema.name }} - {{ cinema.address }}</option>
                     {% endfor %}
@@ -47,10 +47,10 @@
     <div id="section-advanced-screenings" style="margin-bottom: 10rem;">
         <h1 style="margin-left: 1rem">Select your place and time</h1>
 
-        <form id='advanced-screenings' class="flex`-form">
+        <form id='advanced-screenings' class="flex-form">
             <div class="form-row">
                 <select name="cinema" class="dropdown" id="cinema-select-dropdown-advanced">
-                    <option value="" selected>---</option>
+                    <option value="" selected disabled>---</option>
                     {% for cinema in cinemas %}
                         <option value="{{ cinema.id }}">{{ cinema.city }} - {{ cinema.name }} - {{ cinema.address }}</option>
                     {% endfor %}

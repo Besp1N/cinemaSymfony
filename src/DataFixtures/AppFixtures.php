@@ -152,7 +152,7 @@ class AppFixtures extends Fixture
         $movie1->setDuration($duration);
         $movie1->setRating(5.0);
         $movie1->setReleaseYear(new DateTime());
-        $movie1->setImage("images/poster1.jpg");
+        $movie1->setImage("images/poster3.jpg");
 
         // Gatunek Adventure - Film 2
         $movie2 = new Movie();
@@ -208,7 +208,7 @@ class AppFixtures extends Fixture
         $movie5->setDuration($duration);
         $movie5->setRating(4.5);
         $movie5->setReleaseYear(new DateTime());
-        $movie5->setImage("images/poster5.jpg");
+        $movie5->setImage("images/poster6.jpg");
 
         // Gatunek Science Fiction - Film 6
         $movie6 = new Movie();

@@ -124,6 +124,7 @@ const controller = function () {
                 throw new Error('Something went wrong when selecting your seat!');
             const mockPayment = new MockPayment();
             await mockPayment.process();
+            window.removeEventListener('beforeunload', prevDef);
             if(isScumbag()) throw new Error('dirty cheater scumbag');
             form.submit();
         } catch (err) {
