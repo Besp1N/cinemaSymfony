@@ -257,22 +257,22 @@ class AppFixtures extends Fixture
 
         // Tworzenie 3 kin
         $cinema1 = new Cinema();
-        $cinema1->setName("Multikino");
-        $cinema1->setCity("Warszawa");
-        $cinema1->setAddress("Zielona 1");
+        $cinema1->setName("Kuria Diecjezjalna");
+        $cinema1->setCity("Bydgoszcz");
+        $cinema1->setAddress("Ks. Tadeusza Malczewskiego");
         $cinema1->setCoords('53.123,18.000');
 
         $cinema2 = new Cinema();
-        $cinema2->setName("Kino Max");
-        $cinema2->setCity("Gdansk");
-        $cinema2->setAddress("Niebieska 2");
-        $cinema2->setCoords('53.123,18.000');
+        $cinema2->setName("Kino Penguin");
+        $cinema2->setCity("Biegun Poludniowy");
+        $cinema2->setAddress("Sniezna 1");
+        $cinema2->setCoords('-89.99,0');
 
         $cinema3 = new Cinema();
-        $cinema3->setName("Cinema City");
-        $cinema3->setCity("Krakow");
-        $cinema3->setAddress("Czerwona 3");
-        $cinema3->setCoords('53.123,18.000');
+        $cinema3->setName("Shark Cinema");
+        $cinema3->setCity("Atlantyda");
+        $cinema3->setAddress("Posejdona 3");
+        $cinema3->setCoords('53.123,-50.000');
 
 
         // Tworzenie 6 sal kinowych po 2 na kazde kino

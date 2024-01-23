@@ -32,12 +32,13 @@ class MovieRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findMovieByTitle(string $title): array
+    public function findMovieByTitle(string $title, int $limit): array
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.title LIKE :title')
             ->setParameter('title', '%'.$title.'%')
             ->getQuery()
+            ->setMaxResults($limit)
             ->getResult();
     }
 

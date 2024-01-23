@@ -1,12 +1,13 @@
 import Slider from '../modules/slider.js';
 import L from '../../vendor/leaflet/leaflet.index.js';
 import state from "../state.js";
-import {URL_CINEMAS, TIMEOUT_SEC} from "../statics/config.js";
+import {URL_CINEMAS, URL_MOVIES, TIMEOUT_SEC} from "../statics/config.js";
 import {getJSON, timeout} from "../modules/helpers.js";
+import View from "../views/View.js";
 
 const slider = new Slider(document.querySelectorAll('.slides-poster')[1], 100);
 document.querySelectorAll('.slide-poster').forEach(slide => {
-    slider.addLink(+slide.dataset.slide, `/${slide.dataset.movie}`)
+    slider.addLink(+slide.dataset.slide, `/assets/${slide.dataset.movie}`)
 });
 slider.addHandlerMoveRight(document.querySelector('.slider-button-right'));
 slider.addHandlerMoveLeft(document.querySelector('.slider-button-left'));
@@ -50,7 +51,32 @@ document.querySelectorAll('.section').forEach( section => {
     const obs = new IntersectionObserver(popup, obsSettings);
     obs.observe(section);
 });
+///////////////////////////
+//////////////// SHOW MORE
+const btnShowMore = document.querySelector('.show-more');
+const containerMovieCards = document.querySelector('.container-card-movie');
+const spinner = new View(btnShowMore);
+const generateCard = function (movie) {
+ return  `<a href="/${movie.id}">
+                <div class="movie-card">
+                    <img loading="lazy" src="${movie.image}">
+                    <div class="movie-card-title">${ movie.title }</div>
+                </div>
+                </a>`
+}
+btnShowMore.addEventListener('click',  async () => {
+    try {
+        spinner.renderSpinner();
+        const newMovies = await getJSON(`${URL_MOVIES}?limit=2`);
+        containerMovieCards.insertAdjacentHTML('beforeend',
+            newMovies.map(generateCard).join(''));
+    }
+    catch (err) {
+        containerMovieCards.insertAdjacentHTML('beforeend', err.message);
+    }
+});
 
+///////////
 //Will need to refactor but this is for loading a map
 /**
  *
@@ -82,7 +108,6 @@ const mapController = async function () {
         const marker = L.marker([52.1, 19.3]).addTo(map);
         marker.bindPopup("<b>Sorry! Couldn't load the map!</b>").openPopup();
     }
-
 }
 
 window.addEventListener('load', mapController);

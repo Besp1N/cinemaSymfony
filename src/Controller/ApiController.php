@@ -73,16 +73,19 @@ class ApiController extends AbstractController
     public function Movies(Request $request ,MovieRepository $movieRepository): JsonResponse
     {
         $movieTitle = $request->query->get('title');
+        $limit = $request->query->get('limit');
 
-        // to ponizej to na testa tylko ( nawet po wars zwraca )
-        // $movieTitle = "wars";
-        $movies = $movieRepository->findMovieByTitle($movieTitle);
+        if (!$limit or $limit > 10) {
+            $limit = 10;
+        }
+        $movies = $movieRepository->findMovieByTitle($movieTitle ?? "", $limit);
 
         $data = [];
         foreach ($movies as $movie) {
             $data[] = [
                 "id" => $movie->getId(),
-                "title" => $movie->getTitle()
+                "title" => $movie->getTitle(),
+                "image" => $movie->getImage()
             ];
         }
         return new JsonResponse($data);

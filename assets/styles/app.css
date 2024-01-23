@@ -164,6 +164,15 @@ a, a:hover, a:checked {
     overflow: auto;
     /*box-shadow: 0.5rem 0.5rem rgba(0, 0, 0, 0.3);*/
 }
+.container-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.show-more {
+    cursor: pointer;
+    user-select: none;
+}
 
 @media screen and (max-width: 700px) {
     .container {
@@ -685,8 +694,6 @@ a, a:hover, a:checked {
     }
 }
 
-
-
 .select-cinema-container {
     display: flex;
     justify-content: space-evenly;
@@ -840,12 +847,6 @@ a, a:hover, a:checked {
     vertical-align: middle;
     margin-top: -1px;
 }
-
-
-/*
-    dodac mobile view
-    i poprawic zeby to bylo na srodku
- */
 .alert-success {
     border: 1px solid #4CAF50;
     background-color: var(--container-secondary);
