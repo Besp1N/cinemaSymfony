@@ -4,9 +4,12 @@ namespace App\Controller\Reservation;
 
 use App\Entity\Reservation;
 use App\Entity\Screening;
+use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use App\Repository\SeatRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,10 +42,11 @@ class ReservationController extends AbstractController
         }
 
 
-
-        // bardzo dobra radziecka metoda, a co lepsze to nawet dziala
-        // a bez jaj to musze zrobic ReservationType form i z niej to brac ale juz na dzisiaj tak bedzie
         if ($request->isMethod('POST')) {
+            $csrfToken = $request->request->get('_token');
+            if (!$this->isCsrfTokenValid('reservation', $csrfToken)) {
+                return new Response('chuj');
+            }
             $selectedSeatId = $request->request->get('selectedSeat');
             $selectedSeat = $seatRepository->find($selectedSeatId);
             $reservation = new Reservation();
@@ -59,6 +63,7 @@ class ReservationController extends AbstractController
         }
 
         return $this->render('reservation/index.html.twig', [
+
             'seats' => $seatsWithStatus,
             'screening' => $screening
         ]);

@@ -15,6 +15,9 @@
             </div>
         </div>
 
+
+
+
         <form method="POST" action="" id="reservation-form">
             <label for="selectedSeat" class="col-on-mobile">Choose your seat</label>
             <select id="selectedSeat" class="hidden" name="selectedSeat" readonly>
@@ -26,8 +29,8 @@
                 {% endfor %}
             </select>
             <div class="container-seats">
-
             </div>
+
             <div id="legend">
 
                 <div class="description-simple-movie" style="line-height: 120%; transform: translate(0, -110%); background: var(--container-secondary);">
@@ -53,6 +56,9 @@
                 <button type="submit">Confirm Reservation</button>
             </div>
 
+            <input type="hidden" name="_token" value="{{ csrf_token('reservation') }}">
         </form>
+
+
 
 {% endblock %}
