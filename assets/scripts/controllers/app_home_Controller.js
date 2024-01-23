@@ -7,7 +7,7 @@ import View from "../views/View.js";
 
 const slider = new Slider(document.querySelectorAll('.slides-poster')[1], 100);
 document.querySelectorAll('.slide-poster').forEach(slide => {
-    slider.addLink(+slide.dataset.slide, `/assets/${slide.dataset.movie}`)
+    slider.addLink(+slide.dataset.slide, `/${slide.dataset.movie}`)
 });
 slider.addHandlerMoveRight(document.querySelector('.slider-button-right'));
 slider.addHandlerMoveLeft(document.querySelector('.slider-button-left'));
@@ -57,23 +57,35 @@ const btnShowMore = document.querySelector('.show-more');
 const containerMovieCards = document.querySelector('.container-card-movie');
 const spinner = new View(btnShowMore);
 const generateCard = function (movie) {
- return  `<a href="/${movie.id}">
-                <div class="movie-card">
-                    <img loading="lazy" src="${movie.image}">
-                    <div class="movie-card-title">${ movie.title }</div>
-                </div>
-                </a>`
+    const element = document.createElement('a');
+    element.classList.add('movie-card');
+    element.href = "/" + movie.id;
+    element.innerHTML = `<img loading="lazy" src="${movie.image}">
+                    <div class="movie-card-title">${ movie.title }</div>`
+    element.querySelector('img').addEventListener('load', () => {
+        element.classList.add('movie-card-loaded');
+    });
+    return element
 }
 btnShowMore.addEventListener('click',  async () => {
+    const btnCopy = btnShowMore.innerHTML;
     try {
         spinner.renderSpinner();
-        const newMovies = await getJSON(`${URL_MOVIES}?limit=2`);
-        containerMovieCards.insertAdjacentHTML('beforeend',
-            newMovies.map(generateCard).join(''));
+        const newMovies = await getJSON(`${URL_MOVIES}?limit=4`);
+        if (newMovies.length === 0) {
+            containerMovieCards.insertAdjacentHTML('beforeend', 'No more movies?');
+            return;
+        }
+        newMovies.forEach(m =>
+            containerMovieCards.insertAdjacentElement('beforeend', generateCard(m)))
     }
     catch (err) {
         containerMovieCards.insertAdjacentHTML('beforeend', err.message);
     }
+    btnShowMore.innerHTML = btnCopy;
+    console.log(containerMovieCards.getBoundingClientRect().bottom)
+    btnShowMore.scrollIntoView({block: 'end', behavior: 'smooth'});
+
 });
 
 ///////////
