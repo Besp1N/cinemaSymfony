@@ -74,15 +74,16 @@ class ApiController extends AbstractController
     {
         $movieTitle = $request->query->get('title');
         $limit = $request->query->get('limit');
+        $page = $request->query->get('page') ?? 0;
 
         if (!$limit or $limit > 10) {
             $limit = 10;
         }
         if ($movieTitle) {
-            $movies = $movieRepository->findMovieByTitle($movieTitle, $limit);
+            $movies = $movieRepository->findMovieByTitle($movieTitle, $limit, $page);
         }
         else {
-            $movies = $movieRepository->findBy([], limit: $limit);
+            $movies = $movieRepository->findMovieByTitle("", $limit, $page);
         }
 
         $data = [];
