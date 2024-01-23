@@ -5,6 +5,8 @@ import {URL_CINEMAS, URL_MOVIES, TIMEOUT_SEC} from "../statics/config.js";
 import {getJSON, timeout} from "../modules/helpers.js";
 import View from "../views/View.js";
 
+state.pageCount = 1;
+
 const slider = new Slider(document.querySelectorAll('.slides-poster')[1], 100);
 document.querySelectorAll('.slide-poster').forEach(slide => {
     slider.addLink(+slide.dataset.slide, `/${slide.dataset.movie}`)
@@ -67,17 +69,21 @@ const generateCard = function (movie) {
     });
     return element
 }
+
+
 btnShowMore.addEventListener('click',  async () => {
     const btnCopy = btnShowMore.innerHTML;
     try {
         spinner.renderSpinner();
-        const newMovies = await getJSON(`${URL_MOVIES}?limit=4`);
+        const newMovies = await getJSON(`${URL_MOVIES}?limit=10&page=${state.pageCount}`);
         if (newMovies.length === 0) {
-            containerMovieCards.insertAdjacentHTML('beforeend', 'No more movies?');
+            containerMovieCards.insertAdjacentHTML('beforeend', '<h2>No more movies!</h2>');
+            btnShowMore.remove()
             return;
         }
         newMovies.forEach(m =>
-            containerMovieCards.insertAdjacentElement('beforeend', generateCard(m)))
+            containerMovieCards.insertAdjacentElement('beforeend', generateCard(m)));
+        state.pageCount++;
     }
     catch (err) {
         containerMovieCards.insertAdjacentHTML('beforeend', err.message);

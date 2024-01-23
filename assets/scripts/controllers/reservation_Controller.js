@@ -1,5 +1,4 @@
-import {timeout} from "../modules/helpers.js";
-import Modal from "../modules/modal.js";
+
 import SeatsView from "../views/seatsView.js";
 import MockPayment from "../modules/mockPayment.js";
 

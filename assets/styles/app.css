@@ -28,7 +28,10 @@
 }
 main.container {
     overflow: hidden;
+    min-height: 80vh;
+    position: relative;
 }
+
 li {
     list-style: none;
 }
@@ -56,6 +59,16 @@ h1 {
 h2 {
     text-align: left;
     margin: 1em;
+}
+footer {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+    position: absolute; /* Position the footer absolutely within its parent */
+    bottom: 0; /* Align it to the bottom */
+    left: 0;
+    width: 100%; /* Ensures the footer stretches across the full width of its parent */
+    margin-bottom: 0;
 }
 
 body {
