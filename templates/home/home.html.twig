@@ -29,15 +29,14 @@
 
     <hr class="section-divider">
     <div class="section section-hidden" data-section="2">
-    <ul>
         <h2 style="color: blueviolet">Now playing...</h2>
-        {% for movie in movies %}
-            <li>
-                {{ include('components/_movie_simple.html.twig', {'movie': movie}) }}
-            </li>
+
+        <div class="container-card-movie">
+         {% for movie in movies %}
+                {{ include('components/_movie_card.html.twig', {'movie': movie}) }}
         {% endfor %}
 
-    </ul>
+    </div>
 
 
     <hr class="section-divider">

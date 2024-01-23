@@ -97,12 +97,12 @@ const controller = function () {
                 form.remove();
                 document.querySelector('main').insertAdjacentHTML('beforeend',
                     `
-                       <h1>FUCK YOU</h1>
+                       <h2>FUCK YOU</h2>
                        <div class="container col-on-mobile" style="background: none">
                     <img src="../images/tiger.jpg" style="display: inline">
                     <img src="../images/swat.gif" style="display: inline">
                     </div>
-                    <h1>YOU HAVE BEEN REPORTED TO THE POLICE</h1>`);
+                    <h2>YOU HAVE BEEN REPORTED TO THE POLICE</h2>`);
                 window.removeEventListener('beforeunload', prevDef);
                 setInterval(() => {
                     let color = document.querySelector('main').style.backgroundColor;
