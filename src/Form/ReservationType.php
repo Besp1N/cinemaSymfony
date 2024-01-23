@@ -1,11 +1,12 @@
 <?php
 
+// src/Form/ReservationType.php
+
 namespace App\Form;
 
 use App\Entity\Reservation;
 use App\Entity\Screening;
 use App\Entity\Seat;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,13 +14,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ReservationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // anulowany pomysl podczas testow
+        $seatsWithStatus = $options['seatsWithStatus'];
+//        dd($seatsWithStatus);
         $builder
             ->add('seat', EntityType::class, [
                 'class' => Seat::class,
-                'choice_label' => 'id',
+                'choices' => $seatsWithStatus,
+
+
             ]);
     }
 
@@ -27,6 +31,7 @@ class ReservationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Reservation::class,
+            'seatsWithStatus' => null
         ]);
     }
 }
