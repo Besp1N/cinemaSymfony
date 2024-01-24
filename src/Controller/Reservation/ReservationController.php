@@ -68,7 +68,16 @@ class ReservationController extends AbstractController
             $userReservations = $reservationRepository->countUserReservationsByGenre($user->getId(), $genre);
             $userReservationsCount = count($userReservations);
 
+            // na pozniej - wywalic cialo if do funkcji bo burder bedzie albo zamienic if na switch
             if ($genre == "Drama" and $userReservationsCount == 2) {
+                $achievement = $achievementsRepository->findOneBy(['genre' => $genre]);
+                $userAchievement = new UserAchievements();
+                $userAchievement->setUser($user);
+                $userAchievement->setAchievement($achievement);
+                $entityManager->persist($userAchievement);
+                $entityManager->flush();
+            }
+            else if ($genre = "Science Fiction" and $userReservations = 2) {
                 $achievement = $achievementsRepository->findOneBy(['genre' => $genre]);
                 $userAchievement = new UserAchievements();
                 $userAchievement->setUser($user);
