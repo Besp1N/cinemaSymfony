@@ -50,24 +50,28 @@ export default class Slider {
         });
     }
     #createLastSlide() {
-        const lastSlide = document.createElement('div');
+        const lastSlide = document.createElement('a');
         lastSlide.style.position = 'absolute';
         lastSlide.style.right = 0;
         lastSlide.style.top = '20%';
-
-        lastSlide.innerHTML = `<a href="#tosomesection">
-                <div class="container hidden-mobile" style="max-width: 400px; background: none">
-                <h2 >That's not all</h2>
-                <h2>We are sure your movie is somewhere nearby. Feel free to search!</h2>
-                <div style="display: flex; justify-content: center">
-                <i class="fa-solid fa-circle-chevron-down fa-xl" style="margin-bottom: 2rem"></i>
-                </div>
-
-                </div>
-                                </a>`
+        lastSlide.href = "#section-2"
+        lastSlide.innerHTML =
+               `<div class="container hidden-mobile" style="max-width: 400px; background: none">
+                        <h2 >That's not all</h2>
+                        <h2>We are sure your movie is somewhere nearby. Feel free to search!</h2>
+                    <div style="display: flex; justify-content: center">
+                        <i class="fa-solid fa-circle-chevron-down fa-xl" style="margin-bottom: 2rem"></i>
+                    </div>
+                </div>`
         this.#parent.appendChild(lastSlide);
         this.#slides.push(lastSlide)
         this.#lastSlide = lastSlide;
+        this.#lastSlide.addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById("section-2")
+                .scrollIntoView({behavior: "smooth"})
+        });
+
     }
 
     /**

@@ -20,10 +20,11 @@
             <p><strong>Duration: </strong>{{ movie.duration | date('H:m')}}</p>
             <p><strong>Director: </strong>{{ movie.director }}</p>
             <p><strong>Rating: </strong> {{ movie.rating }} / 5</p>
-            <div class="movie-description glass">
+            <a href="#section-advanced-screenings" class="movie-goto-book">Book a ticket right now!</a>
+
+            <div class="movie-description profile-bio">
                 <p>{{ movie.description }}</p>
             </div>
-            <a href="#section-advanced-screenings" class="movie-goto-book">Book a ticket right now!</a>
         </div>
     </div>
     <hr class="section-divider">
@@ -43,6 +44,7 @@
         <ul id="screenings">
             <h2>Pick your location and book a ticket right now!</h2>
         </ul>
+    <hr>
     <hr class="section-divider">
     <div id="section-advanced-screenings" style="margin-bottom: 10rem;">
         <h1 style="margin-left: 1rem">Select your place and time</h1>
@@ -66,7 +68,7 @@
         <ul id="advanced-results">
 
         </ul>
-
+        <hr>
     </div>
 {% endblock %}
 

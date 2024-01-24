@@ -61,20 +61,18 @@ h2 {
     margin: 1em;
 }
 footer {
-    font-size: 1.5rem;
     text-align: center;
     padding: 1rem;
-    position: absolute; /* Position the footer absolutely within its parent */
-    bottom: 0; /* Align it to the bottom */
-    left: 0;
     width: 100%; /* Ensures the footer stretches across the full width of its parent */
     margin-bottom: 0;
 }
+
 
 body {
     background: var(--background-color);
     color: var(--text-color);
     min-height: 100vh;
+    overflow: auto;
 }
 a, a:hover, a:checked {
   color: var(--text-color);
@@ -163,7 +161,7 @@ a, a:hover, a:checked {
 #map {
     height: min(50vh, 600px);
     width: min(90%, 700px);
-    margin: auto;
+    margin: 1rem;
     border: 2px solid blueviolet;
     border-radius: 5px;
 
@@ -643,20 +641,24 @@ a, a:hover, a:checked {
     flex-direction: column;
     font-size: 1.2rem;
     margin: 0 1rem 1rem 1rem;
-    line-height: 3rem;
+}
+.movie-details p {
+    margin-bottom: 1rem;
 }
 .movie-description {
     grid-column: span 2;
-    width: 90%;
-    margin: 1rem auto;
+    /*width: 90%;*/
+    margin: 1rem auto 1rem auto;
+    font-size:1rem;
 }
 .movie-goto-book {
     border-radius: 2px;
     box-shadow: 0 0 15px gold;
     text-align: center;
     text-shadow: 1px 1px gray ;
-    width: 90%;
-    margin: auto auto;
+    padding: 1.5rem;
+    height: 5rem;
+    margin: 1rem auto;
     color: white;
     background: var(--gold-gradient);
     background-size: 400% 400%; /* Enlarge background size to create the shimmer effect */
@@ -715,11 +717,16 @@ a, a:hover, a:checked {
     }
 }
 .dropdown {
-    margin-right: 1%;
     margin-bottom: 1rem;
     border: 1px solid var(--container-secondary);
     background-color: var(--container-secondary);
-    color: var(--text-color)
+    color: var(--text-color);
+    white-space: normal;
+}
+@media screen and (max-width: 700px){
+    .dropdown {
+        width: 100%; /* Make the dropdown take the full width, adjust as needed */
+    }
 }
 #selectCinema {
     display: flex;
@@ -732,7 +739,7 @@ a, a:hover, a:checked {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translate(50px ,-30px);
+    transform: translateY(300px);
     transition: transform 0.3s ease-in-out, opacity 0.7s ease;
     width: clamp(140px ,15%, 275px);
     opacity: 0;

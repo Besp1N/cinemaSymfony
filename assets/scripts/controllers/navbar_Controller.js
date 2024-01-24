@@ -11,8 +11,16 @@ export default function() {
     const settingsSelect = document.getElementById('navbar-settings');
     const searchBox = document.querySelector('input.navbar-search');
     const searchResults = document.querySelector('.search-results');
-    genreSelect.value = genreSelect.firstElementChild.value
-
+    const links = document.querySelector('.navbar-links');
+    genreSelect.value = genreSelect.firstElementChild.value;
+    const hideOnClick = function (e) {
+        if (!e.target.closest('.navbar')) {
+            [...links.children].forEach(child => {
+                if (!child.classList.contains('always-visible')) child.classList.remove('active')
+            });
+            document.removeEventListener('click', hideOnClick);
+        }
+    }
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         state.theme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
@@ -21,10 +29,10 @@ export default function() {
 
 
     document.querySelector('.navbar-toggle').addEventListener('click', function () {
-        const links = document.querySelector('.navbar-links');
         [...links.children].forEach(child => {
             if (!child.classList.contains('always-visible')) child.classList.toggle('active')
-        })
+        });
+        document.addEventListener('click', hideOnClick);
     });
 
     genreSelect.addEventListener('change', () => {
@@ -54,7 +62,6 @@ export default function() {
         setTimeout(() => searchResults.classList.add('hidden'), 150);
     })
 
-    // chuj dupa cipa szukalem kurwa tej scierzki /search/query z 2 godziny
     document.querySelector('#search-form').addEventListener('submit', e => {
         e.preventDefault();
         const query = document.querySelector('.navbar-search').value;

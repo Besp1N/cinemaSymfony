@@ -34,11 +34,11 @@
     <hr class="section-divider">
         <nav class="tab-navigation">
             <ul class="tab-list">
-                <li class="tab-item tab-item--selected" data-target="#reviews">Reviews</li>
-                <li class="tab-item" data-target="#favorites">Favorites</li>
+                <a href="#reviews" class="tab-item tab-item--selected" data-target="#reviews">Reviews</a>
+                <a href="#favorites" class="tab-item" data-target="#favorites">Favorites</a>
                 {% if app.user == user %}
-                <li class="tab-item" data-target="#bookings">Bookings</li>
-                <li class="tab-item" data-target="#rated">Rated</li>
+                <a href="#bookings" class="tab-item" data-target="#bookings">Bookings</a>
+                <a href="#rated" class="tab-item" data-target="#rated">Rated</a>
                 {% endif %}
             </ul>
         </nav>
