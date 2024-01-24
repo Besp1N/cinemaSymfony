@@ -52,10 +52,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserAchievements::class)]
     private Collection $userAchievements;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Rates::class)]
+    private Collection $rates;
+
+
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
         $this->userAchievements = new ArrayCollection();
+        $this->rates = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -251,6 +257,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Rates>
+     */
+    public function getRates(): Collection
+    {
+        return $this->rates;
+    }
+
+    public function addRate(Rates $rate): static
+    {
+        if (!$this->rates->contains($rate)) {
+            $this->rates->add($rate);
+            $rate->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRate(Rates $rate): static
+    {
+        if ($this->rates->removeElement($rate)) {
+            // set the owning side to null (unless already changed)
+            if ($rate->getUser() === $this) {
+                $rate->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 
 
 }

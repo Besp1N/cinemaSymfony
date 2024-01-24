@@ -7,6 +7,7 @@ use App\Entity\Movie;
 use App\Form\MovieType;
 use App\Repository\CinemaRepository;
 use App\Repository\MovieRepository;
+use App\Repository\RatesRepository;
 use App\Repository\ScreeningRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,31 +31,16 @@ class HomeController extends AbstractController
     }
 
     #[Route('/{movie}', name: 'app_home_movie')]
-    public function showMovie(Movie $movie, ScreeningRepository $screeningRepository, CinemaRepository $cinemaRepository, MovieRepository $movieRepository): Response
+    public function showMovie(Movie $movie, RatesRepository $ratesRepository, ScreeningRepository $screeningRepository, CinemaRepository $cinemaRepository, MovieRepository $movieRepository): Response
     {
+        $rates = $ratesRepository->findBy(['movie' => $movie]);
+
         return $this->render('home/movie.html.twig', [
             "movie" => $movie,
             "cinemas" => $cinemaRepository->findAll(),
         ]);
     }
 
-    #[Route('/add_movie', name: 'app_home_movie_add', priority: 2)]
-    public function addMovie(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(MovieType::class, new Movie());
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $movie = $form->getData();
-            $entityManager->persist($movie);
-            $entityManager->flush();
-            return $this->redirectToRoute('app_home');
-        }
-
-        return $this->render('home/add.html.twig', [
-            "form" => $form
-        ]);
-    }
     #[Route('/genre/{genre}', name: 'app_home_show')]
     public function showResults(String $genre, MovieRepository $movieRepository): Response {
         $movies = $movieRepository->findBy(["genre" => $genre]);

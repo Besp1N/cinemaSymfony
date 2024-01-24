@@ -9,7 +9,18 @@
     <div class="movie-page">
         <div class="movie-image">
             <img src="{{ asset(movie.image) }}" alt="Poster">
-            {{ include('components/_stars.html.twig') }}
+{#            {{ include('components/_stars.html.twig') }}#}
+            {% if app.user %}
+                <div class="rating">
+
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 5}) }}" class="star" id="star-5" value="5"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 4}) }}" class="star" id="star-4" value="4"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 3}) }}" class="star" id="star-3" value="3"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 2}) }}" class="star" id="star-2" value="2"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 1}) }}" class="star" id="star-1" value="1"></a>
+
+                </div>
+            {% endif %}
         </div>
         <div class="movie-details">
             <h2 class="movie-title">

@@ -1,10 +1,11 @@
 {% if app.user %}
 <div class="rating">
-    <!-- 5 stars, each with an anchor -->
-    <a href="/rate/{{ movie.id }}/5" class="star {% if app.user.ratings.movie == 5 %}active{% endif %}" id="star-5" data-value="5"></a>
-    <a href="/rate/{{ movie.id }}/4" class="star {% if app.user.ratings.movie == 4 %}active{% endif %}" id="star-4" data-value="4"></a>
-    <a href="/rate/{{ movie.id }}/3" class="star {% if app.user.ratings.movie == 3 %}active{% endif %}" id="star-3" data-value="3"></a>
-    <a href="/rate/{{ movie.id }}/2" class="star {% if app.user.ratings.movie == 2 %}active{% endif %}" id="star-2" data-value="2"></a>
-    <a href="/rate/{{ movie.id }}/1" class="star {% if app.user.ratings.movie == 1 %}active{% endif %}" id="star-1" data-value="1"></a>
+    <form action="{{ path('app_rate', {'movie': movie.id}) }}">
+        <a href="/rate" class="star" id="star-5" value="5"></a>
+        <a href="/rate" class="star" id="star-4" value="4"></a>
+        <a href="/rate" class="star" id="star-3" value="3"></a>
+        <a href="/rate" class="star" id="star-2" value="2"></a>
+        <a href="/rate" class="star" id="star-1" value="1"></a>
+    </form>
 </div>
 {% endif %}
