@@ -73,7 +73,6 @@ class ReservationController extends AbstractController
                 $userAchievement = new UserAchievements();
                 $userAchievement->setUser($user);
                 $userAchievement->setAchievement($achievement);
-
                 $entityManager->persist($userAchievement);
                 $entityManager->flush();
             }

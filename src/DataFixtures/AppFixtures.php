@@ -383,8 +383,8 @@ class AppFixtures extends Fixture
 
         $achievement1 = new Achievements();
         $achievement1->setName("True Jedi");
-        $achievement1->setDescription("Watch 5 sci fi movies");
-        $achievement1->setGenre("Sci Fi");
+        $achievement1->setDescription("Watch 2 sci fi movies");
+        $achievement1->setGenre("Science Fiction");
         $achievement1->setPathToSvg("test/test");
 
         $achievement2 = new Achievements();

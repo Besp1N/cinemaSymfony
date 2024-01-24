@@ -24,10 +24,7 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
-    /**
-     * @throws NonUniqueResultException
-     * @throws NoResultException
-     */
+
     public function countUserReservationsByGenre(int $userId, string $genre): array
     {
         return $this->createQueryBuilder('r')
