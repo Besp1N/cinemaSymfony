@@ -77,7 +77,7 @@ class ReservationController extends AbstractController
                 $entityManager->persist($userAchievement);
                 $entityManager->flush();
             }
-            else if ($genre = "Science Fiction" and $userReservationsCount = 2) {
+            elseif ($genre = "Science Fiction" and $userReservationsCount == 2) {
                 $achievement = $achievementsRepository->findOneBy(['genre' => $genre]);
                 $userAchievement = new UserAchievements();
                 $userAchievement->setUser($user);
