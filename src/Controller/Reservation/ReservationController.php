@@ -4,10 +4,14 @@ namespace App\Controller\Reservation;
 
 use App\Entity\Reservation;
 use App\Entity\Screening;
+use App\Entity\UserAchievements;
 use App\Form\ReservationType;
+use App\Repository\AchievementsRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\SeatRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use \Symfony\Component\HttpFoundation\Request;
@@ -18,9 +22,13 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ReservationController extends AbstractController
 {
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
     #[Route('/reservation/{screening}', name: 'app_reservation', priority: 7)]
     #[IsGranted('ROLE_USER')]
-    public function index(Request $request , Screening $screening, SeatRepository $seatRepository, ReservationRepository $reservationRepository, EntityManagerInterface $entityManager): Response
+    public function index(Request $request , Screening $screening, SeatRepository $seatRepository, ReservationRepository $reservationRepository, AchievementsRepository $achievementsRepository ,EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         $movieTheaterId = $screening->getMovieTheater()->getId();
@@ -55,6 +63,21 @@ class ReservationController extends AbstractController
             $reservation->setScreening($screening);
             $entityManager->persist($reservation);
             $entityManager->flush();
+
+            $genre = $screening->getMovie()->getGenre();
+            $userReservations = $reservationRepository->countUserReservationsByGenre($user->getId(), $genre);
+            $userReservationsCount = count($userReservations);
+
+            if ($genre == "Drama" and $userReservationsCount == 2) {
+                $achievement = $achievementsRepository->findOneBy(['genre' => $genre]);
+                $userAchievement = new UserAchievements();
+                $userAchievement->setUser($user);
+                $userAchievement->setAchievement($achievement);
+
+                $entityManager->persist($userAchievement);
+                $entityManager->flush();
+            }
+
 
             $this->addFlash('success', 'zrobiles rezerwacje!');
             return $this->redirect($this->generateUrl('app_user', [

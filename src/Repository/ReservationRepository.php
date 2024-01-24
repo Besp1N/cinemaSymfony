@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Reservation;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +22,23 @@ class ReservationRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Reservation::class);
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function countUserReservationsByGenre(int $userId, string $genre): array
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.screening', 's')
+            ->join('s.movie', 'm')
+            ->where('r.user = :user')
+            ->andWhere('m.genre = :genre')
+            ->setParameter('user', $userId)
+            ->setParameter('genre', $genre)
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**
