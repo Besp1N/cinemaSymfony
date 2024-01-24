@@ -28,6 +28,18 @@
                 <div class="user-info">Last name: {{ user.lastname }}</div>
                 <div class="user-info">Email: {{ user.email }}</div>
                 <div class="user-info">Created At: {{ user.createdat | date("M d, Y") }}</div>
+                <div class="user-info">
+                    <div class="user-info">Achievements:</div>
+                    {% if achievements is not empty %}
+                        <ul>
+                            {% for userAchievement in achievements %}
+                                <li>{{ userAchievement.achievement.name }} - {{ userAchievement.achievement.description }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No achievements yet.</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

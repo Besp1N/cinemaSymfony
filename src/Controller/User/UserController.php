@@ -20,7 +20,8 @@ class UserController extends AbstractController
     {
         return $this->render('user/index.html.twig', [
             'user' => $user,
-            'reservations' => $user->getReservations()
+            'reservations' => $user->getReservations(),
+            'achievements' => $user->getUserAchievements()
         ]);
     }
 
