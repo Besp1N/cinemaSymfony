@@ -30,7 +30,6 @@ async function importModules() {
     if (new RegExp('^/\\d').test(path)) {
         await Promise.all([
             import('./scripts/views/screeningsView.js'),
-            import('./scripts/modules/starsHandler.js'),
         ]);
 
     }

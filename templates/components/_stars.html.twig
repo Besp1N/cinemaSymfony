@@ -1,20 +1,10 @@
+{% if app.user %}
 <div class="rating">
-    <!-- 5 stars, each with a full and half input -->
-    <!-- Star 1 -->
-
-    <input type="radio" name="rating" id="star-1-full" value="1">
-    <label for="star-1-full" class="full"></label>
-
-    <input type="radio" name="rating" id="star-2-full" value="2">
-    <label for="star-2-full" class="full"></label>
-
-    <input type="radio" name="rating" id="star-3-full" value="3">
-    <label for="star-3-full" class="full"></label>
-
-    <input type="radio" name="rating" id="star-4-full" value="4">
-    <label for="star-4-full" class="full"></label>
-
-
-    <input type="radio" name="rating" id="star-5-full" value="5">
-    <label for="star-5-full" class="full"></label>
+    <!-- 5 stars, each with an anchor -->
+    <a href="/rate/{{ movie.id }}/5" class="star {% if app.user.ratings.movie == 5 %}active{% endif %}" id="star-5" data-value="5"></a>
+    <a href="/rate/{{ movie.id }}/4" class="star {% if app.user.ratings.movie == 4 %}active{% endif %}" id="star-4" data-value="4"></a>
+    <a href="/rate/{{ movie.id }}/3" class="star {% if app.user.ratings.movie == 3 %}active{% endif %}" id="star-3" data-value="3"></a>
+    <a href="/rate/{{ movie.id }}/2" class="star {% if app.user.ratings.movie == 2 %}active{% endif %}" id="star-2" data-value="2"></a>
+    <a href="/rate/{{ movie.id }}/1" class="star {% if app.user.ratings.movie == 1 %}active{% endif %}" id="star-1" data-value="1"></a>
 </div>
+{% endif %}

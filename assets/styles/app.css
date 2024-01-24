@@ -219,11 +219,6 @@ a, a:hover, a:checked {
     z-index: 500; /* Ensures navbar is above other content */
     padding: 0.5rem;
 }
-
-.navbar-logo {
-    font-size: 1.5rem;
-}
-
 .navbar-links {
     display: flex;
 }
@@ -993,35 +988,41 @@ a, a:hover, a:checked {
     }
 }
 
-/* STARS  */
-/* Hide radio buttons */
-.rating input {
-    display: none;
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl; /* For right-to-left display */
 }
 
-/* General style for stars */
-.rating label {
+.rating .star {
     float: right; /* Arrange stars from right to left */
     width: 1em; /* Size of stars */
     cursor: pointer;
     font-size: 3rem; /* Star size */
+    text-decoration: none; /* Remove underline from links */
 }
 
-/* Half star styling using pseudo-elements */
-.rating label.half:before {
+/* Default state with empty star */
+.rating .star::before {
     content: '☆'; /* Unicode for empty star */
+    color: black; /* Default star color */
 }
 
-.rating label.full:before {
+/* Hover and focus styles */
+.rating .star:hover::before,
+.rating .star:hover ~ .star::before,
+.rating .star:focus::before,
+.rating .star:focus ~ .star::before {
     content: '★'; /* Unicode for full star */
+    color: gold; /* Color of star when hovered or focused */
 }
 
-/* Style when hovered or checked */
-.rating label:hover:before,
-.rating label:hover ~ label:before,
-.rating input:checked ~ label:before {
+
+/* Active style (when a star is selected) */
+.rating .star.active::before,
+.rating .star.active ~ .star::before {
+    color: gold; /* Color of active star */
     content: '★'; /* Unicode for full star */
-    color: gold; /* Color of star */
 }
 
 .form-text-area {
