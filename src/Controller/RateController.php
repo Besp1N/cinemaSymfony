@@ -16,7 +16,9 @@ class RateController extends AbstractController
     public function index(Request $request, Movie $movie, int $rating, EntityManagerInterface $entityManager): RedirectResponse
     {
         $referer = $request->headers->get('referer');
-        $expectedReferer = $this->generateUrl('app_home_movie', ['movie' => $movie->getId()], true);
+        $expectedReferer = $this->generateUrl('app_home_movie',
+            ['movie' => $movie->getId()],
+            true);
         if ($referer !== $expectedReferer) {
             throw $this->createAccessDeniedException('Invalid referer');
         }

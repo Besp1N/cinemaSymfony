@@ -34,10 +34,10 @@ class HomeController extends AbstractController
     public function showMovie(Movie $movie, RatesRepository $ratesRepository, ScreeningRepository $screeningRepository, CinemaRepository $cinemaRepository, MovieRepository $movieRepository): Response
     {
         $rates = $ratesRepository->findBy(['movie' => $movie]);
-
         return $this->render('home/movie.html.twig', [
             "movie" => $movie,
             "cinemas" => $cinemaRepository->findAll(),
+            "rating" => $rates[0] ?? ['rate' => 0, 'movie' => $movie]
         ]);
     }
 

@@ -81,7 +81,9 @@
 
             </div>
             <div class="tab-content" id="rated">
-
+                {% for rating in user.rates %}
+                    {{ rating.movie.title }}
+                {% endfor %}
             </div>
         </div>
         <hr class="section-divider">

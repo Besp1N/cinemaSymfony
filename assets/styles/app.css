@@ -1004,8 +1004,8 @@ a, a:hover, a:checked {
 
 /* Default state with empty star */
 .rating .star::before {
-    content: '☆'; /* Unicode for empty star */
-    color: black; /* Default star color */
+    content: '★'; /* Unicode for empty star */
+    color: white; /* Default star color */
 }
 
 /* Hover and focus styles */
