@@ -1079,3 +1079,7 @@ a, a:hover, a:checked {
     box-shadow: 0 0 10px var(--glow);
     grid-column: 2 / -1;
 }
+
+.disable {
+    pointer-events: none;
+}

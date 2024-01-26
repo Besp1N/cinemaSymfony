@@ -36,6 +36,16 @@ class HomeController extends AbstractController
         $rates = $ratesRepository->findBy(['movie' => $movie]);
         $allRates = 0;
         $ratesCount = count($rates);
+        $user = $this->getUser();
+        $isAllowed = true;
+
+        foreach ($rates as $rate) {
+            if ($rate->getUser() === $user) {
+                $isAllowed = false;
+                break;
+            }
+        }
+
 
         if ($ratesCount != 0) {
             foreach ($rates as $rate) {
@@ -43,7 +53,7 @@ class HomeController extends AbstractController
             }
             $avgRate = round($allRates / $ratesCount);
         } else {
-            $avgRate = 1;
+            $avgRate = 0;
         }
 
         $movie->setRating($avgRate);
@@ -51,7 +61,8 @@ class HomeController extends AbstractController
         return $this->render('home/movie.html.twig', [
             "movie" => $movie,
             "cinemas" => $cinemaRepository->findAll(),
-            "rating" => (int)$avgRate
+            "rating" => (int)$avgRate,
+            'isAllowed' => $isAllowed
         ]);
     }
 

@@ -12,11 +12,11 @@
 {#            {{ include('components/_stars.html.twig') }}#}
             {% if app.user %}
                 <div class="rating">
-                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 5}) }}" class="star {% if rating == 5 %}active{% endif %}" id="star-5" value="5"></a>
-                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 4}) }}" class="star {% if rating == 4 %}active{% endif %}" id="star-4" value="4"></a>
-                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 3}) }}" class="star {% if rating == 3 %}active{% endif %}" id="star-3" value="3"></a>
-                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 2}) }}" class="star {% if rating == 2 %}active{% endif %}" id="star-2" value="2"></a>
-                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 1}) }}" class="star {% if rating == 1 %}active{% endif %}" id="star-1" value="1"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 5}) }}" class="star {% if rating == 5 %}active{% endif %} {% if not isAllowed %}disable"{% endif%} id="star-5" value="5"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 4}) }}" class="star {% if rating == 4 %}active{% endif %} {% if not isAllowed %}disable"{% endif%}" id="star-4" value="4"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 3}) }}" class="star {% if rating == 3 %}active{% endif %} {% if not isAllowed %}disable"{% endif%}" id="star-3" value="3"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 2}) }}" class="star {% if rating == 2 %}active{% endif %} {% if not isAllowed %}disable"{% endif%}" id="star-2" value="2"></a>
+                    <a href="{{ path('app_rate', {'movie': movie.id, 'rating': 1}) }}" class="star {% if rating == 1 %}active{% endif %} {% if not isAllowed %}disable"{% endif%}" id="star-1" value="1"></a>
                 </div>
             {% endif %}
         </div>
