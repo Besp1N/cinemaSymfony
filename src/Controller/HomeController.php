@@ -34,10 +34,24 @@ class HomeController extends AbstractController
     public function showMovie(Movie $movie, RatesRepository $ratesRepository, ScreeningRepository $screeningRepository, CinemaRepository $cinemaRepository, MovieRepository $movieRepository): Response
     {
         $rates = $ratesRepository->findBy(['movie' => $movie]);
+        $allRates = 0;
+        $ratesCount = count($rates);
+
+        if ($ratesCount != 0) {
+            foreach ($rates as $rate) {
+                $allRates += ($rate->getRate());
+            }
+            $avgRate = round($allRates / $ratesCount);
+        } else {
+            $avgRate = 1;
+        }
+
+        $movie->setRating($avgRate);
+
         return $this->render('home/movie.html.twig', [
             "movie" => $movie,
             "cinemas" => $cinemaRepository->findAll(),
-            "rating" => $rates[0] ?? ['rate' => 0, 'movie' => $movie]
+            "rating" => (int)$avgRate
         ]);
     }
 

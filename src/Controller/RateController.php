@@ -15,14 +15,6 @@ class RateController extends AbstractController
     #[Route('/rate/{movie}/{rating}', name: 'app_rate', priority: 10)]
     public function index(Request $request, Movie $movie, int $rating, EntityManagerInterface $entityManager): RedirectResponse
     {
-        $referer = $request->headers->get('referer');
-        $expectedReferer = $this->generateUrl('app_home_movie',
-            ['movie' => $movie->getId()],
-            true);
-        if ($referer !== $expectedReferer) {
-            throw $this->createAccessDeniedException('Invalid referer');
-        }
-
         $user = $this->getUser();
         $rate = new Rates();
         $rate->setRate((int)$rating);
