@@ -393,6 +393,12 @@ class AppFixtures extends Fixture
         $achievement2->setGenre("Drama");
         $achievement2->setPathToSvg("test/test2");
 
+        $achievement3 = new Achievements();
+        $achievement3->setName("WOW");
+        $achievement3->setDescription("Watch 2 Crime movies");
+        $achievement3->setGenre("Crime");
+        $achievement3->setPathToSvg("test/test3");
+
 
 
         // Blagam zeby to dzialalo <3
@@ -408,6 +414,7 @@ class AppFixtures extends Fixture
 
         $manager->persist($achievement1);
         $manager->persist($achievement2);
+        $manager->persist($achievement3);
 
         $manager->persist($cinema1);
         $manager->persist($cinema2);

@@ -1,0 +1,7 @@
+achievements:
+  - genre: Drama
+    required_reservations: 2
+  - genre: Science Fiction
+    required_reservations: 2
+  - genre: Crime
+    required_reservation: 2
