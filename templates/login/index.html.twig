@@ -3,12 +3,14 @@
 {% block body %}
 
    <h1>Login</h1>
-    {{ error }}
 
     {% for flashMessage in app.flashes('success') %}
             <div class="alert-success">{{ flashMessage }}</div>
     {% endfor %}
+    {% if error %}
+        <div class="container-simple-movie container" style="background: red"> {{ error}}</div>
 
+    {% endif %}
     <form action="{{ path('app_login') }}" method="POST">
         <div class="flex-form">
             <div class="form-row">

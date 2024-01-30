@@ -13,11 +13,10 @@ class LoginController extends AbstractController
     #[Route('/login', name: 'app_login', priority: 3)]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
-
-        //ten error to dla mnie do debuga tylko
         $error = $authenticationUtils->getLastAuthenticationError();
+        if ($error) $error = $error->getMessage();
         return $this->render('login/index.html.twig', [
-            'error' => $error
+            'error' => $error,
         ]);
     }
 
