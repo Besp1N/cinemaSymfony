@@ -82,7 +82,9 @@
             </div>
             <div class="tab-content" id="rated">
                 {% for rating in user.rates %}
-                    {{ rating.movie.title }}
+                    <div class="container-simple-movie">
+                        {{ rating.movie.title }} - {{ rating.rate }}
+                    </div>
                 {% endfor %}
             </div>
         </div>

@@ -46,7 +46,6 @@ class HomeController extends AbstractController
             }
         }
 
-
         if ($ratesCount != 0) {
             foreach ($rates as $rate) {
                 $allRates += ($rate->getRate());
