@@ -2,20 +2,16 @@
 
 namespace App\Controller\Reservation;
 
-use App\Controller\Services\AchievementsService;
+
 use App\Controller\Services\ReservationAndAchievementService;
-use App\Controller\Services\ReservationService;
-use App\Controller\Services\SeatStatusService;
-use App\Entity\Reservation;
+
 use App\Entity\Screening;
+use App\Entity\User;
 use App\Repository\AchievementsRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\SeatRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use \Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,8 +42,6 @@ class ReservationController extends AbstractController
             $seatRepository,
             $entityManager);
 
-        $user = $this->getUser();
-
         /*
          * Those two arrays are passed to checkSeatStatus by reference.
          * Because of reference it's automatically set up
@@ -58,12 +52,15 @@ class ReservationController extends AbstractController
 
         /*
          * Post request means that someone has submitted the reservation form
-         * if condition is true it make reservations ach check achievements
+         * if condition is true it makes reservation and checks achievement,
          * at last it redirects to user profile - bookings section
          */
+
+        $user = $this->getUser();
+
         if ($request->isMethod('POST') and
             $this->isCsrfTokenValid('reservation', $request->request->get('_token')) and
-            $user instanceof \App\Entity\User) {
+            $user instanceof User) {
 
             $selectedSeatId = $request->request->get('selectedSeat');
             $reservationAndAchievementService->makeReservation($user, $selectedSeatId, $screening);
