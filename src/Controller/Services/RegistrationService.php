@@ -5,10 +5,10 @@ namespace App\Controller\Services;
 use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class RegistrationService extends AbstractController
@@ -52,7 +52,7 @@ class RegistrationService extends AbstractController
                 $user->setProfilePicture('images/nouser.jpg');
             }
         } else {
-                $user->setProfilePicture('images/nouser.jpg');
+            $user->setProfilePicture('images/nouser.jpg');
         }
 
         // saving an User in database and hash password

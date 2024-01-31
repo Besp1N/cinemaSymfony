@@ -4,15 +4,14 @@ namespace App\Controller\Reservation;
 
 
 use App\Controller\Services\ReservationAndAchievementService;
-
 use App\Entity\Screening;
 use App\Entity\User;
 use App\Repository\AchievementsRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\SeatRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;

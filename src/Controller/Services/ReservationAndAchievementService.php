@@ -3,11 +3,11 @@
 namespace App\Controller\Services;
 
 use App\Entity\Reservation;
+use App\Entity\Screening;
 use App\Entity\User;
+use App\Entity\UserAchievements;
 use App\Repository\AchievementsRepository;
 use App\Repository\ReservationRepository;
-use App\Entity\Screening;
-use App\Entity\UserAchievements;
 use App\Repository\SeatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Yaml\Yaml;
