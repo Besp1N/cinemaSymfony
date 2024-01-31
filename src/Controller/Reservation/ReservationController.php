@@ -26,17 +26,45 @@ class ReservationController extends AbstractController
 {
     #[Route('/reservation/{screening}', name: 'app_reservation', priority: 7)]
     #[IsGranted('ROLE_USER')]
-    public function index(Request $request , Screening $screening, SeatRepository $seatRepository, ReservationRepository $reservationRepository, AchievementsRepository $achievementsRepository ,EntityManagerInterface $entityManager): Response
-    {
-        $reservationAndAchievementService = new ReservationAndAchievementService($reservationRepository, $achievementsRepository, $seatRepository, $entityManager);
+    public function index(
+        Request $request,
+        Screening $screening,
+        SeatRepository $seatRepository,
+        ReservationRepository $reservationRepository,
+        AchievementsRepository $achievementsRepository,
+        EntityManagerInterface $entityManager): Response {
+
+        /*
+         *  Passing data to ReservationAndAchievementService
+         *  ReservationAndAchievementService is responsible for
+         *  adding a new reservation. It sets up $occupiedSeats and
+         *  $seatsWithStatus arrays, which are returned to view
+         */
+        $reservationAndAchievementService = new ReservationAndAchievementService(
+            $reservationRepository,
+            $achievementsRepository,
+            $seatRepository,
+            $entityManager);
+
         $user = $this->getUser();
 
+        /*
+         * Those two arrays are passed to checkSeatStatus by reference.
+         * Because of reference it's automatically set up
+         */
         $occupiedSeats = [];
         $seatsWithStatus = [];
         $reservationAndAchievementService->checkSeatStatus($occupiedSeats, $seatsWithStatus, $screening);
 
-        if ($request->isMethod('POST') and $this->isCsrfTokenValid('reservation', $request->request->get('_token')) and $user instanceof \App\Entity\User)
-        {
+        /*
+         * Post request means that someone has submitted the reservation form
+         * if condition is true it make reservations ach check achievements
+         * at last it redirects to user profile - bookings section
+         */
+        if ($request->isMethod('POST') and
+            $this->isCsrfTokenValid('reservation', $request->request->get('_token')) and
+            $user instanceof \App\Entity\User) {
+
             $selectedSeatId = $request->request->get('selectedSeat');
             $reservationAndAchievementService->makeReservation($user, $selectedSeatId, $screening);
             $reservationAndAchievementService->checkAndGrantAchievement($user, $screening);
@@ -47,6 +75,9 @@ class ReservationController extends AbstractController
                     ]).'#bookings');
         }
 
+        /*
+         * By default this controller returns reservation view.
+         */
         return $this->render('reservation/index.html.twig', [
 
             'seats' => $seatsWithStatus,
