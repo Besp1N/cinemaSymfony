@@ -3,6 +3,7 @@
 namespace App\Controller\Reservation;
 
 use App\Controller\Services\AchievementsService;
+use App\Controller\Services\ReservationAndAchievementService;
 use App\Controller\Services\ReservationService;
 use App\Controller\Services\SeatStatusService;
 use App\Entity\Reservation;
@@ -27,39 +28,23 @@ class ReservationController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function index(Request $request , Screening $screening, SeatRepository $seatRepository, ReservationRepository $reservationRepository, AchievementsRepository $achievementsRepository ,EntityManagerInterface $entityManager): Response
     {
+        $reservationAndAchievementService = new ReservationAndAchievementService($reservationRepository, $achievementsRepository, $seatRepository, $entityManager);
         $user = $this->getUser();
-        $movieTheaterId = $screening->getMovieTheater()->getId();
-        $seats = $seatRepository->findByMovieTheater($movieTheaterId);
-        $reservations = $reservationRepository->findBy(['screening' => $screening]);
 
         $occupiedSeats = [];
         $seatsWithStatus = [];
-        $seatService = new SeatStatusService();
-        $seatService->checkSeatStatus($occupiedSeats, $seatsWithStatus, $reservations, $seats);
+        $reservationAndAchievementService->checkSeatStatus($occupiedSeats, $seatsWithStatus, $screening);
 
-        // function to POST from form reservation. Uses 2 services helpers
-        if ($request->isMethod('POST'))
+        if ($request->isMethod('POST') and $this->isCsrfTokenValid('reservation', $request->request->get('_token')) and $user instanceof \App\Entity\User)
         {
-            $csrfToken = $request->request->get('_token');
-            if (!$this->isCsrfTokenValid('reservation', $csrfToken)) {
-                return new RedirectResponse('/');
-            }
-
             $selectedSeatId = $request->request->get('selectedSeat');
-            $reservation = new ReservationService($seatRepository, $entityManager);
+            $reservationAndAchievementService->makeReservation($user, $selectedSeatId, $screening);
+            $reservationAndAchievementService->checkAndGrantAchievement($user, $screening);
+            $this->addFlash('success', 'zrobiles rezerwacje!');
 
-            if ($user instanceof \App\Entity\User) {
-                $reservation->makeReservation($user, $selectedSeatId, $screening);
-                $achievementsService = new AchievementsService($reservationRepository, $achievementsRepository, $entityManager);
-                $achievementsService->checkAndGrantAchievement($user, $screening);
-                $this->addFlash('success', 'zrobiles rezerwacje!');
-
-                return $this->redirect($this->generateUrl('app_user', [
+            return $this->redirect($this->generateUrl('app_user', [
                         'user' => $user->getId()
                     ]).'#bookings');
-            } else {
-                return new RedirectResponse('/');
-            }
         }
 
         return $this->render('reservation/index.html.twig', [

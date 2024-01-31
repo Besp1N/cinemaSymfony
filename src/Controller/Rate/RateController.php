@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Rate;
 
 use App\Entity\Movie;
 use App\Entity\Rates;

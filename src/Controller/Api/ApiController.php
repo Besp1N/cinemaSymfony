@@ -1,22 +1,18 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
-use App\Entity\Screening;
 use App\Repository\CinemaRepository;
 use App\Repository\MovieRepository;
 use App\Repository\ScreeningRepository;
 use App\Repository\UserRepository;
 use DateTime;
-use DateTimeImmutable;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-use Symfony\Component\Validator\Constraints\Json;
 
 class ApiController extends AbstractController
 {

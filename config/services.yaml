@@ -14,7 +14,7 @@ services:
     App\Controller\NavFragmentController:
         autowire: true
 
-    App\Controller\Services\AchievementsService:
+    App\Controller\Services\ReservationAndAchievementService:
         arguments:
             $achievementConfig: '%kernel.project_dir%/config/achievements.yaml'
 
