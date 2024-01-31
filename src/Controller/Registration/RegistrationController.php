@@ -23,6 +23,10 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        /*
+         * form validation and registrationService->createUser() is making a User
+         * at last we are redirected to app_login path to log into new account
+         */
         if ($form->isSubmitted() && $form->isValid()) {
             $registrationService->createUser($form, $user);
             $this->addFlash('success', 'You have registered your account. Now log in:)');
