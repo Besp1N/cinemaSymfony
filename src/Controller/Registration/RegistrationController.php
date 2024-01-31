@@ -16,16 +16,16 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register', priority: 4)]
-    public function register(RegistrationService $registrationService, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function register(RegistrationService $registrationService, Request $request): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         /*
-         * form validation and registrationService->createUser() is making a User
-         * at last we are redirected to app_login path to log into new account
-         */
+        * form validation and registrationService->createUser() is making a User
+        * at last we are redirected to app_login path to log into new account
+        */
         if ($form->isSubmitted() && $form->isValid()) {
             $registrationService->createUser($form, $user);
             $this->addFlash('success', 'You have registered your account. Now log in:)');
