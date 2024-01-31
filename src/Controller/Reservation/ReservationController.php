@@ -28,19 +28,9 @@ class ReservationController extends AbstractController
         SeatRepository $seatRepository,
         ReservationRepository $reservationRepository,
         AchievementsRepository $achievementsRepository,
-        EntityManagerInterface $entityManager): Response {
+        EntityManagerInterface $entityManager,
+        ReservationAndAchievementService $reservationAndAchievementService): Response {
 
-        /*
-         *  Passing data to ReservationAndAchievementService
-         *  ReservationAndAchievementService is responsible for
-         *  adding a new reservation. It sets up $occupiedSeats and
-         *  $seatsWithStatus arrays, which are returned to view
-         */
-        $reservationAndAchievementService = new ReservationAndAchievementService(
-            $reservationRepository,
-            $achievementsRepository,
-            $seatRepository,
-            $entityManager);
 
         /*
          * Those two arrays are passed to checkSeatStatus by reference.
@@ -61,15 +51,13 @@ class ReservationController extends AbstractController
         if ($request->isMethod('POST') and
             $this->isCsrfTokenValid('reservation', $request->request->get('_token')) and
             $user instanceof User) {
+                $selectedSeatId = $request->request->get('selectedSeat');
+                $reservationAndAchievementService->makeReservation($user, $selectedSeatId, $screening);
+                $reservationAndAchievementService->checkAndGrantAchievement($user, $screening);
+                $this->addFlash('success', 'zrobiles rezerwacje!');
 
-            $selectedSeatId = $request->request->get('selectedSeat');
-            $reservationAndAchievementService->makeReservation($user, $selectedSeatId, $screening);
-            $reservationAndAchievementService->checkAndGrantAchievement($user, $screening);
-            $this->addFlash('success', 'zrobiles rezerwacje!');
-
-            return $this->redirect($this->generateUrl('app_user', [
-                        'user' => $user->getId()
-                    ]).'#bookings');
+                return $this->redirect($this->generateUrl('app_user', [
+                    'user' => $user->getId()]).'#bookings');
         }
 
         /*
