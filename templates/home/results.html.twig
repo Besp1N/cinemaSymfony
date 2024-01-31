@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>{{ headerText }}</h1>
+    <h1>
+        {% if not movies %}
+        No results for {{ query }}
+        {% else %}
+        Results for {{ query }}
+        {% endif %}
+    </h1>
     <div class="container-card-movie">
     {% for movie in movies %}
         {{ include("components/_movie_card.html.twig", {"movie": movie}) }}

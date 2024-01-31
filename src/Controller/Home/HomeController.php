@@ -34,9 +34,9 @@ class HomeController extends AbstractController
     }
 
     #[Route('/genre/{genre}', name: 'app_home_show')]
-    public function showResults(String $genre, MovieRepository $movieRepository): Response {
+    public function showResults(String $genre, MovieRepository $movieRepository): Response
+    {
         $movies = $movieRepository->findBy(["genre" => $genre]);
-
         return $this->render('home/results.html.twig', [
             "movies" => $movies,
             "headerText" => "Results for ".$genre,
@@ -48,20 +48,14 @@ class HomeController extends AbstractController
     public function showSearchResults(Request $request, MovieRepository $movieRepository): Response
     {
         $query = $request->get('q');
-
         if (!$query) {
             return $this->redirectToRoute('app_home');
         }
 
         $movies = $movieRepository->findMovieByTitle($query, 10, 0);
-        if (empty($movies)) {
-            $headerText = 'No results for '. $query;
-        }else {
-            $headerText = 'Results for '. $query;
-        }
         return $this->render('home/results.html.twig', [
            'movies' => $movies,
-           'headerText' => $headerText
+           'query' => $query
         ]);
 
     }
