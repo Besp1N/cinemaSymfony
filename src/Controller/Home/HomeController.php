@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    /*
+     * index function is home view of app
+     * it returns movies to view but with limit to not overload render func
+     */
     #[Route('/', name: 'app_home')]
     public function index(MovieRepository $movieRepository): Response
     {
@@ -22,6 +26,10 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /*
+     * each movie has own path to render only that movie.
+     * showMovie function uses HomeMovieService to make it working better
+     */
     #[Route('/{movie}', name: 'app_home_movie')]
     public function showMovie(
         Movie $movie,
@@ -33,6 +41,10 @@ class HomeController extends AbstractController
             return $this->render('home/movie.html.twig', $result);
     }
 
+    /*
+     * showResults function is for searching movies by genre,
+     * it's finding movies by genre and returns them into view
+     */
     #[Route('/genre/{genre}', name: 'app_home_show')]
     public function showResults(String $genre, MovieRepository $movieRepository): Response
     {
@@ -43,7 +55,13 @@ class HomeController extends AbstractController
         ]);
     }
 
-
+    /*
+     * showSearchResults function is for searching movies by phrase,
+     * f.e typing 'star' into input this function will return all
+     * movies which contains star phrase.
+     * This function also uses JavaScript logic to render movies
+     * before press enter
+     */
     #[Route('/search', name: 'app_home_search', methods: ['GET'], priority: 1)]
     public function showSearchResults(Request $request, MovieRepository $movieRepository): Response
     {

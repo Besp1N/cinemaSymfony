@@ -17,6 +17,9 @@ class HomeMovieService
         $this->cinemaRepository = $cinemaRepository;
     }
 
+    /*
+     * processMovie function return an array with all required data to render view
+     */
     public function processMovie(Movie $movie, $user): array
     {
         $rates = $this->ratesRepository->findBy(['movie' => $movie]);
@@ -24,6 +27,10 @@ class HomeMovieService
         $ratesCount = count($rates);
         $isAllowed = true;
 
+        /*
+         * isAllowed is a flag to check if a user can rate a movie
+         * if user one rated a movie, it can't be rate by that user
+         */
         foreach ($rates as $rate) {
             if ($rate->getUser() === $user) {
                 $isAllowed = false;
@@ -31,6 +38,9 @@ class HomeMovieService
             }
         }
 
+        /*
+         * calculating avg rating, if there's no any rated then rate is 0
+         */
         if ($ratesCount != 0) {
             foreach ($rates as $rate) {
                 $allRates += ($rate->getRate());
@@ -40,6 +50,7 @@ class HomeMovieService
             $avgRate = 0;
         }
 
+        // setting movie rating
         $movie->setRating($avgRate);
 
         return [
