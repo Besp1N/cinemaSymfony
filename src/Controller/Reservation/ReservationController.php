@@ -24,12 +24,8 @@ class ReservationController extends AbstractController
     public function index(
         Request $request,
         Screening $screening,
-        SeatRepository $seatRepository,
-        ReservationRepository $reservationRepository,
-        AchievementsRepository $achievementsRepository,
-        EntityManagerInterface $entityManager,
-        ReservationAndAchievementService $reservationAndAchievementService): Response {
-
+        ReservationAndAchievementService $reservationAndAchievementService
+    ): Response {
 
         /*
          * Those two arrays are passed to checkSeatStatus by reference.
@@ -46,7 +42,6 @@ class ReservationController extends AbstractController
          */
 
         $user = $this->getUser();
-
         if ($request->isMethod('POST') and
             $this->isCsrfTokenValid('reservation', $request->request->get('_token')) and
             $user instanceof User) {

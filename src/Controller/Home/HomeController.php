@@ -33,12 +33,13 @@ class HomeController extends AbstractController
     #[Route('/{movie}', name: 'app_home_movie')]
     public function showMovie(
         Movie $movie,
-        HomeMovieService $homeMovieService): Response {
+        HomeMovieService $homeMovieService
+    ): Response {
 
-            $user = $this->getUser();
-            $result = $homeMovieService->processMovie($movie, $user);
+        $user = $this->getUser();
+        $result = $homeMovieService->processMovie($movie, $user);
 
-            return $this->render('home/movie.html.twig', $result);
+        return $this->render('home/movie.html.twig', $result);
     }
 
     /*

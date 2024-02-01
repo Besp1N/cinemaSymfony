@@ -13,8 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class RateController extends AbstractController
 {
     #[Route('/rate/{movie}/{rating}', name: 'app_rate', priority: 10)]
-    public function index(Request $request, Movie $movie, int $rating, EntityManagerInterface $entityManager): RedirectResponse
-    {
+    public function index(
+        Movie $movie,
+        int $rating,
+        EntityManagerInterface $entityManager
+    ): RedirectResponse {
+
         $user = $this->getUser();
         $rate = new Rates();
         $rate->setRate((int)$rating);

@@ -2,6 +2,7 @@
 
 namespace App\Controller\User;
 
+use App\Controller\Services\UserSettingsService;
 use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,53 +27,23 @@ class UserController extends AbstractController
     }
 
     #[Route('/user/settings', name: 'app_user_settings', priority: 6)]
-    public function userSettings(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
-    {
+    public function userSettings(
+        Request $request,
+        UserSettingsService $userSettingsService
+    ): Response {
+
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() and $form->isValid()) {
-            $profileImageFile = $form->get('profile_picture')->getData();
-            if ($profileImageFile) {
-                $originalFileName = pathinfo($profileImageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFileName);
-                $newFileName = $safeFilename . '-' . uniqid() . '.' . $profileImageFile->guessExtension();
-                try {
-                    $profileImageFile->move(
-                        $this->getParameter('profiles_directory'),
-                        $newFileName
-                    );
-                    $user->setProfilePicture('images/users/' . $newFileName);
+        if ($form->isSubmitted() and $form->isValid() and $user instanceof User) {
 
-                } catch (FileException $e) {
-                    $user->setProfilePicture('images/nouser.jpg');
-                }
-            }
-            else {
-                $user->setProfilePicture('images/nouser.jpg');
-            }
-            $phoneNumber = $form->get('phone_number')->getData();
-            $bio = $form->get('bio')->getData();
-
-            $user->setPhoneNumber($phoneNumber);
-            $user->setBio($bio);
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-
-
-            // narazie bez flash
-            // $this->addFlash('success', 'Your settings have been updated successfully.');
-
+            $userSettingsService->editUser($form, $user);
             return $this->redirectToRoute('app_user', [
                 'user' => $user->getId()
             ]);
         }
-
-
 
         return $this->render('user/userSettings.html.twig', [
            'user' => $user,

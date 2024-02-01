@@ -27,13 +27,13 @@ class ReservationAndAchievementService
         ReservationRepository $reservationRepository,
         AchievementsRepository $achievementsRepository,
         SeatRepository $seatRepository,
-        EntityManagerInterface $entityManager) {
-
-            $this->reservationRepository = $reservationRepository;
-            $this->achievementsRepository = $achievementsRepository;
-            $this->entityManager = $entityManager;
-            $this->seatRepository = $seatRepository;
-            $this->loadAchievementConfig();
+        EntityManagerInterface $entityManager
+    ) {
+        $this->reservationRepository = $reservationRepository;
+        $this->achievementsRepository = $achievementsRepository;
+        $this->entityManager = $entityManager;
+        $this->seatRepository = $seatRepository;
+        $this->loadAchievementConfig();
     }
 
     /*
