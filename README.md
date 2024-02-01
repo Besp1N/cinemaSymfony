@@ -18,4 +18,4 @@
 
 
 
-bla bla bla trzeba se dodac wiecej rzeczy
+
