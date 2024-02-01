@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Achievements;
 use App\Entity\Cinema;
 use App\Entity\Movie;
 use App\Entity\MovieTheater;
@@ -66,6 +67,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Screening', "fas fa-list", Screening::class);
         yield MenuItem::linkToCrud('Reservation', "fas fa-list", Reservation::class);
         yield MenuItem::linkToCrud('users', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Achievements','fas fa-list', Achievements::class);
     }
 
 
