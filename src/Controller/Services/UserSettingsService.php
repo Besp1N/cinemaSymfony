@@ -37,9 +37,7 @@ class UserSettingsService extends AbstractController
                 $user->setProfilePicture('images/nouser.jpg');
             }
         }
-        else {
-            $user->setProfilePicture('images/nouser.jpg');
-        }
+
         $phoneNumber = $form->get('phone_number')->getData();
         $bio = $form->get('bio')->getData();
 
