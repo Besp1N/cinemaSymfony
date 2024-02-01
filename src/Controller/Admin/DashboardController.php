@@ -10,6 +10,7 @@ use App\Entity\Reservation;
 use App\Entity\Screening;
 use App\Entity\Seat;
 use App\Entity\User;
+use App\Entity\UserAchievements;
 use App\Repository\CinemaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -68,6 +69,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Reservation', "fas fa-list", Reservation::class);
         yield MenuItem::linkToCrud('users', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Achievements','fas fa-list', Achievements::class);
+        yield MenuItem::linkToCrud('User Achievements', 'fas fa-list', UserAchievements::class);
     }
 
 
