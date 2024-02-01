@@ -11,9 +11,9 @@
     <a href="https://github.com/Besp1N/cinemaSymfony"><strong>Repository</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Besp1N">Kacper Karabinowski - github.com/a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Klaudiusz Petryk github.com</a>
+    <a href="https://github.com/Besp1N">Kacper Karabinowski - github.com</a>
+  <br />
+    <a href="https://github.com/PendolinoVoyager">Klaudiusz Petryk github.com</a>
   </p>
 </div>
 
