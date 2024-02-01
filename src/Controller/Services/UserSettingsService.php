@@ -19,9 +19,18 @@ class UserSettingsService extends AbstractController
         $this->entityManager = $entityManager;
         $this->slugger = $slugger;
     }
+
+    /*
+     * editUser function uses a form which gets from UserController,
+     * also gets user and checks if user wants to change his
+     * profile image if no, just push to database string values.
+     */
     public function editUser($form, User $user): void
     {
         $profileImageFile = $form->get('profile_picture')->getData();
+        $bio = $form->get('bio')->getData();
+        $phoneNumber = $form->get('phone_number')->getData();
+
         if ($profileImageFile) {
             $originalFileName = pathinfo($profileImageFile->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $this->slugger->slug($originalFileName);
@@ -29,18 +38,12 @@ class UserSettingsService extends AbstractController
             try {
                 $profileImageFile->move(
                     $this->getParameter('profiles_directory'),
-                    $newFileName
-                );
+                    $newFileName);
                 $user->setProfilePicture('images/users/' . $newFileName);
-
             } catch (FileException $e) {
                 $user->setProfilePicture('images/nouser.jpg');
             }
         }
-
-        $phoneNumber = $form->get('phone_number')->getData();
-        $bio = $form->get('bio')->getData();
-
         $user->setPhoneNumber($phoneNumber);
         $user->setBio($bio);
 
