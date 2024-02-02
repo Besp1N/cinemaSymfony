@@ -46,6 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 600)]
     private ?string $bio = null;
 
+    #[ORM\Column]
+    private ?bool $isActive = null;
+
+    #[ORM\Column(length: 500)]
+    private ?string $activationToken = null;
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservation::class, cascade: ["persist"])]
     private Collection $reservations;
 
@@ -125,6 +131,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?string
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): static
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getActivationToken()
+    {
+        return $this->activationToken;
+    }
+
+    public function setActivationToken(string $activationToken)
+    {
+        $this->activationToken = $activationToken;
 
         return $this;
     }
