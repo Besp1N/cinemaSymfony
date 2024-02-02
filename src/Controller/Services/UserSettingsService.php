@@ -6,18 +6,22 @@ namespace App\Controller\Services;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Mime\Part\File;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class UserSettingsService extends AbstractController
 {
     private EntityManagerInterface $entityManager;
     private SluggerInterface $slugger;
+    private Filesystem $filesystem;
 
-    public function __construct(EntityManagerInterface $entityManager, SluggerInterface $slugger)
+    public function __construct(EntityManagerInterface $entityManager, SluggerInterface $slugger, Filesystem $filesystem)
     {
         $this->entityManager = $entityManager;
         $this->slugger = $slugger;
+        $this->filesystem = $filesystem;
     }
 
     /*
@@ -39,6 +43,7 @@ class UserSettingsService extends AbstractController
                 $profileImageFile->move(
                     $this->getParameter('profiles_directory'),
                     $newFileName);
+                $this->filesystem->remove($user->getProfilePicture());
                 $user->setProfilePicture('images/users/' . $newFileName);
             } catch (FileException $e) {
                 $user->setProfilePicture('images/nouser.jpg');
