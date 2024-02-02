@@ -35,6 +35,8 @@ class AppFixtures extends Fixture
         $user1->setCreatedAt(new \DateTimeImmutable());
         $user1->setRoles(['ROLE_USER']);
         $user1->setPhoneNumber('+48 123 456 789');
+        $user1->setIsActive(true);
+        $user1->setActivationToken('chuj');
         $user1->setPassword($this->userPasswordHasher->hashPassword($user1, '12345678'));
 
         $user1Admin = new User();
@@ -46,6 +48,8 @@ class AppFixtures extends Fixture
         $user1Admin->setCreatedAt(new \DateTimeImmutable());
         $user1Admin->setRoles(['ROLE_ADMIN']);
         $user1Admin->setPhoneNumber('+48 123 456 789');
+        $user1Admin->setIsActive(true);
+        $user1Admin->setActivationToken('chuj');
         $user1Admin->setPassword($this->userPasswordHasher->hashPassword($user1Admin, '12345678'));
 
         $user2 = new User();
@@ -57,6 +61,8 @@ class AppFixtures extends Fixture
         $user2->setCreatedAt(new \DateTimeImmutable());
         $user2->setRoles(['ROLE_USER']);
         $user2->setPhoneNumber('+48 987 654 321');
+        $user2->setIsActive(true);
+        $user2->setActivationToken('chuj');
         $user2->setPassword($this->userPasswordHasher->hashPassword($user2, '12345678'));
 
         $user2Admin = new User();
@@ -68,6 +74,8 @@ class AppFixtures extends Fixture
         $user2Admin->setCreatedAt(new \DateTimeImmutable());
         $user2Admin->setRoles(['ROLE_ADMIN']);
         $user2Admin->setPhoneNumber('+48 987 654 321');
+        $user2Admin->setIsActive(true);
+        $user2Admin->setActivationToken('chuj');
         $user2Admin->setPassword($this->userPasswordHasher->hashPassword($user2Admin, '12345678'));
 
         $user3 = new User();
@@ -79,6 +87,8 @@ class AppFixtures extends Fixture
         $user3->setCreatedAt(new \DateTimeImmutable());
         $user3->setRoles(['ROLE_USER']);
         $user3->setPhoneNumber('+48 601 234 567');
+        $user3->setIsActive(true);
+        $user3->setActivationToken('chuj');
         $user3->setPassword($this->userPasswordHasher->hashPassword($user3, '12345678'));
 
         $user4 = new User();
@@ -90,6 +100,8 @@ class AppFixtures extends Fixture
         $user4->setCreatedAt(new \DateTimeImmutable());
         $user4->setRoles(['ROLE_USER']);
         $user4->setPhoneNumber('+48 602 345 678');
+        $user4->setIsActive(true);
+        $user4->setActivationToken('chuj');
         $user4->setPassword($this->userPasswordHasher->hashPassword($user4, '12345678'));
 
         $user5 = new User();
@@ -101,6 +113,8 @@ class AppFixtures extends Fixture
         $user5->setCreatedAt(new \DateTimeImmutable());
         $user5->setRoles(['ROLE_USER']);
         $user5->setPhoneNumber('+48 603 456 789');
+        $user5->setIsActive(true);
+        $user5->setActivationToken('chuj');
         $user5->setPassword($this->userPasswordHasher->hashPassword($user5, '12345678'));
 
         $user6 = new User();
@@ -112,6 +126,8 @@ class AppFixtures extends Fixture
         $user6->setCreatedAt(new \DateTimeImmutable());
         $user6->setRoles(['ROLE_USER']);
         $user6->setPhoneNumber('+48 604 567 890');
+        $user6->setIsActive(true);
+        $user6->setActivationToken('chuj');
         $user6->setPassword($this->userPasswordHasher->hashPassword($user6, '12345678'));
 
         $user7 = new User();
@@ -123,6 +139,8 @@ class AppFixtures extends Fixture
         $user7->setCreatedAt(new \DateTimeImmutable());
         $user7->setRoles(['ROLE_USER']);
         $user7->setPhoneNumber('+48 605 678 901');
+        $user7->setIsActive(true);
+        $user7->setActivationToken('chuj');
         $user7->setPassword($this->userPasswordHasher->hashPassword($user7, '12345678'));
 
         $user8 = new User();
@@ -134,6 +152,8 @@ class AppFixtures extends Fixture
         $user8->setCreatedAt(new \DateTimeImmutable());
         $user8->setRoles(['ROLE_USER']);
         $user8->setPhoneNumber('+48 606 789 012');
+        $user8->setIsActive(true);
+        $user8->setActivationToken('chuj');
         $user8->setPassword($this->userPasswordHasher->hashPassword($user8, '12345678'));
 
 

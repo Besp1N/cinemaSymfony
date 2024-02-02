@@ -47,7 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $bio = null;
 
     #[ORM\Column]
-    private ?bool $isActive = null;
+    private bool $isActive;
 
     #[ORM\Column(length: 500)]
     private ?string $activationToken = null;
@@ -135,7 +135,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIsActive(): ?string
+    public function getIsActive(): bool
     {
         return $this->isActive;
     }
