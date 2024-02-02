@@ -4,5 +4,6 @@
     Dziękujemy za rejestrację w Symfony Cinema. Aby aktywować swoje konto, kliknij poniższy link:
 </p>
 
-<a href="#">{{ token }}</a>
+<a href="{{ app.request.schemeAndHttpHost ~ path('app_mail', {'token': token}) }}">Aktywuj konto</a>
+
 
