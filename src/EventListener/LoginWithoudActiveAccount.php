@@ -35,6 +35,6 @@ class LoginWithoudActiveAccount implements EventSubscriberInterface
             throw new CustomUserMessageAccountStatusException('Your account is not active. Please confirm your email.');
         }
 
-        return new RedirectResponse('/');
+        return new RedirectResponse('/login');
     }
 }

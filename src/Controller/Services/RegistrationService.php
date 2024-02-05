@@ -88,7 +88,7 @@ class RegistrationService extends AbstractController
     {
         $email = (new TemplatedEmail())
             ->from(new Address('cinemasymfony@gmail.com', 'Symfony Cinema'))
-            ->to('cinemasymfony@gmail.com')
+            ->to($user->getEmail())
             ->subject('Aktywacja konta')
             ->htmlTemplate('email/confirmation_email.html.twig')
             ->context([

@@ -40,7 +40,7 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $registrationService->createUser($form, $user);
-            $this->addFlash('success', 'You have registered your account. Now log in:)');
+            $this->addFlash('success', 'You have registered your account. Now confirm your email.');
             return $this->redirectToRoute('app_login');
         }
 

@@ -18,7 +18,6 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
 
     public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
-        // add a custom flash message and redirect to the login page
         $request->getSession()->getFlashBag()->add('note', 'You have to login in order to access this page or confirm email.');
 
         return new RedirectResponse($this->urlGenerator->generate('app_login'));
