@@ -1,15 +1,16 @@
 <?php
 
+
 // src/EventListener/LoginListener.php
 
 namespace App\EventListener;
 
+use App\Exceptions\InactiveUserException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAccountStatusException;
 
 class LoginWithoudActiveAccount implements EventSubscriberInterface
 {
@@ -27,14 +28,12 @@ class LoginWithoudActiveAccount implements EventSubscriberInterface
         ];
     }
 
-    public function onInteractiveLogin(InteractiveLoginEvent $event): RedirectResponse
+    public function onInteractiveLogin(InteractiveLoginEvent $event)
     {
         $user = $event->getAuthenticationToken()->getUser();
 
         if ($user !== null && !$user->getIsActive()) {
-            throw new CustomUserMessageAccountStatusException('Your account is not active. Please confirm your email.');
+            throw new InactiveUserException();
         }
-
-        return new RedirectResponse('/login');
     }
 }
