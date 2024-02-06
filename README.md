@@ -73,7 +73,7 @@ Symfony doctrine:fixtures:load
     
 ## Documentation
 
-- Controllers:
+### Controllers:
 
 | Controller name | Description                  |     
 | :--------       | :-------------------------------- |
@@ -87,5 +87,33 @@ Symfony doctrine:fixtures:load
 | RegistrationController |  Used to register a new User |
 | ReservationController |  Used for making a new reservation |
 
-- Some controllers had a lot of bussiness logic, but logic files are in Services directory. It helps controllers to look clean.
- 
+- Some controllers use Services to separate bussiness logic form controllers.
+
+### Views:
+
+Views are in templates directory and evry view extends a base.html.twig with default page view. Also base.html.twig connects to css file in assets/styles/app.css and conntects to JavaScript files in assets/app.js.
+
+### Entities:
+
+| Entity name |  
+| :--------   |
+| Achievements |
+| Cinema      |
+| MovieTheater |
+| Rates       |
+| Reservations |
+| Screening   |
+| Seat        |
+| User        |
+| UserAchievements |
+
+### Security:
+
+In Security/AccessDeniedHandler.php there is code to redirect user who is trying to visit f.e /admin page without a ROLE_ADMIN in roles property in database.
+
+In Security/AuthenticationEntryPoint.php there is code to flash errors during the f.e reservation a seat without beeing logged, or trying to log in on inactive account.
+
+Evry user password are hashed so you can't see this in easy admin panel, but you can easly change a user password.
+
+
+
