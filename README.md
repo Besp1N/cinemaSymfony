@@ -20,7 +20,7 @@ Install our project
   git clone https://github.com/Besp1N/cinemaSymfony.git
   symfony server:start
 ```
-    - Or you can use Nginx server with this config:
+- Or you can use Nginx server with this config:
 ```bash
 server {
     server_name 192.168.64.4 localhost;
@@ -71,3 +71,21 @@ Symfony doctrine:fixtures:load
 
 
     
+## Documentation
+
+- Controllers:
+
+| Controller name | Description                  |     
+| :--------       | :-------------------------------- |
+| AdminController | Used for easy admin config |
+| ApiControllers  | Used for api requests from JavaScript |
+| HomeController  | Main controller used for main movie view |
+| LoginCintroller | Used to log in an User |
+| MailController  | Used for sending mails to verify user |
+| NavFragmentController | Used for dynamic navigation on evry site |
+| RateController  |  Used for set movie ratio by user |
+| RegistrationController |  Used to register a new User |
+| ReservationController |  Used for making a new reservation |
+
+- Some controllers had a lot of bussiness logic, but logic files are in Services directory. It helps controllers to look clean.
+ 
