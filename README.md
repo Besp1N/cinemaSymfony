@@ -37,7 +37,6 @@ server {
 
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
-        #To naprawilo serwer
         fastcgi_buffer_size 128k;
         fastcgi_buffers 4 256k;
         fastcgi_busy_buffers_size 256k;
